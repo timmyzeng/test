@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="C++ C," />
+  <meta name="keywords" content="C++、C," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="题目：求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。 自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;amp;&amp;amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。 1、利用&amp;amp;&amp;amp;操作符，|| 也一样的做法。思路：当result = 0">
-<meta name="keywords" content="C++ C">
+<meta name="description" content="题目：求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。 自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;amp;&amp;amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。 1、利用&amp;amp;&amp;amp;操作符，|| 也一样的做法。">
+<meta name="keywords" content="C++、C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1+2+……+n的特殊求法">
 <meta property="og:url" content="http://yoursite.com/2018/01/27/1-……-n的特殊求法/index.html">
 <meta property="og:site_name" content="青匆">
-<meta property="og:description" content="题目：求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。 自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;amp;&amp;amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。 1、利用&amp;amp;&amp;amp;操作符，|| 也一样的做法。思路：当result = 0">
+<meta property="og:description" content="题目：求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。 自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;amp;&amp;amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。 1、利用&amp;amp;&amp;amp;操作符，|| 也一样的做法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-27T07:55:13.063Z">
+<meta property="og:updated_time" content="2018-01-27T08:00:53.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1+2+……+n的特殊求法">
-<meta name="twitter:description" content="题目：求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。 自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;amp;&amp;amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。 1、利用&amp;amp;&amp;amp;操作符，|| 也一样的做法。思路：当result = 0">
+<meta name="twitter:description" content="题目：求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。 自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;amp;&amp;amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。 1、利用&amp;amp;&amp;amp;操作符，|| 也一样的做法。">
 
 
 
@@ -379,13 +379,13 @@
       
         <h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><p><strong>求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。</strong></p>
 <p>自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;&amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。</p>
-<h5 id="1、利用-amp-amp-操作符，-也一样的做法。"><a href="#1、利用-amp-amp-操作符，-也一样的做法。" class="headerlink" title="1、利用&amp;&amp;操作符，|| 也一样的做法。"></a>1、利用&amp;&amp;操作符，|| 也一样的做法。</h5><p>思路：当result = 0 的时候，&amp;&amp;不再判断右操作数，递归停止<br><a id="more"></a></p>
+<h5 id="1、利用-amp-amp-操作符，-也一样的做法。"><a href="#1、利用-amp-amp-操作符，-也一样的做法。" class="headerlink" title="1、利用&amp;&amp;操作符，|| 也一样的做法。"></a>1、利用&amp;&amp;操作符，|| 也一样的做法。</h5><a id="more"></a>
+<p>思路：当result = 0 的时候，&amp;&amp;不再判断右操作数，递归停止</p>
 <pre><code>int sum( int n ){
     int result = n;
     result &amp;&amp; (result += sum(n-1));
     return result;
 }
-
 int main(){
     cout &lt;&lt; sum(100) &lt;&lt; endl;
     return 0;
@@ -434,32 +434,26 @@ int main(){
 <li>定义一个<code>A* Array[2]</code>,其中Array[0]存放A对象的地址，Array[1]存放B对象的地址。</li>
 <li>调用函数Sum中调用Sum的递归。同时对变量n两次取反<code>Array[!!n]-&gt;Sum(n-1)+n</code>,这样当n不为0的时候，得到bool值1。<code>Array[!!n] = Array[1]</code></li>
 <li><p>当n=0调用基类A的sum。充分利用虚函数参数与类型有关的性质。</p>
-<p> //1、虚函数<br> #include <iostream><br> using namespace std;</iostream></p>
-<p> class A;<br> A* Array[2];</p>
-<p> class A<br> {<br> public:</p>
+<p> //1、虚函数<br> #include <iostream><br> using namespace std;<br> class A;<br> A* Array[2];<br> class A<br> {<br> public:</iostream></p>
 <pre><code>virtual int Sum(int n)
 {
     return 0;
 }
-</code></pre><p> };</p>
-<p> class B:public A<br> {<br> public:</p>
+</code></pre><p> };<br> class B:public A<br> {<br> public:</p>
 <pre><code>virtual int Sum(int n)
 {
     //当 n != 0，!!n = 1
     return Array[!!n]-&gt;Sum(n-1)+n;
 }
-</code></pre><p> };</p>
-<p> int Sum2(int n)<br> {</p>
+</code></pre><p> };<br> int Sum2(int n)<br> {</p>
 <pre><code>A a;
 B b;
 Array[0]=&amp;a;
 Array[1]=&amp;b;
 //调用虚函数
 int value=Array[1]-&gt;Sum(n);
-
 return value;
-</code></pre><p> }</p>
-<p> int main()<br> {</p>
+</code></pre><p> }<br> int main()<br> {</p>
 <pre><code>cout&lt;&lt; Sum2(100) &lt;&lt;endl;
 return 0;
 </code></pre><p> }</p>
@@ -467,7 +461,6 @@ return 0;
 </ol>
 <pre><code>//2、同上，这里利用的是函数指针来实现。
 typedef int (*fun)(int);
-
 int solution3_f1(int i){
     return 0;
 }
@@ -531,7 +524,7 @@ int main(){
       
         <div class="post-tags">
           
-            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C++ C</a>
+            <a href="/tags/C-、C/" rel="tag"><i class="fa fa-tag"></i> C++、C</a>
           
         </div>
       
@@ -553,10 +546,6 @@ int main(){
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/27/1-……-n的特殊求法/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -642,7 +631,7 @@ int main(){
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -754,7 +743,7 @@ int main(){
   <div class="powered-by">
 </div>
 
-  <span class="post-count">有辣么多字:1.6k</span>
+  <span class="post-count">有辣么多字:1.3k</span>
 </div>
 
         
