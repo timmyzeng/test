@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="青匆">
 <meta property="og:description" content="题目：实现一个Add函数，让两个整数相加，不能够使用+-*/、++、-- 思路： 正常实现两个数相加，有两个步骤，第一将两个数对应位相加，第二相加之后有进位，将进位值与对应位相加。举个例子，15+5=20先将位进行相加，不进行进位，得到10，再将进位加上，个位没有进位，十位进1，得到20。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-28T06:19:37.717Z">
+<meta property="og:updated_time" content="2018-01-28T07:41:12.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="位运算实现Add">
 <meta name="twitter:description" content="题目：实现一个Add函数，让两个整数相加，不能够使用+-*/、++、-- 思路： 正常实现两个数相加，有两个步骤，第一将两个数对应位相加，第二相加之后有进位，将进位值与对应位相加。举个例子，15+5=20先将位进行相加，不进行进位，得到10，再将进位加上，个位没有进位，十位进1，得到20。">
@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  368
+                  392
                 </span>
               
 
@@ -393,7 +393,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -419,31 +419,7 @@
 <li>正常实现两个数相加，有两个步骤，第一将两个数对应位相加，第二相加之后有进位，将进位值与对应位相加。举个例子，<code>15+5=20</code>先将位进行相加，不进行进位，得到<code>10</code>，再将进位加上，个位没有进位，十位进1，得到<code>20</code>。<a id="more"></a></li>
 <li>题目要求不能使用<code>+-*/</code>，所以想到了位运算。15的二进制是<code>1111</code>，5的二进制是<code>0101</code>。根据上面的思路，我们先进行不进位相加，得到<code>1010</code>。(这个运算方式正好对应<code>^</code>)然后将进位加上(只求进位的运算正好对应<code>&amp;</code>再左移一位)，例子中只有第四位、第二位数值有进位值。得到<code>10100</code>，这个值就是<code>20</code>。</li>
 </ul>
-<h5 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h5><pre><code>//1、递归实现，每次将不进位相加的值赋给a，将计算出来的进位值赋给b，递归进行两者的分步相加，直到进位值`b=0`，返回a。
-long long Add( int a, int b ){
-    if( b == 0 )
-        return a;
-    int sum = a^b;
-    b = (a&amp;b)&lt;&lt;1;
-    a = sum;
-    return Add( a, b );
-}
-int main(){
-    system( &quot;clear&quot; );
-    cout &lt;&lt; Add(3, 7) &lt;&lt; endl;
-
-    //2、同时可以用迭代实现(非函数)，思路一样，进位值b最后肯定会等于0，因为总有进位结束的时候。
-    int a = 49;
-    int b = 4;
-    while( b != 0 ){
-        int sum = a^b;
-        b = (a&amp;b)&lt;&lt;1;
-        a = sum;
-    }
-    cout &lt;&lt; a &lt;&lt; endl;
-    return 0;
-}
-</code></pre>
+<h5 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、递归实现，每次将不进位相加的值赋给a，将计算出来的进位值赋给b，递归进行两者的分步相加，直到进位值`b=0`，返回a。</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Add</span><span class="params">( <span class="keyword">int</span> a, <span class="keyword">int</span> b )</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( b == <span class="number">0</span> )</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    <span class="keyword">int</span> sum = a^b;</span><br><span class="line">    b = (a&amp;b)&lt;&lt;<span class="number">1</span>;</span><br><span class="line">    a = sum;</span><br><span class="line">    <span class="keyword">return</span> Add( a, b );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    system( <span class="string">"clear"</span> );</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; Add(<span class="number">3</span>, <span class="number">7</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2、同时可以用迭代实现(非函数)，思路一样，进位值b最后肯定会等于0，因为总有进位结束的时候。</span></span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">49</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">while</span>( b != <span class="number">0</span> )&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = a^b;</span><br><span class="line">        b = (a&amp;b)&lt;&lt;<span class="number">1</span>;</span><br><span class="line">        a = sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -673,7 +649,7 @@ int main(){
   <div class="powered-by">
 </div>
 
-  <span class="post-count">有辣么多字:1.7k</span>
+  <span class="post-count">有辣么多字:1.9k</span>
 </div>
 
         
