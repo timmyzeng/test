@@ -278,6 +278,200 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/29/创建一个不能被继承的类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="timmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青匆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/29/创建一个不能被继承的类/" itemprop="url">创建一个不能被继承的类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T10:23:19+08:00">
+                2018-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/practice/" itemprop="url" rel="index">
+                    <span itemprop="name">practice</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/practice/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  530
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><p><strong>题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。</strong></p>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><ul>
+<li>题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。那么我们只要将构造函数或析构函数定义为私有成员函数就好了。</li>
+<li>第二个要求，能够正常使用，这样显然之前的方式是行不通的。构造函数为私有了，就无法创建对象了。那我再给他加一个友元函数，这样对象也可以创建了。</li>
+<li>可是题目的要求是正常使用这个类，显然通过一个友元函数是不符合我们正常使用类的方式。</li>
+<li>这个时候，正真正确的思路就出来了。我们借用一个中间类。例如：我们不能被继承的类是man，我们创建一个 <strong>私有构造函数的父类person</strong>，同时将 <strong>man定义为person的友元类</strong>。这样man就可以正常访问person的私有构造函数了。接着我们让 <strong>man虚继承person</strong>，到这里我们就完成了这个题目。</li>
+<li><strong>让man虚继承person是为了让继承man的类，都需要在man的父类，即person中调用构造函数，但只有man是person的友元类，其他的类都不能访问person的构造函数。因此man就成为了不能被继承的类，而man本身可以正常使用。</strong></li>
+</ul>
+<h5 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//设计一个不能被继承的类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">man</span>;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="comment">//构造函数为private</span></span><br><span class="line">        person()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//man虚拟继承person</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">man</span>:</span><span class="keyword">virtual</span> <span class="keyword">public</span> person &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        man()&#123;</span><br><span class="line">            age = <span class="number">18</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; age &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// class son:public man&#123;</span></span><br><span class="line"><span class="comment">//  public:</span></span><br><span class="line"><span class="comment">//      son()&#123;&#125;</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    man bob;</span><br><span class="line">    system( <span class="string">"clear"</span> );</span><br><span class="line">    bob.show();</span><br><span class="line">    <span class="comment">//son tom;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不定义man的继承类son，正常输出man的age = 18<br><img src="https://raw.githubusercontent.com/timmyzeng/pic/master/ring_list1.png&quot;正常使用&quot;" alt="不能被继承的类"></p>
+<p>定义man的继承类son失败<br><img src="https://raw.githubusercontent.com/timmyzeng/pic/master/ring_list2.png&quot;创建子类失败&quot;" alt="不能被继承的类"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/28/位运算实现Add/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -564,7 +758,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  914
+                  910
                 </span>
               
 
@@ -604,7 +798,7 @@
         
           <h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><p><strong>求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。</strong></p>
 <p>自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;&amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。</p>
-<h5 id="更新：18-1-28"><a href="#更新：18-1-28" class="headerlink" title="更新：18.1.28"></a>更新：18.1.28</h5><p>发现了一个时间复杂度为O(1)的做法，这种做法只能在GCC、C99标准中使用，因为它使用了柔性数组，这种数组的长度的可变的，不需要用常量定义。<br><a href="https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html" target="_blank" rel="noopener">柔性数组</a><br>
+<h5 id="更新：18-1-28"><a href="#更新：18-1-28" class="headerlink" title="更新：18.1.28"></a>更新：18.1.28</h5><p>发现了一个时间复杂度为O(1)的做法，这种做法只能在GCC、C99标准中使用，因为它使用了<a href="https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html" target="_blank" rel="noopener">柔性数组</a>，这种数组的长度的可变的，不需要用常量定义。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/27/1-……-n的特殊求法/" rel="contents">
@@ -873,7 +1067,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -884,7 +1078,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -969,7 +1163,7 @@
   <div class="powered-by">
 </div>
 
-  <span class="post-count">有辣么多字:1.9k</span>
+  <span class="post-count">有辣么多字:2.4k</span>
 </div>
 
         

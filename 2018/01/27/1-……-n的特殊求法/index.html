@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="青匆">
 <meta property="og:description" content="题目：求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。 自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;amp;&amp;amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。 更新：18.1.28发现了一个时间复杂度为O(1)的做法，这种做法只能在GCC、C99">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-28T09:03:02.208Z">
+<meta property="og:updated_time" content="2018-01-28T10:25:03.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1+2+……+n的特殊求法">
 <meta name="twitter:description" content="题目：求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。 自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;amp;&amp;amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。 更新：18.1.28发现了一个时间复杂度为O(1)的做法，这种做法只能在GCC、C99">
@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  914
+                  910
                 </span>
               
 
@@ -416,8 +416,9 @@
       
         <h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><p><strong>求1+2+3+…+n，要求不能使用乘除法，for,while，if,else,switch,case等关键字以及条件判断语句。</strong></p>
 <p>自己思考想到了一种方法，递归的思路，但是判断终止的条件不是if，利用了&amp;&amp;的性质，当前操作数为假的时候，不再进行后操作数的运算。然后在网上查阅，得到了其他的做法。</p>
-<h5 id="更新：18-1-28"><a href="#更新：18-1-28" class="headerlink" title="更新：18.1.28"></a>更新：18.1.28</h5><p>发现了一个时间复杂度为O(1)的做法，这种做法只能在GCC、C99标准中使用，因为它使用了柔性数组，这种数组的长度的可变的，不需要用常量定义。<br><a href="https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html" target="_blank" rel="noopener">柔性数组</a><br><a id="more"></a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Sum_Solution</span><span class="params">( <span class="keyword">int</span> n )</span></span>&#123;</span><br><span class="line">            <span class="keyword">bool</span> a[n][n+<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">sizeof</span>(a)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Solution s;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s.Sum_Solution(<span class="number">10</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="更新：18-1-28"><a href="#更新：18-1-28" class="headerlink" title="更新：18.1.28"></a>更新：18.1.28</h5><p>发现了一个时间复杂度为O(1)的做法，这种做法只能在GCC、C99标准中使用，因为它使用了<a href="https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html" target="_blank" rel="noopener">柔性数组</a>，这种数组的长度的可变的，不需要用常量定义。</p>
+<a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Sum_Solution</span><span class="params">( <span class="keyword">int</span> n )</span></span>&#123;</span><br><span class="line">            <span class="keyword">bool</span> a[n][n+<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">sizeof</span>(a)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Solution s;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s.Sum_Solution(<span class="number">10</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>原文：</p>
 <h5 id="利用-amp-amp-操作符，-也一样的做法。"><a href="#利用-amp-amp-操作符，-也一样的做法。" class="headerlink" title="利用&amp;&amp;操作符，|| 也一样的做法。"></a>利用&amp;&amp;操作符，|| 也一样的做法。</h5><p>思路：当result = 0 的时候，&amp;&amp;不再判断右操作数，递归停止。</p>
@@ -558,7 +559,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -569,7 +570,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -670,7 +671,7 @@
   <div class="powered-by">
 </div>
 
-  <span class="post-count">有辣么多字:1.9k</span>
+  <span class="post-count">有辣么多字:2.4k</span>
 </div>
 
         
