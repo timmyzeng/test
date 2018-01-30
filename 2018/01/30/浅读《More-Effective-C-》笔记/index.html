@@ -81,20 +81,17 @@
 
 
 
-<meta name="description" content="题目：题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。 思路： 题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。">
+<meta name="description" content="基础议题条款1：区分指针和引用 不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。   123//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。char* pc = 0;char &amp;amp;rc = *pc;  因为不存在空引用这种情况，所以使引用会比指针更高效。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创建一个不能被继承的类">
-<meta property="og:url" content="http://yoursite.com/2018/01/29/创建一个不能被继承的类/index.html">
+<meta property="og:title" content="浅读《More Effective C++》笔记">
+<meta property="og:url" content="http://yoursite.com/2018/01/30/浅读《More-Effective-C-》笔记/index.html">
 <meta property="og:site_name" content="青匆">
-<meta property="og:description" content="题目：题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。 思路： 题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。">
+<meta property="og:description" content="基础议题条款1：区分指针和引用 不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。   123//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。char* pc = 0;char &amp;amp;rc = *pc;  因为不存在空引用这种情况，所以使引用会比指针更高效。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png">
-<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291733_414.png">
-<meta property="og:updated_time" content="2018-01-29T09:33:50.498Z">
+<meta property="og:updated_time" content="2018-01-30T06:40:12.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="创建一个不能被继承的类">
-<meta name="twitter:description" content="题目：题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。 思路： 题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。">
-<meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png">
+<meta name="twitter:title" content="浅读《More Effective C++》笔记">
+<meta name="twitter:description" content="基础议题条款1：区分指针和引用 不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。   123//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。char* pc = 0;char &amp;amp;rc = *pc;  因为不存在空引用这种情况，所以使引用会比指针更高效。">
 
 
 
@@ -124,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/29/创建一个不能被继承的类/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/30/浅读《More-Effective-C-》笔记/"/>
 
 
 
 
 
-  <title>创建一个不能被继承的类 | 青匆</title>
+  <title>浅读《More Effective C++》笔记 | 青匆</title>
   
 
 
@@ -281,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/29/创建一个不能被继承的类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/30/浅读《More-Effective-C-》笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="timmy">
@@ -298,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">创建一个不能被继承的类</h1>
+          <h1 class="post-title" itemprop="name headline">浅读《More Effective C++》笔记</h1>
         
 
         <div class="post-meta">
@@ -310,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T10:23:19+08:00">
-                2018-01-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T14:27:03+08:00">
+                2018-01-30
               </time>
             
 
@@ -333,19 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/practice/" itemprop="url" rel="index">
-                    <span itemprop="name">practice</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/practice/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
+                  <a href="/categories/learning/" itemprop="url" rel="index">
+                    <span itemprop="name">learning</span>
                   </a>
                 </span>
 
@@ -380,7 +366,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  530
+                  650
                 </span>
               
 
@@ -417,17 +403,29 @@
       
 
       
-        <h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><p><strong>题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。</strong></p>
-<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><ul>
-<li>题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。<a id="more"></a>那么我们只要将构造函数或析构函数定义为私有成员函数就好了。</li>
-<li>第二个要求，能够正常使用，这样显然之前的方式是行不通的。构造函数为私有了，就无法创建对象了。那我再给他加一个友元函数，这样对象也可以创建了。</li>
-<li>可是题目的要求是正常使用这个类，显然通过一个友元函数是不符合我们正常使用类的方式。</li>
-<li>这个时候，正真正确的思路就出来了。我们借用一个中间类。例如：我们不能被继承的类是man，我们创建一个 <strong>私有构造函数的父类person</strong>，同时将 <strong>man定义为person的友元类</strong>。这样man就可以正常访问person的私有构造函数了。接着我们让 <strong>man虚继承person</strong>，到这里我们就完成了这个题目。</li>
-<li><strong>让man虚继承person是为了让继承man的类，都需要在man的父类，即person中调用构造函数，但只有man是person的友元类，其他的类都不能访问person的构造函数。因此man就成为了不能被继承的类，而man本身可以正常使用。</strong></li>
+        <h4 id="基础议题"><a href="#基础议题" class="headerlink" title="基础议题"></a>基础议题</h4><h5 id="条款1：区分指针和引用"><a href="#条款1：区分指针和引用" class="headerlink" title="条款1：区分指针和引用"></a>条款1：区分指针和引用</h5><ul>
+<li><p>不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。</span></span><br><span class="line"><span class="keyword">char</span>* pc = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> &amp;rc = *pc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>因为不存在空引用这种情况，所以使引用会比指针更高效。</p>
+<a id="more"></a>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引用不用判空</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_double</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span>&amp; rd)</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; rd;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//指针要判空</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_double1</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> *pd)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pd)&#123; <span class="built_in">cout</span> &lt;&lt; *pd; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指针可以被重新赋值用以指向另外一个不同的对象，而引用则总是指向初始化时它指向的对象。</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">"nancy"</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(<span class="string">"clancy"</span>)</span></span>;</span><br><span class="line"><span class="built_in">string</span>&amp; rs = s1;</span><br><span class="line"><span class="built_in">string</span> *ps = &amp;s1;</span><br><span class="line"><span class="comment">//rs依然是s1的引用，此时rs = s1 = s2 = "clancy"</span></span><br><span class="line">rs = s2;</span><br><span class="line"><span class="comment">//ps指向了s2,不再指向s1</span></span><br><span class="line">ps = &amp;s2;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现某些操作符的时候，最常见的是[]操作符，绝大多数应该返回引用。</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(<span class="number">10</span>);</span><br><span class="line"><span class="comment">//一般情况下的返回值，此时是引用</span></span><br><span class="line">v[<span class="number">5</span>] = <span class="number">10</span>;</span><br><span class="line"><span class="comment">//如果返回的是指针就需要这样解引用，看起来v就像是一个指针vector一样。</span></span><br><span class="line">*v[<span class="number">5</span>] = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//设计一个不能被继承的类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">man</span>;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="comment">//构造函数为private</span></span><br><span class="line">        person()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//man虚拟继承person</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">man</span>:</span><span class="keyword">virtual</span> <span class="keyword">public</span> person &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        man()&#123;</span><br><span class="line">            age = <span class="number">18</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; age &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// class son:public man&#123;</span></span><br><span class="line"><span class="comment">//  public:</span></span><br><span class="line"><span class="comment">//      son()&#123;&#125;</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    man bob;</span><br><span class="line">    system( <span class="string">"clear"</span> );</span><br><span class="line">    bob.show();</span><br><span class="line">    <span class="comment">//son tom;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不定义man的继承类son，正常输出man的age = 18<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png" alt=""></p>
-<p>定义man的继承类son失败<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291733_414.png" alt=""></p>
+<h5 id="条款2：优先考虑C-风格的类型转换"><a href="#条款2：优先考虑C-风格的类型转换" class="headerlink" title="条款2：优先考虑C++风格的类型转换"></a>条款2：优先考虑C++风格的类型转换</h5><ul>
+<li>四个类型转换操作符：static_cast,const_cast,dynamic_cast,reinterpret_cast</li>
+<li>static_cast：作用类似于C中的隐式类型转换，只能转换相近类型的变量。比如struct到int的转换就不能实现。而且在C++中，static_cast并不能将const属性转换为非const属性。</li>
+<li>const_cast：专门用来去除const属性和volatile属性。const_cast被用来用作其他的类型转换会被拒绝。</li>
+<li>dynamic_cast：它是用来针对一个继承体系做向下或者横向的安全转换的。也就是说，用dynamic_cast把指向基类的指针或引用转换成指向派生类或者基类的兄弟类的指针或引用，同时可以知道是否成功。出现空指针(转换指针的时候)或者出现异常(转换引用的时候)意味着失败。他不能用于哪些没有虚函数的类型，也不能去除const属性。</li>
+<li>reinterpret_const：这个操作符，转换结果往往是编译器定义的。因此它几乎是不可以移植的。最常见的用法是在函数指针之间进行类型转换。</li>
+<li>使用格式举例：static_cast<double> (first); const_cast<special*>(first); dynamic_cast<special *="">(&amp;first); reinterpret_cast<funcptr> (&amp;dosomething);</funcptr></special></special*></double></li>
+</ul>
 
       
     </div>
@@ -452,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/28/位运算实现Add/" rel="next" title="位运算实现Add">
-                <i class="fa fa-chevron-left"></i> 位运算实现Add
+              <a href="/2018/01/30/浅读《STL源码剖析》笔记/" rel="next" title="浅读《STL源码剖析》笔记">
+                <i class="fa fa-chevron-left"></i> 浅读《STL源码剖析》笔记
               </a>
             
           </div>
@@ -461,10 +459,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/30/static-const-integral-data-member在类中的初始化/" rel="prev" title="static const integral data member在类中的初始化">
-                static const integral data member在类中的初始化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -613,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#思路："><span class="nav-number">1.1.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码如下："><span class="nav-number">1.2.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础议题"><span class="nav-number">1.</span> <span class="nav-text">基础议题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#条款1：区分指针和引用"><span class="nav-number">1.1.</span> <span class="nav-text">条款1：区分指针和引用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条款2：优先考虑C-风格的类型转换"><span class="nav-number">1.2.</span> <span class="nav-text">条款2：优先考虑C++风格的类型转换</span></a></li></ol></li></ol></div>
             
 
           </div>

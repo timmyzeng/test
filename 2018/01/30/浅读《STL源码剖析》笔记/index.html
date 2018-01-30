@@ -81,20 +81,20 @@
 
 
 
-<meta name="description" content="题目：题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。 思路： 题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。">
+<meta name="description" content="1 STL概论与版本简介18.1.29 1.2 STL六大组件 容器(containers):vector,list,deque,set,map,用来存放数据 算法(algorithms):sort,search,copy,erase 迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创建一个不能被继承的类">
-<meta property="og:url" content="http://yoursite.com/2018/01/29/创建一个不能被继承的类/index.html">
+<meta property="og:title" content="浅读《STL源码剖析》笔记">
+<meta property="og:url" content="http://yoursite.com/2018/01/30/浅读《STL源码剖析》笔记/index.html">
 <meta property="og:site_name" content="青匆">
-<meta property="og:description" content="题目：题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。 思路： 题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。">
+<meta property="og:description" content="1 STL概论与版本简介18.1.29 1.2 STL六大组件 容器(containers):vector,list,deque,set,map,用来存放数据 算法(algorithms):sort,search,copy,erase 迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png">
-<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291733_414.png">
-<meta property="og:updated_time" content="2018-01-29T09:33:50.498Z">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291947_629.png">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801292024_990.png">
+<meta property="og:updated_time" content="2018-01-30T09:51:29.404Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="创建一个不能被继承的类">
-<meta name="twitter:description" content="题目：题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。 思路： 题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。">
-<meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png">
+<meta name="twitter:title" content="浅读《STL源码剖析》笔记">
+<meta name="twitter:description" content="1 STL概论与版本简介18.1.29 1.2 STL六大组件 容器(containers):vector,list,deque,set,map,用来存放数据 算法(algorithms):sort,search,copy,erase 迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，">
+<meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291947_629.png">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/29/创建一个不能被继承的类/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/30/浅读《STL源码剖析》笔记/"/>
 
 
 
 
 
-  <title>创建一个不能被继承的类 | 青匆</title>
+  <title>浅读《STL源码剖析》笔记 | 青匆</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/29/创建一个不能被继承的类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/30/浅读《STL源码剖析》笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="timmy">
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">创建一个不能被继承的类</h1>
+          <h1 class="post-title" itemprop="name headline">浅读《STL源码剖析》笔记</h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T10:23:19+08:00">
-                2018-01-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T14:26:27+08:00">
+                2018-01-30
               </time>
             
 
@@ -333,19 +333,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/practice/" itemprop="url" rel="index">
-                    <span itemprop="name">practice</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/practice/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
+                  <a href="/categories/learning/" itemprop="url" rel="index">
+                    <span itemprop="name">learning</span>
                   </a>
                 </span>
 
@@ -380,7 +369,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  530
+                  1,164
                 </span>
               
 
@@ -396,7 +385,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  5
                 </span>
               
             </div>
@@ -417,17 +406,45 @@
       
 
       
-        <h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><p><strong>题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。</strong></p>
-<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><ul>
-<li>题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。<a id="more"></a>那么我们只要将构造函数或析构函数定义为私有成员函数就好了。</li>
-<li>第二个要求，能够正常使用，这样显然之前的方式是行不通的。构造函数为私有了，就无法创建对象了。那我再给他加一个友元函数，这样对象也可以创建了。</li>
-<li>可是题目的要求是正常使用这个类，显然通过一个友元函数是不符合我们正常使用类的方式。</li>
-<li>这个时候，正真正确的思路就出来了。我们借用一个中间类。例如：我们不能被继承的类是man，我们创建一个 <strong>私有构造函数的父类person</strong>，同时将 <strong>man定义为person的友元类</strong>。这样man就可以正常访问person的私有构造函数了。接着我们让 <strong>man虚继承person</strong>，到这里我们就完成了这个题目。</li>
-<li><strong>让man虚继承person是为了让继承man的类，都需要在man的父类，即person中调用构造函数，但只有man是person的友元类，其他的类都不能访问person的构造函数。因此man就成为了不能被继承的类，而man本身可以正常使用。</strong></li>
+        <h4 id="1-STL概论与版本简介"><a href="#1-STL概论与版本简介" class="headerlink" title="1 STL概论与版本简介"></a>1 STL概论与版本简介</h4><p>18.1.29</p>
+<h5 id="1-2-STL六大组件"><a href="#1-2-STL六大组件" class="headerlink" title="1.2 STL六大组件"></a>1.2 STL六大组件</h5><ol>
+<li>容器(containers):vector,list,deque,set,map,用来存放数据</li>
+<li>算法(algorithms):sort,search,copy,erase</li>
+<li>迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，<a id="more"></a>迭代器器将operator*,operator++,operator–,operator-&gt;等指针进行了重载的class template。原生指针（native pointer）也是一种迭代器。</li>
+<li>仿函数(functors):行为类似函数，实现来看，从在了operator()的class或class template。</li>
+<li>配接器(adapters):一种用来修饰容器(containers)或仿函数(functors)或迭代器(iterators)接口的东西。如stack和queue他们的底层实现是deque。</li>
+<li>配置器(allocators):负责空间配置与管理，从实现的角度看来，配置器是一个实现了动态空间配置、空间管理、空间释放的class template。</li>
+</ol>
+<h5 id="1-5-1-8-STL版本之二"><a href="#1-5-1-8-STL版本之二" class="headerlink" title="1.5~1.8 STL版本之二"></a>1.5~1.8 STL版本之二</h5><ol>
+<li>P.J.Plauger Visual C++</li>
+<li>SGI STL GCC<ul>
+<li>C++标准规范下的C头文件: cstdio,cstdlib,cstring</li>
+<li>C++标准程序库中不属于STL范畴: stream,string</li>
+<li>STL标准头文件: vector,deque,list,map,algorithm,functional</li>
+<li>C++Standard定案前，HP所规范的STL头文件: vector.h,deque.h,list.h,algo.h,function.h</li>
+<li>SGI STL内部文件(STL真正实现于此): stl_vector.h,stl_deque.h,stl_list.h,stl_map.h,stl_algo.h,stl_function.h</li>
 </ul>
-<h5 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//设计一个不能被继承的类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">man</span>;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="comment">//构造函数为private</span></span><br><span class="line">        person()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//man虚拟继承person</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">man</span>:</span><span class="keyword">virtual</span> <span class="keyword">public</span> person &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        man()&#123;</span><br><span class="line">            age = <span class="number">18</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; age &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// class son:public man&#123;</span></span><br><span class="line"><span class="comment">//  public:</span></span><br><span class="line"><span class="comment">//      son()&#123;&#125;</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    man bob;</span><br><span class="line">    system( <span class="string">"clear"</span> );</span><br><span class="line">    bob.show();</span><br><span class="line">    <span class="comment">//son tom;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不定义man的继承类son，正常输出man的age = 18<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png" alt=""></p>
-<p>定义man的继承类son失败<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291733_414.png" alt=""></p>
+</li>
+</ol>
+<h5 id="1-9-C-语法"><a href="#1-9-C-语法" class="headerlink" title="1.9 C++语法"></a>1.9 C++语法</h5><ol>
+<li>临时对象就是匿名对象，创造临时对象的方法是，在类型后面直接加上()，同时可以赋初值。如：Shape(3,5),int(8)。他的意义相当于调用相应的constructor且不指定对象名称。STL中最常将此技巧用在仿函数(functor)中。临时对象的生命周期只有这一行指令。(1.9.2）)</li>
+<li><p>class内含有const static integral data member，我们可以直接给予初值。</p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.9.3测试代码如下</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">testclass</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> datai = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">long</span> datal = <span class="number">3L</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">char</span> datac = <span class="string">'c'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; testclass&lt;<span class="keyword">int</span>&gt;::datai &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; testclass&lt;<span class="keyword">int</span>&gt;::datal &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; testclass&lt;<span class="keyword">int</span>&gt;::datac &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="http://p3ax8ersb.bkt.clouddn.com/201801291947_629.png" alt="运行结果"></p>
+</li>
+<li>STL中范围是用前闭后开。[first, last)元素从first开始，结束于last-1.迭代器中的last指的是最后一个元素的下一个。(1.9.5)</li>
+<li><p>function call操作符(oprator())。C语言中用函数指针作为参数传递。有个缺点就是，没有可适配性，也就是确定了这个函数指针之后，无法再加上新的修饰条件从而改变他的状态。STL中用仿函数(functor)实现这个功能。如果你针对某个class进行operator()重载，它就成为一个仿函数。</p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.9.6测试代码如下</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">Add</span>&#123;</span></span><br><span class="line">    <span class="comment">//重载了operator()</span></span><br><span class="line">    <span class="function">T <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> T&amp;x, <span class="keyword">const</span> T&amp;y)</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x+y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Add&lt;<span class="keyword">int</span>&gt; addxy;</span><br><span class="line">    system( <span class="string">"clear"</span> );</span><br><span class="line">    <span class="comment">//调用重载函数</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; addxy(<span class="number">3</span>,<span class="number">5</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//调用匿名对象</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; Add&lt;<span class="keyword">int</span>&gt;()(<span class="number">5</span>,<span class="number">5</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="http://p3ax8ersb.bkt.clouddn.com/201801292024_990.png" alt="仿函数"></p>
+</li>
+</ol>
+<h4 id="2-空间配置器-allocator"><a href="#2-空间配置器-allocator" class="headerlink" title="2 空间配置器(allocator)"></a>2 空间配置器(allocator)</h4><p>空间配置器在容器背后工作，整个STL的操作对象(所有的数值)，对存放在容器中，而容器一定要配置空间以置放资料。不一定是内存，也可以是磁盘或其他的辅助存储介质。<br>……俺决定，先跳过这个章节</p>
+<h4 id="迭代器-iterator-概念与traits编程技法"><a href="#迭代器-iterator-概念与traits编程技法" class="headerlink" title="迭代器(iterator)概念与traits编程技法"></a>迭代器(iterator)概念与traits编程技法</h4><p>18.1.30<br>迭代器(iterator)是一种抽象的设计概念，iterator模式定义如下；提供一种方法，使之能够按照次序访问某个聚合物（容器）所含有的各个元素，而同时又无需暴露该聚合物的内部表述方式</p>
+<h5 id="3-1-迭代器设计思维"><a href="#3-1-迭代器设计思维" class="headerlink" title="3.1 迭代器设计思维"></a>3.1 迭代器设计思维</h5><p>STL的中心是将数据容器和算法分开，然后用一个胶合剂将他们联系在一起，这个就是iterators的作用之一</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//3.1举例说明</span></span><br><span class="line"><span class="comment">//find()的定义。</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">InputIterator</span>, <span class="title">chass</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">InputIterator</span> <span class="title">find</span>( <span class="title">InputIterator</span> <span class="title">first</span>, <span class="title">InputIterator</span> <span class="title">last</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">value</span> )&#123;</span></span><br><span class="line">    <span class="keyword">while</span> ( first != last &amp;&amp; *first != value )</span><br><span class="line">        ++first;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> arraySiza = <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">int</span> ia[arraySiza] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> &#125;;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivect(ia, ia+arraySiza);</span><br><span class="line">    <span class="comment">//调用vector的iterator用于find()</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it1 = find(ivect.begin(), ivect.end(), <span class="number">4</span>);</span><br><span class="line">    <span class="keyword">if</span>( it1 == ivect.end() )</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"4 not found."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"4 found:"</span> &lt;&lt; *it1 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    it1 = find(ivect.begin(), ivect.end(), <span class="number">8</span>);</span><br><span class="line">    <span class="keyword">if</span>( it1 == ivect.end() )</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"8 not found."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"8 found"</span> &lt;&lt; *it1 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-2-迭代器-ierator-是一种smart-pointer"><a href="#3-2-迭代器-ierator-是一种smart-pointer" class="headerlink" title="3.2 迭代器(ierator)是一种smart pointer"></a>3.2 迭代器(ierator)是一种smart pointer</h5><ol>
+<li>迭代器是一个行为类似指针的对象，所以迭代器最重要的编程工作就是对operator* 和 operator-&gt; 进行重载工作。</li>
+</ol>
 
       
     </div>
@@ -452,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/28/位运算实现Add/" rel="next" title="位运算实现Add">
-                <i class="fa fa-chevron-left"></i> 位运算实现Add
+              <a href="/2018/01/30/static-const-integral-data-member在类中的初始化/" rel="next" title="static const integral data member在类中的初始化">
+                <i class="fa fa-chevron-left"></i> static const integral data member在类中的初始化
               </a>
             
           </div>
@@ -462,8 +479,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/30/static-const-integral-data-member在类中的初始化/" rel="prev" title="static const integral data member在类中的初始化">
-                static const integral data member在类中的初始化 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/30/浅读《More-Effective-C-》笔记/" rel="prev" title="浅读《More Effective C++》笔记">
+                浅读《More Effective C++》笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -613,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#思路："><span class="nav-number">1.1.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码如下："><span class="nav-number">1.2.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-STL概论与版本简介"><span class="nav-number">1.</span> <span class="nav-text">1 STL概论与版本简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-STL六大组件"><span class="nav-number">1.1.</span> <span class="nav-text">1.2 STL六大组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-1-8-STL版本之二"><span class="nav-number">1.2.</span> <span class="nav-text">1.5~1.8 STL版本之二</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-9-C-语法"><span class="nav-number">1.3.</span> <span class="nav-text">1.9 C++语法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-空间配置器-allocator"><span class="nav-number">2.</span> <span class="nav-text">2 空间配置器(allocator)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代器-iterator-概念与traits编程技法"><span class="nav-number">3.</span> <span class="nav-text">迭代器(iterator)概念与traits编程技法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-迭代器设计思维"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 迭代器设计思维</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-迭代器-ierator-是一种smart-pointer"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 迭代器(ierator)是一种smart pointer</span></a></li></ol></li></ol></div>
             
 
           </div>
