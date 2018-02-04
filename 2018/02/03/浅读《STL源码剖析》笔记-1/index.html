@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802011438_654.png">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802011620_34.png">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802011647_747.png">
-<meta property="og:updated_time" content="2018-02-04T01:46:08.220Z">
+<meta property="og:updated_time" content="2018-02-04T02:37:01.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅读《STL源码剖析》笔记 1">
 <meta name="twitter:description" content="1 STL概论与版本简介1.2 STL六大组件 容器(containers):vector,list,deque,set,map,用来存放数据 算法(algorithms):sort,search,copy,erase 迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，">
@@ -105,9 +105,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -355,11 +355,6 @@
           
 
           
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
-          
 
           
             <div class="post-wordcount">
@@ -372,7 +367,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,595
+                  2,604
                 </span>
               
 
@@ -470,7 +465,8 @@
 </ul>
 <p>接下来几节，暂时先压住……</p>
 <h6 id="2-2-5-第一级配置器-malloc-alloc-template-剖析"><a href="#2-2-5-第一级配置器-malloc-alloc-template-剖析" class="headerlink" title="2.2.5 第一级配置器 __malloc_alloc_template 剖析"></a>2.2.5 第一级配置器 __malloc_alloc_template 剖析</h6><h6 id="2-2-6-第二级配置器-default-alloc-template-剖析"><a href="#2-2-6-第二级配置器-default-alloc-template-剖析" class="headerlink" title="2.2.6 第二级配置器__default_alloc_template 剖析"></a>2.2.6 第二级配置器__default_alloc_template 剖析</h6><h6 id="2-2-7-空间配置函数allocate"><a href="#2-2-7-空间配置函数allocate" class="headerlink" title="2.2.7 空间配置函数allocate()"></a>2.2.7 空间配置函数allocate()</h6><h6 id="2-2-8-空间释放函数-deallocate"><a href="#2-2-8-空间释放函数-deallocate" class="headerlink" title="2.2.8 空间释放函数 deallocate()"></a>2.2.8 空间释放函数 deallocate()</h6><h6 id="2-2-9-重新填充-free-lists"><a href="#2-2-9-重新填充-free-lists" class="headerlink" title="2.2.9 重新填充 free lists"></a>2.2.9 重新填充 free lists</h6><h6 id="2-2-10-内存池-memory-pool"><a href="#2-2-10-内存池-memory-pool" class="headerlink" title="2.2.10 内存池(memory pool)"></a>2.2.10 内存池(memory pool)</h6><h5 id="2-3-内存基本处理工具"><a href="#2-3-内存基本处理工具" class="headerlink" title="2.3 内存基本处理工具"></a>2.3 内存基本处理工具</h5><p>STL定义了五个全局函数，作用于未初始化化空间上：用于构造的<code>construct()</code>和析构的<code>destroy()</code>,另外三个是：<code>uninitialized_copy(),uninitialized_fill(),uninitialozed_fill_n()</code>(定于于<code>&lt;memory&gt;</code>),分别对应于高层次函数<code>copy(),fill(),fill_n()</code>,这些都是STL的算法。</p>
-<h6 id="2-3-1-uninitialized-copy"><a href="#2-3-1-uninitialized-copy" class="headerlink" title="2.3.1 uninitialized_copy"></a>2.3.1 uninitialized_copy</h6><h6 id="2-3-2-uninitialized-fill"><a href="#2-3-2-uninitialized-fill" class="headerlink" title="2.3.2 uninitialized_fill"></a>2.3.2 uninitialized_fill</h6><h6 id="2-3-3-uninitialized-fill-n"><a href="#2-3-3-uninitialized-fill-n" class="headerlink" title="2.3.3 uninitialized_fill_n"></a>2.3.3 uninitialized_fill_n</h6>
+<h6 id="2-3-1-uninitialized-copy"><a href="#2-3-1-uninitialized-copy" class="headerlink" title="2.3.1 uninitialized_copy"></a>2.3.1 uninitialized_copy</h6><h6 id="2-3-2-uninitialized-fill"><a href="#2-3-2-uninitialized-fill" class="headerlink" title="2.3.2 uninitialized_fill"></a>2.3.2 uninitialized_fill</h6><h6 id="2-3-3-uninitialized-fill-n"><a href="#2-3-3-uninitialized-fill-n" class="headerlink" title="2.3.3 uninitialized_fill_n"></a>2.3.3 uninitialized_fill_n</h6><p><a href="http://music.163.com/song?id=30245576&amp;userid=285500825" target="_blank" rel="noopener">http://music.163.com/song?id=30245576&amp;userid=285500825</a></p>
+
       
     </div>
     
@@ -554,6 +550,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -636,8 +634,7 @@
           
           
 
-          
-
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=370 height=86 src="//music.163.com/outchain/player?type=2&id=443242&auto=1&height=66"></iframe>
         </div>
       </section>
 
@@ -651,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-STL概论与版本简介"><span class="nav-number">1.</span> <span class="nav-text">1 STL概论与版本简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-STL六大组件"><span class="nav-number">1.1.</span> <span class="nav-text">1.2 STL六大组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-1-8-STL版本之二"><span class="nav-number">1.2.</span> <span class="nav-text">1.5~1.8 STL版本之二</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-9-可能令你困惑的C-语法"><span class="nav-number">1.3.</span> <span class="nav-text">1.9 可能令你困惑的C++语法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-9-2-临时对象的产生与运用"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.9.2 临时对象的产生与运用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-9-3-静态常量整数成员在class内部直接初始化"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.9.3 静态常量整数成员在class内部直接初始化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-9-5-前闭后开区间表示法"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.9.5 前闭后开区间表示法[)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-9-6-function-call操作符-operator"><span class="nav-number">1.3.4.</span> <span class="nav-text">1.9.6 function call操作符(operator())</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-空间配置器-allocator"><span class="nav-number">2.</span> <span class="nav-text">2 空间配置器(allocator)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-具备此配置力的SGI空间配置器"><span class="nav-number">2.1.</span> <span class="nav-text">2.2 具备此配置力的SGI空间配置器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-1-SGI标准的空间配置器-std-allocator"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.2.1 SGI标准的空间配置器,std::allocator</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-2-SGI特殊的空间配置器，std-alloc"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.2.2 SGI特殊的空间配置器，std::alloc</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-3-构造和析构基本工具-construct-和destroy"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.2.3 构造和析构基本工具:construct()和destroy()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-4-空间的配置与释放，std-alloc"><span class="nav-number">2.1.4.</span> <span class="nav-text">2.2.4 空间的配置与释放，std::alloc</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-5-第一级配置器-malloc-alloc-template-剖析"><span class="nav-number">2.1.5.</span> <span class="nav-text">2.2.5 第一级配置器 __malloc_alloc_template 剖析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-6-第二级配置器-default-alloc-template-剖析"><span class="nav-number">2.1.6.</span> <span class="nav-text">2.2.6 第二级配置器__default_alloc_template 剖析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-7-空间配置函数allocate"><span class="nav-number">2.1.7.</span> <span class="nav-text">2.2.7 空间配置函数allocate()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-8-空间释放函数-deallocate"><span class="nav-number">2.1.8.</span> <span class="nav-text">2.2.8 空间释放函数 deallocate()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-9-重新填充-free-lists"><span class="nav-number">2.1.9.</span> <span class="nav-text">2.2.9 重新填充 free lists</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-10-内存池-memory-pool"><span class="nav-number">2.1.10.</span> <span class="nav-text">2.2.10 内存池(memory pool)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-内存基本处理工具"><span class="nav-number">2.2.</span> <span class="nav-text">2.3 内存基本处理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-1-uninitialized-copy"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.3.1 uninitialized_copy</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-2-uninitialized-fill"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.3.2 uninitialized_fill</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-3-uninitialized-fill-n"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3.3 uninitialized_fill_n</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-STL概论与版本简介"><span class="nav-text">1 STL概论与版本简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-STL六大组件"><span class="nav-text">1.2 STL六大组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-1-8-STL版本之二"><span class="nav-text">1.5~1.8 STL版本之二</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-9-可能令你困惑的C-语法"><span class="nav-text">1.9 可能令你困惑的C++语法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-9-2-临时对象的产生与运用"><span class="nav-text">1.9.2 临时对象的产生与运用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-9-3-静态常量整数成员在class内部直接初始化"><span class="nav-text">1.9.3 静态常量整数成员在class内部直接初始化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-9-5-前闭后开区间表示法"><span class="nav-text">1.9.5 前闭后开区间表示法[)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-9-6-function-call操作符-operator"><span class="nav-text">1.9.6 function call操作符(operator())</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-空间配置器-allocator"><span class="nav-text">2 空间配置器(allocator)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-具备此配置力的SGI空间配置器"><span class="nav-text">2.2 具备此配置力的SGI空间配置器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-1-SGI标准的空间配置器-std-allocator"><span class="nav-text">2.2.1 SGI标准的空间配置器,std::allocator</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-2-SGI特殊的空间配置器，std-alloc"><span class="nav-text">2.2.2 SGI特殊的空间配置器，std::alloc</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-3-构造和析构基本工具-construct-和destroy"><span class="nav-text">2.2.3 构造和析构基本工具:construct()和destroy()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-4-空间的配置与释放，std-alloc"><span class="nav-text">2.2.4 空间的配置与释放，std::alloc</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-5-第一级配置器-malloc-alloc-template-剖析"><span class="nav-text">2.2.5 第一级配置器 __malloc_alloc_template 剖析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-6-第二级配置器-default-alloc-template-剖析"><span class="nav-text">2.2.6 第二级配置器__default_alloc_template 剖析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-7-空间配置函数allocate"><span class="nav-text">2.2.7 空间配置函数allocate()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-8-空间释放函数-deallocate"><span class="nav-text">2.2.8 空间释放函数 deallocate()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-9-重新填充-free-lists"><span class="nav-text">2.2.9 重新填充 free lists</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-10-内存池-memory-pool"><span class="nav-text">2.2.10 内存池(memory pool)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-内存基本处理工具"><span class="nav-text">2.3 内存基本处理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-1-uninitialized-copy"><span class="nav-text">2.3.1 uninitialized_copy</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-2-uninitialized-fill"><span class="nav-text">2.3.2 uninitialized_fill</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-3-uninitialized-fill-n"><span class="nav-text">2.3.3 uninitialized_fill_n</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -690,7 +687,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
