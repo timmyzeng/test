@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802011438_654.png">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802011620_34.png">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802011647_747.png">
-<meta property="og:updated_time" content="2018-02-04T02:37:01.750Z">
+<meta property="og:updated_time" content="2018-02-04T02:40:33.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅读《STL源码剖析》笔记 1">
 <meta name="twitter:description" content="1 STL概论与版本简介1.2 STL六大组件 容器(containers):vector,list,deque,set,map,用来存放数据 算法(algorithms):sort,search,copy,erase 迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，">
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,604
+                  2,595
                 </span>
               
 
@@ -465,8 +465,7 @@
 </ul>
 <p>接下来几节，暂时先压住……</p>
 <h6 id="2-2-5-第一级配置器-malloc-alloc-template-剖析"><a href="#2-2-5-第一级配置器-malloc-alloc-template-剖析" class="headerlink" title="2.2.5 第一级配置器 __malloc_alloc_template 剖析"></a>2.2.5 第一级配置器 __malloc_alloc_template 剖析</h6><h6 id="2-2-6-第二级配置器-default-alloc-template-剖析"><a href="#2-2-6-第二级配置器-default-alloc-template-剖析" class="headerlink" title="2.2.6 第二级配置器__default_alloc_template 剖析"></a>2.2.6 第二级配置器__default_alloc_template 剖析</h6><h6 id="2-2-7-空间配置函数allocate"><a href="#2-2-7-空间配置函数allocate" class="headerlink" title="2.2.7 空间配置函数allocate()"></a>2.2.7 空间配置函数allocate()</h6><h6 id="2-2-8-空间释放函数-deallocate"><a href="#2-2-8-空间释放函数-deallocate" class="headerlink" title="2.2.8 空间释放函数 deallocate()"></a>2.2.8 空间释放函数 deallocate()</h6><h6 id="2-2-9-重新填充-free-lists"><a href="#2-2-9-重新填充-free-lists" class="headerlink" title="2.2.9 重新填充 free lists"></a>2.2.9 重新填充 free lists</h6><h6 id="2-2-10-内存池-memory-pool"><a href="#2-2-10-内存池-memory-pool" class="headerlink" title="2.2.10 内存池(memory pool)"></a>2.2.10 内存池(memory pool)</h6><h5 id="2-3-内存基本处理工具"><a href="#2-3-内存基本处理工具" class="headerlink" title="2.3 内存基本处理工具"></a>2.3 内存基本处理工具</h5><p>STL定义了五个全局函数，作用于未初始化化空间上：用于构造的<code>construct()</code>和析构的<code>destroy()</code>,另外三个是：<code>uninitialized_copy(),uninitialized_fill(),uninitialozed_fill_n()</code>(定于于<code>&lt;memory&gt;</code>),分别对应于高层次函数<code>copy(),fill(),fill_n()</code>,这些都是STL的算法。</p>
-<h6 id="2-3-1-uninitialized-copy"><a href="#2-3-1-uninitialized-copy" class="headerlink" title="2.3.1 uninitialized_copy"></a>2.3.1 uninitialized_copy</h6><h6 id="2-3-2-uninitialized-fill"><a href="#2-3-2-uninitialized-fill" class="headerlink" title="2.3.2 uninitialized_fill"></a>2.3.2 uninitialized_fill</h6><h6 id="2-3-3-uninitialized-fill-n"><a href="#2-3-3-uninitialized-fill-n" class="headerlink" title="2.3.3 uninitialized_fill_n"></a>2.3.3 uninitialized_fill_n</h6><p><a href="http://music.163.com/song?id=30245576&amp;userid=285500825" target="_blank" rel="noopener">http://music.163.com/song?id=30245576&amp;userid=285500825</a></p>
-
+<h6 id="2-3-1-uninitialized-copy"><a href="#2-3-1-uninitialized-copy" class="headerlink" title="2.3.1 uninitialized_copy"></a>2.3.1 uninitialized_copy</h6><h6 id="2-3-2-uninitialized-fill"><a href="#2-3-2-uninitialized-fill" class="headerlink" title="2.3.2 uninitialized_fill"></a>2.3.2 uninitialized_fill</h6><h6 id="2-3-3-uninitialized-fill-n"><a href="#2-3-3-uninitialized-fill-n" class="headerlink" title="2.3.3 uninitialized_fill_n"></a>2.3.3 uninitialized_fill_n</h6>
       
     </div>
     
@@ -634,7 +633,36 @@
           
           
 
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=370 height=86 src="//music.163.com/outchain/player?type=2&id=443242&auto=1&height=66"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=370 height=86 src="//music.163.com/outchain/player?type=2&id=443242&auto=1&height=66">
+</iframe>
+
+<div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("01/25/2018 18:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
         </div>
       </section>
 
@@ -692,14 +720,14 @@
 
 
 -->
-
+<!--
 <div class="theme-info">
   <div class="powered-by">
 </div>
 
   <span class="post-count">有辣么多字:7.2k</span>
 </div>
-
+-->
         
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
