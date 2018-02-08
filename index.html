@@ -401,7 +401,7 @@
 
       
         
-          <h4 id="1-STL概论与版本简介"><a href="#1-STL概论与版本简介" class="headerlink" title="1 STL概论与版本简介"></a>1 STL概论与版本简介</h4><h5 id="1-2-STL六大组件"><a href="#1-2-STL六大组件" class="headerlink" title="1.2 STL六大组件"></a>1.2 STL六大组件</h5><ol>
+          <h2 id="1-STL概论与版本简介"><a href="#1-STL概论与版本简介" class="headerlink" title="1 STL概论与版本简介"></a>1 STL概论与版本简介</h2><h3 id="1-2-STL六大组件"><a href="#1-2-STL六大组件" class="headerlink" title="1.2 STL六大组件"></a>1.2 STL六大组件</h3><ol>
 <li>容器(containers):<code>vector,list,deque,set,map</code>,用来存放数据</li>
 <li>算法(algorithms):<code>sort,search,copy,erase</code></li>
 <li>迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，
@@ -592,8 +592,8 @@
 
       
         
-          <h4 id="题目"><a href="#题目" class="headerlink" title="题目:"></a>题目:</h4><p>有一个单链表，该链表节点有两个指针，一个<code>_next</code>指向下一个节点，另一个<code>_random</code>指向任意节点，可能为NULL，可能是前面或后面的节点。请复制该链表，并返回头结点指针。</p>
-<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><ol>
+          <h2 id="题目"><a href="#题目" class="headerlink" title="题目:"></a>题目:</h2><p>有一个单链表，该链表节点有两个指针，一个<code>_next</code>指向下一个节点，另一个<code>_random</code>指向任意节点，可能为NULL，可能是前面或后面的节点。请复制该链表，并返回头结点指针。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><ol>
 <li>单链表的复制比较简单，但是<code>_random</code>不好处理，如果<code>_random</code>指向前面的节点，我们该如何处理。<code>_random</code>还有可能是指向NULL，这种情况也需要单独处理。
           <!--noindex-->
           <div class="post-button text-center">
@@ -771,7 +771,7 @@
 
       
         
-          <h4 id="基础议题"><a href="#基础议题" class="headerlink" title="基础议题"></a>基础议题</h4><h5 id="条款1：区分指针和引用"><a href="#条款1：区分指针和引用" class="headerlink" title="条款1：区分指针和引用"></a>条款1：区分指针和引用</h5><p>不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。</span></span><br><span class="line"><span class="keyword">char</span>* pc = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> &amp;rc = *pc;</span><br></pre></td></tr></table></figure></p>
+          <h2 id="基础议题"><a href="#基础议题" class="headerlink" title="基础议题"></a>基础议题</h2><h3 id="条款1：区分指针和引用"><a href="#条款1：区分指针和引用" class="headerlink" title="条款1：区分指针和引用"></a>条款1：区分指针和引用</h3><p>不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。</span></span><br><span class="line"><span class="keyword">char</span>* pc = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> &amp;rc = *pc;</span><br></pre></td></tr></table></figure></p>
 <p>因为不存在空引用这种情况，所以使引用会比指针更高效。<br>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1150,8 +1150,8 @@
 
       
         
-          <h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><p><strong>题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。</strong></p>
-<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><ul>
+          <h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h2><p><strong>题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。</strong></p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><ul>
 <li>题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。
           <!--noindex-->
           <div class="post-button text-center">
@@ -1340,8 +1340,8 @@
 
       
         
-          <h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><p><strong>实现一个Add函数，让两个整数相加，不能够使用<code>+-*/、++、--</code></strong></p>
-<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><ul>
+          <h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h2><p><strong>实现一个Add函数，让两个整数相加，不能够使用<code>+-*/、++、--</code></strong></p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><ul>
 <li>正常实现两个数相加，有两个步骤，第一将两个数对应位相加，第二相加之后有进位，将进位值与对应位相加。举个例子，<code>15+5=20</code>先将位进行相加，不进行进位，得到<code>10</code>，再将进位加上，个位没有进位，十位进1，得到<code>20</code>。
           <!--noindex-->
           <div class="post-button text-center">
