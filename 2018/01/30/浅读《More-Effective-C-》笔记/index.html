@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="青匆">
 <meta property="og:description" content="基础议题条款1：区分指针和引用不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。123//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。char* pc = 0;char &amp;amp;rc = *pc; 因为不存在空引用这种情况，所以使引用会比指针更高效。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-08T06:18:59.068Z">
+<meta property="og:updated_time" content="2018-02-13T16:51:02.035Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅读《More Effective C++》笔记">
 <meta name="twitter:description" content="基础议题条款1：区分指针和引用不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。123//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。char* pc = 0;char &amp;amp;rc = *pc; 因为不存在空引用这种情况，所以使引用会比指针更高效。">
@@ -124,6 +124,18 @@
 
 
 
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
   <title>浅读《More Effective C++》笔记 | 青匆</title>
   
@@ -359,7 +371,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,087
+                  1,126
                 </span>
               
 
@@ -410,9 +422,9 @@
 <p>使用格式举例：<code>static_cast&lt;double&gt; (first); const_cast&lt;special*&gt;(first); dynamic_cast&lt;special *&gt;(&amp;first); reinterpret_cast&lt;funcptr&gt; (&amp;dosomething);</code></p>
 <h3 id="条款3：绝不要把多态应用于数组"><a href="#条款3：绝不要把多态应用于数组" class="headerlink" title="条款3：绝不要把多态应用于数组"></a>条款3：绝不要把多态应用于数组</h3><p>继承的一大特性，它允许你通过指向基类的指针和引用来操纵派生类对象。这种指针和引用的行为具有多态性。<strong>同时C++也允许你通过基类指针和引用来操纵派生类数组，但是这个应该不被允许</strong>。见下面这个例子：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个BST类，有一个BalancedBST的类，它继承与BST</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BST</span>&#123;</span><span class="comment">//...&#125;;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BalancedBST</span>&#123;</span><span class="comment">//...&#125;;</span></span><br><span class="line"><span class="comment">//一个用于打印BST数组中BST元素的函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printBSTArray</span><span class="params">(ostream&amp;s, <span class="keyword">const</span> BST <span class="built_in">array</span>[], <span class="keyword">int</span> numElements)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numElements; ++i )&#123;</span><br><span class="line">        s &lt;&lt; <span class="built_in">array</span>[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>第一种情况，传递的数组是BST数组，程序没有问题；第二种情况，传递的数组是BalancedBST数组(继承于BST),编译器并不会报错，但是会出现问题，关键在于对array[i]的使用。<code>array[i]=*(array+i)</code>，我们知道array是指向数组的首地址的指针，其中array+i偏移的地址是根据元素的大小而定的。因为上例子中，array的类型是BST，所以array[i]的偏移是array+i*sizeof(SBT)。但我们传递了BST的子类BalancedBST给array，这样array的访问就会出现问题。</p>
-<p>同时，如果打算通过一个基类指针删除一个包含派生类对象的数组，一样会出现问题。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteArray</span><span class="params">(ostream&amp; logStream, BST <span class="built_in">array</span>[])</span></span>&#123;</span><br><span class="line">    logStream &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">void</span>*&gt;(<span class="built_in">array</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">delete</span>[] <span class="built_in">array</span>;</span><br><span class="line">&#125;</span><br><span class="line">BalancedBST *balTreeArray = <span class="keyword">new</span> BalancedBST[<span class="number">50</span>];</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">deketeArray(<span class="built_in">cout</span>, balTreeArray);</span><br></pre></td></tr></table></figure></p>
-<p>明面上这里并没有调用指针，</p>
-
+<p>同时，如果打算通过一个基类指针删除一个包含派生类对象的数组，一样会出现问题。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteArray</span><span class="params">(ostream&amp; logStream, BST <span class="built_in">array</span>[])</span></span>&#123;</span><br><span class="line">    logStream &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">void</span>*&gt;(<span class="built_in">array</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">delete</span>[] <span class="built_in">array</span>;</span><br><span class="line">&#125;</span><br><span class="line">BalancedBST *balTreeArray = <span class="keyword">new</span> BalancedBST[<span class="number">50</span>];</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">deleteArray(<span class="built_in">cout</span>, balTreeArray);</span><br></pre></td></tr></table></figure></p>
+<p>明面上这里并没有调用指针，但是当删除数组的时候，数组元素的析构函数必须被调用。</p>
+<h3 id="条款4-避免不必要的默认构造函数"><a href="#条款4-避免不必要的默认构造函数" class="headerlink" title="条款4 避免不必要的默认构造函数"></a>条款4 避免不必要的默认构造函数</h3>
       
     </div>
     
@@ -536,7 +548,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -628,7 +640,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础议题"><span class="nav-text">基础议题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条款1：区分指针和引用"><span class="nav-text">条款1：区分指针和引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款2：优先考虑C-风格的类型转换"><span class="nav-text">条款2：优先考虑C++风格的类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款3：绝不要把多态应用于数组"><span class="nav-text">条款3：绝不要把多态应用于数组</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础议题"><span class="nav-text">基础议题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条款1：区分指针和引用"><span class="nav-text">条款1：区分指针和引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款2：优先考虑C-风格的类型转换"><span class="nav-text">条款2：优先考虑C++风格的类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款3：绝不要把多态应用于数组"><span class="nav-text">条款3：绝不要把多态应用于数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款4-避免不必要的默认构造函数"><span class="nav-text">条款4 避免不必要的默认构造函数</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -677,7 +689,7 @@ show_date_time();
   <div class="powered-by">
 </div>
 
-  <span class="post-count">有辣么多字:12.0k</span>
+  <span class="post-count">有辣么多字:12.5k</span>
 </div>
 -->
         
