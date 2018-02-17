@@ -83,8 +83,8 @@
 
 <meta name="description" content="4 序列式容器4.1 容器的概观与分类所谓序列式容器，其中的元素都是可序的(ordered),但未必有序(sorted)。C++本身有array，其它是STL提供的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅读《STL源码剖析》笔记 4章-vector&amp;&amp;list">
-<meta property="og:url" content="http://jingxxn.cn/2018/02/09/浅读《STL源码剖析》笔记-4章-vector&&list/index.html">
+<meta property="og:title" content="浅读《STL源码剖析》笔记 4章-vector和list">
+<meta property="og:url" content="http://jingxxn.cn/2018/02/09/浅读《STL源码剖析》笔记-4章-vector和list/index.html">
 <meta property="og:site_name" content="青匆">
 <meta property="og:description" content="4 序列式容器4.1 容器的概观与分类所谓序列式容器，其中的元素都是可序的(ordered),但未必有序(sorted)。C++本身有array，其它是STL提供的。">
 <meta property="og:locale" content="zh-Hans">
@@ -92,9 +92,9 @@
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802021439_772.png">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802021641_929.png">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802021656_767.png">
-<meta property="og:updated_time" content="2018-02-09T06:02:03.013Z">
+<meta property="og:updated_time" content="2018-02-17T03:55:45.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅读《STL源码剖析》笔记 4章-vector&amp;&amp;list">
+<meta name="twitter:title" content="浅读《STL源码剖析》笔记 4章-vector和list">
 <meta name="twitter:description" content="4 序列式容器4.1 容器的概观与分类所谓序列式容器，其中的元素都是可序的(ordered),但未必有序(sorted)。C++本身有array，其它是STL提供的。">
 <meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201801311638_540.png">
 
@@ -126,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://jingxxn.cn/2018/02/09/浅读《STL源码剖析》笔记-4章-vector&&list/"/>
+  <link rel="canonical" href="http://jingxxn.cn/2018/02/09/浅读《STL源码剖析》笔记-4章-vector和list/"/>
 
 
 
@@ -144,7 +144,7 @@
     })();
 </script>
 
-  <title>浅读《STL源码剖析》笔记 4章-vector&&list | 青匆</title>
+  <title>浅读《STL源码剖析》笔记 4章-vector和list | 青匆</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jingxxn.cn/2018/02/09/浅读《STL源码剖析》笔记-4章-vector&&list/">
+    <link itemprop="mainEntityOfPage" href="http://jingxxn.cn/2018/02/09/浅读《STL源码剖析》笔记-4章-vector和list/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="timmy">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅读《STL源码剖析》笔记 4章-vector&&list</h1>
+          <h1 class="post-title" itemprop="name headline">浅读《STL源码剖析》笔记 4章-vector和list</h1>
         
 
         <div class="post-meta">
@@ -1196,6 +1196,21 @@ show_date_time();
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
   
