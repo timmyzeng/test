@@ -1,0 +1,249 @@
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Hexo version: \u001b[35m3.4.4\u001b[39m","time":"2018-01-25T14:26:01.833Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Working directory: \u001b[35mF:\\blog\\blog\\\u001b[39m","time":"2018-01-25T14:26:01.839Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Config loaded: \u001b[35mF:\\blog\\blog\\_config.yml\u001b[39m","time":"2018-01-25T14:26:02.086Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-deployer-git\u001b[39m","time":"2018-01-25T14:26:02.110Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-tag\u001b[39m","time":"2018-01-25T14:26:02.118Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-index\u001b[39m","time":"2018-01-25T14:26:02.124Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-archive\u001b[39m","time":"2018-01-25T14:26:02.135Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-category\u001b[39m","time":"2018-01-25T14:26:02.142Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-ejs\u001b[39m","time":"2018-01-25T14:26:02.151Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-json-content\u001b[39m","time":"2018-01-25T14:26:02.216Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-stylus\u001b[39m","time":"2018-01-25T14:26:02.221Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-server\u001b[39m","time":"2018-01-25T14:26:02.388Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-marked\u001b[39m","time":"2018-01-25T14:26:02.402Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\merge-configs.js\u001b[39m","time":"2018-01-25T14:26:02.416Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\tags\\button.js\u001b[39m","time":"2018-01-25T14:26:02.418Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\tags\\center-quote.js\u001b[39m","time":"2018-01-25T14:26:02.419Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\tags\\group-pictures.js\u001b[39m","time":"2018-01-25T14:26:02.423Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\tags\\full-image.js\u001b[39m","time":"2018-01-25T14:26:02.425Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\merge.js\u001b[39m","time":"2018-01-25T14:26:02.428Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\tags\\label.js\u001b[39m","time":"2018-01-25T14:26:02.429Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\tags\\exturl.js\u001b[39m","time":"2018-01-25T14:26:02.434Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\tags\\lazy-image.js\u001b[39m","time":"2018-01-25T14:26:02.435Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\tags\\note.js\u001b[39m","time":"2018-01-25T14:26:02.436Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Script loaded: \u001b[35mthemes\\next\\scripts\\tags\\tabs.js\u001b[39m","time":"2018-01-25T14:26:02.441Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Loading database.","time":"2018-01-25T14:26:02.454Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":30,"msg":"Start processing","time":"2018-01-25T14:26:02.465Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Theme config loaded.","time":"2018-01-25T14:26:02.618Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35m_config.yml\u001b[39m","time":"2018-01-25T14:26:02.622Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/css/main.styl\u001b[39m","time":"2018-01-25T14:26:02.632Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/algolia_logo.svg\u001b[39m","time":"2018-01-25T14:26:02.634Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/apple-touch-icon-next.png\u001b[39m","time":"2018-01-25T14:26:02.636Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/avatar.gif\u001b[39m","time":"2018-01-25T14:26:02.638Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nc-nd.svg\u001b[39m","time":"2018-01-25T14:26:02.640Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nc.svg\u001b[39m","time":"2018-01-25T14:26:02.644Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nc-sa.svg\u001b[39m","time":"2018-01-25T14:26:02.646Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-nd.svg\u001b[39m","time":"2018-01-25T14:26:02.648Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by-sa.svg\u001b[39m","time":"2018-01-25T14:26:02.651Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/cc-by.svg\u001b[39m","time":"2018-01-25T14:26:02.654Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/favicon-16x16-next.png\u001b[39m","time":"2018-01-25T14:26:02.658Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/cc-zero.svg\u001b[39m","time":"2018-01-25T14:26:02.660Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/favicon-32x32-next.png\u001b[39m","time":"2018-01-25T14:26:02.664Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/loading.gif\u001b[39m","time":"2018-01-25T14:26:02.666Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/logo.svg\u001b[39m","time":"2018-01-25T14:26:02.668Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/placeholder.gif\u001b[39m","time":"2018-01-25T14:26:02.670Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/quote-l.svg\u001b[39m","time":"2018-01-25T14:26:02.673Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/searchicon.png\u001b[39m","time":"2018-01-25T14:26:02.676Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/images/quote-r.svg\u001b[39m","time":"2018-01-25T14:26:02.677Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35m_posts/hello-world.md\u001b[39m","time":"2018-01-25T14:26:02.713Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35m_posts/Linux相关网站.md\u001b[39m","time":"2018-01-25T14:26:02.725Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/affix.js\u001b[39m","time":"2018-01-25T14:26:02.757Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/algolia-search.js\u001b[39m","time":"2018-01-25T14:26:02.760Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/exturl.js\u001b[39m","time":"2018-01-25T14:26:02.763Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/bootstrap.js\u001b[39m","time":"2018-01-25T14:26:02.766Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/hook-duoshuo.js\u001b[39m","time":"2018-01-25T14:26:02.767Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/motion.js\u001b[39m","time":"2018-01-25T14:26:02.770Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/js.cookie.js\u001b[39m","time":"2018-01-25T14:26:02.774Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/post-details.js\u001b[39m","time":"2018-01-25T14:26:02.775Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/scroll-cookie.js\u001b[39m","time":"2018-01-25T14:26:02.778Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/utils.js\u001b[39m","time":"2018-01-25T14:26:02.782Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/scrollspy.js\u001b[39m","time":"2018-01-25T14:26:02.785Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/algolia-instant-search/instantsearch.min.css\u001b[39m","time":"2018-01-25T14:26:02.789Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/canvas-nest/canvas-nest.min.js\u001b[39m","time":"2018-01-25T14:26:02.790Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/canvas-ribbon/canvas-ribbon.js\u001b[39m","time":"2018-01-25T14:26:02.795Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fastclick/LICENSE\u001b[39m","time":"2018-01-25T14:26:02.797Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fastclick/README.md\u001b[39m","time":"2018-01-25T14:26:02.799Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fastclick/bower.json\u001b[39m","time":"2018-01-25T14:26:02.803Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/HELP-US-OUT.txt\u001b[39m","time":"2018-01-25T14:26:02.805Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/bower.json\u001b[39m","time":"2018-01-25T14:26:02.806Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/jquery_lazyload/CONTRIBUTING.md\u001b[39m","time":"2018-01-25T14:26:02.807Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/jquery_lazyload/bower.json\u001b[39m","time":"2018-01-25T14:26:02.810Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/jquery_lazyload/README.md\u001b[39m","time":"2018-01-25T14:26:02.813Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/jquery_lazyload/jquery.lazyload.js\u001b[39m","time":"2018-01-25T14:26:02.813Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/needsharebutton/font-embedded.css\u001b[39m","time":"2018-01-25T14:26:02.817Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/needsharebutton/needsharebutton.css\u001b[39m","time":"2018-01-25T14:26:02.817Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/jquery_lazyload/jquery.scrollstop.js\u001b[39m","time":"2018-01-25T14:26:02.819Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/needsharebutton/needsharebutton.js\u001b[39m","time":"2018-01-25T14:26:02.824Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-barber-shop.min.css\u001b[39m","time":"2018-01-25T14:26:02.824Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-big-counter.min.css\u001b[39m","time":"2018-01-25T14:26:02.825Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-bounce.min.css\u001b[39m","time":"2018-01-25T14:26:02.827Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-center-atom.min.css\u001b[39m","time":"2018-01-25T14:26:02.828Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-center-circle.min.css\u001b[39m","time":"2018-01-25T14:26:02.830Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-center-simple.min.css\u001b[39m","time":"2018-01-25T14:26:02.834Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-center-radar.min.css\u001b[39m","time":"2018-01-25T14:26:02.835Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-corner-indicator.min.css\u001b[39m","time":"2018-01-25T14:26:02.836Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-flash.min.css\u001b[39m","time":"2018-01-25T14:26:02.837Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-fill-left.min.css\u001b[39m","time":"2018-01-25T14:26:02.840Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-mac-osx.min.css\u001b[39m","time":"2018-01-25T14:26:02.844Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-loading-bar.min.css\u001b[39m","time":"2018-01-25T14:26:02.844Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace-theme-minimal.min.css\u001b[39m","time":"2018-01-25T14:26:02.845Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/three/canvas_lines.min.js\u001b[39m","time":"2018-01-25T14:26:02.847Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/pace/pace.min.js\u001b[39m","time":"2018-01-25T14:26:02.850Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/three/canvas_sphere.min.js\u001b[39m","time":"2018-01-25T14:26:02.853Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/three/three-waves.min.js\u001b[39m","time":"2018-01-25T14:26:02.854Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/velocity/bower.json\u001b[39m","time":"2018-01-25T14:26:02.856Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_layout.swig\u001b[39m","time":"2018-01-25T14:26:03.108Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/archive.swig\u001b[39m","time":"2018-01-25T14:26:03.109Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/index.swig\u001b[39m","time":"2018-01-25T14:26:03.112Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/category.swig\u001b[39m","time":"2018-01-25T14:26:03.114Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/post.swig\u001b[39m","time":"2018-01-25T14:26:03.117Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/tag.swig\u001b[39m","time":"2018-01-25T14:26:03.119Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/page.swig\u001b[39m","time":"2018-01-25T14:26:03.121Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/schedule.swig\u001b[39m","time":"2018-01-25T14:26:03.123Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/en.yml\u001b[39m","time":"2018-01-25T14:26:03.128Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/default.yml\u001b[39m","time":"2018-01-25T14:26:03.129Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/ja.yml\u001b[39m","time":"2018-01-25T14:26:03.133Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/de.yml\u001b[39m","time":"2018-01-25T14:26:03.135Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/fr-FR.yml\u001b[39m","time":"2018-01-25T14:26:03.136Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/id.yml\u001b[39m","time":"2018-01-25T14:26:03.138Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/it.yml\u001b[39m","time":"2018-01-25T14:26:03.141Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/pt.yml\u001b[39m","time":"2018-01-25T14:26:03.144Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/nl-NL.yml\u001b[39m","time":"2018-01-25T14:26:03.146Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/pt-BR.yml\u001b[39m","time":"2018-01-25T14:26:03.149Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/ko.yml\u001b[39m","time":"2018-01-25T14:26:03.150Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/vi.yml\u001b[39m","time":"2018-01-25T14:26:03.152Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-Hans.yml\u001b[39m","time":"2018-01-25T14:26:03.155Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/ru.yml\u001b[39m","time":"2018-01-25T14:26:03.157Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-tw.yml\u001b[39m","time":"2018-01-25T14:26:03.158Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlanguages/zh-hk.yml\u001b[39m","time":"2018-01-25T14:26:03.160Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/velocity/velocity.min.js\u001b[39m","time":"2018-01-25T14:26:03.162Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/velocity/velocity.ui.js\u001b[39m","time":"2018-01-25T14:26:03.165Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/velocity/velocity.ui.min.js\u001b[39m","time":"2018-01-25T14:26:03.167Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/jquery/index.js\u001b[39m","time":"2018-01-25T14:26:03.169Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/post-copyright.swig\u001b[39m","time":"2018-01-25T14:26:03.256Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_custom/sidebar.swig\u001b[39m","time":"2018-01-25T14:26:03.260Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_custom/header.swig\u001b[39m","time":"2018-01-25T14:26:03.262Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/post-collapse.swig\u001b[39m","time":"2018-01-25T14:26:03.264Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/post.swig\u001b[39m","time":"2018-01-25T14:26:03.266Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/reward.swig\u001b[39m","time":"2018-01-25T14:26:03.266Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/sidebar.swig\u001b[39m","time":"2018-01-25T14:26:03.270Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_macro/wechat-subscriber.swig\u001b[39m","time":"2018-01-25T14:26:03.276Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/comments.swig\u001b[39m","time":"2018-01-25T14:26:03.276Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/header.swig\u001b[39m","time":"2018-01-25T14:26:03.277Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/head.swig\u001b[39m","time":"2018-01-25T14:26:03.279Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/page-header.swig\u001b[39m","time":"2018-01-25T14:26:03.280Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/footer.swig\u001b[39m","time":"2018-01-25T14:26:03.285Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search.swig\u001b[39m","time":"2018-01-25T14:26:03.286Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/pagination.swig\u001b[39m","time":"2018-01-25T14:26:03.287Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/exturl.swig\u001b[39m","time":"2018-01-25T14:26:03.288Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/duoshuo-hot-articles.swig\u001b[39m","time":"2018-01-25T14:26:03.290Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/needsharebutton.swig\u001b[39m","time":"2018-01-25T14:26:03.293Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/rating.swig\u001b[39m","time":"2018-01-25T14:26:03.296Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/schedule.swig\u001b[39m","time":"2018-01-25T14:26:03.296Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/commons.swig\u001b[39m","time":"2018-01-25T14:26:03.301Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/scroll-cookie.swig\u001b[39m","time":"2018-01-25T14:26:03.302Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/mathjax.swig\u001b[39m","time":"2018-01-25T14:26:03.304Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/boostrap.swig\u001b[39m","time":"2018-01-25T14:26:03.307Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/vendors.swig\u001b[39m","time":"2018-01-25T14:26:03.310Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/js/src/schemes/pisces.js\u001b[39m","time":"2018-01-25T14:26:03.314Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/Han/dist/han.css\u001b[39m","time":"2018-01-25T14:26:03.318Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/blank.gif\u001b[39m","time":"2018-01-25T14:26:03.320Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/Han/dist/han.min.css\u001b[39m","time":"2018-01-25T14:26:03.321Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/Han/dist/han.min.js\u001b[39m","time":"2018-01-25T14:26:03.323Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/fancybox_loading.gif\u001b[39m","time":"2018-01-25T14:26:03.325Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/fancybox_loading@2x.gif\u001b[39m","time":"2018-01-25T14:26:03.328Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/fancybox_overlay.png\u001b[39m","time":"2018-01-25T14:26:03.330Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/fancybox_sprite@2x.png\u001b[39m","time":"2018-01-25T14:26:03.331Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/fancybox_sprite.png\u001b[39m","time":"2018-01-25T14:26:03.335Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/jquery.fancybox.css\u001b[39m","time":"2018-01-25T14:26:03.337Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/jquery.fancybox.js\u001b[39m","time":"2018-01-25T14:26:03.339Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/jquery.fancybox.pack.js\u001b[39m","time":"2018-01-25T14:26:03.342Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fastclick/lib/fastclick.js\u001b[39m","time":"2018-01-25T14:26:03.344Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fastclick/lib/fastclick.min.js\u001b[39m","time":"2018-01-25T14:26:03.347Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/css/font-awesome.min.css\u001b[39m","time":"2018-01-25T14:26:03.350Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/css/font-awesome.css.map\u001b[39m","time":"2018-01-25T14:26:03.352Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/css/font-awesome.css\u001b[39m","time":"2018-01-25T14:26:03.354Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/ua-parser-js/dist/ua-parser.min.js\u001b[39m","time":"2018-01-25T14:26:03.357Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/ua-parser-js/dist/ua-parser.pack.js\u001b[39m","time":"2018-01-25T14:26:03.359Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/mist.swig\u001b[39m","time":"2018-01-25T14:26:03.365Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/muse.swig\u001b[39m","time":"2018-01-25T14:26:03.368Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/Han/dist/han.js\u001b[39m","time":"2018-01-25T14:26:03.370Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/fonts/fontawesome-webfont.woff\u001b[39m","time":"2018-01-25T14:26:03.373Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/fonts/fontawesome-webfont.woff2\u001b[39m","time":"2018-01-25T14:26:03.374Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/velocity/velocity.js\u001b[39m","time":"2018-01-25T14:26:03.377Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/head/external-fonts.swig\u001b[39m","time":"2018-01-25T14:26:03.416Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/head/custom-head.swig\u001b[39m","time":"2018-01-25T14:26:03.419Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search/localsearch.swig\u001b[39m","time":"2018-01-25T14:26:03.423Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search/tinysou.swig\u001b[39m","time":"2018-01-25T14:26:03.425Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/analytics-with-widget.swig\u001b[39m","time":"2018-01-25T14:26:03.426Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/search/swiftype.swig\u001b[39m","time":"2018-01-25T14:26:03.428Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/baidushare.swig\u001b[39m","time":"2018-01-25T14:26:03.431Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/add-this.swig\u001b[39m","time":"2018-01-25T14:26:03.433Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/jiathis.swig\u001b[39m","time":"2018-01-25T14:26:03.434Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_partials/share/duoshuo_share.swig\u001b[39m","time":"2018-01-25T14:26:03.437Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/baidu-analytics.swig\u001b[39m","time":"2018-01-25T14:26:03.439Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/application-insights.swig\u001b[39m","time":"2018-01-25T14:26:03.441Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/busuanzi-counter.swig\u001b[39m","time":"2018-01-25T14:26:03.444Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/cnzz-analytics.swig\u001b[39m","time":"2018-01-25T14:26:03.444Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/facebook-sdk.swig\u001b[39m","time":"2018-01-25T14:26:03.447Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/firestore.swig\u001b[39m","time":"2018-01-25T14:26:03.447Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/index.swig\u001b[39m","time":"2018-01-25T14:26:03.453Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/google-analytics.swig\u001b[39m","time":"2018-01-25T14:26:03.455Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/tencent-analytics.swig\u001b[39m","time":"2018-01-25T14:26:03.456Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/lean-analytics.swig\u001b[39m","time":"2018-01-25T14:26:03.458Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/comments/changyan.swig\u001b[39m","time":"2018-01-25T14:26:03.460Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/tencent-mta.swig\u001b[39m","time":"2018-01-25T14:26:03.461Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/comments/disqus.swig\u001b[39m","time":"2018-01-25T14:26:03.465Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/analytics/vkontakte-api.swig\u001b[39m","time":"2018-01-25T14:26:03.468Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/comments/duoshuo.swig\u001b[39m","time":"2018-01-25T14:26:03.469Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/comments/gitment.swig\u001b[39m","time":"2018-01-25T14:26:03.471Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/comments/index.swig\u001b[39m","time":"2018-01-25T14:26:03.472Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/comments/hypercomments.swig\u001b[39m","time":"2018-01-25T14:26:03.474Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/comments/livere.swig\u001b[39m","time":"2018-01-25T14:26:03.477Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/comments/valine.swig\u001b[39m","time":"2018-01-25T14:26:03.479Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/search/localsearch.swig\u001b[39m","time":"2018-01-25T14:26:03.480Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/search/index.swig\u001b[39m","time":"2018-01-25T14:26:03.482Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/comments/youyan.swig\u001b[39m","time":"2018-01-25T14:26:03.485Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/search/tinysou.swig\u001b[39m","time":"2018-01-25T14:26:03.488Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/seo/baidu-push.swig\u001b[39m","time":"2018-01-25T14:26:03.489Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/pages/post-details.swig\u001b[39m","time":"2018-01-25T14:26:03.490Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/gemini.swig\u001b[39m","time":"2018-01-25T14:26:03.492Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_scripts/schemes/pisces.swig\u001b[39m","time":"2018-01-25T14:26:03.493Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/Han/dist/font/han-space.otf\u001b[39m","time":"2018-01-25T14:26:03.503Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/Han/dist/font/han.otf\u001b[39m","time":"2018-01-25T14:26:03.505Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/Han/dist/font/han.woff\u001b[39m","time":"2018-01-25T14:26:03.507Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/Han/dist/font/han-space.woff\u001b[39m","time":"2018-01-25T14:26:03.509Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/Han/dist/font/han.woff2\u001b[39m","time":"2018-01-25T14:26:03.511Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/helpers/fancybox_buttons.png\u001b[39m","time":"2018-01-25T14:26:03.513Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/helpers/jquery.fancybox-buttons.js\u001b[39m","time":"2018-01-25T14:26:03.516Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/helpers/jquery.fancybox-buttons.css\u001b[39m","time":"2018-01-25T14:26:03.519Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/helpers/jquery.fancybox-thumbs.css\u001b[39m","time":"2018-01-25T14:26:03.521Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/helpers/jquery.fancybox-thumbs.js\u001b[39m","time":"2018-01-25T14:26:03.524Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/fancybox/source/helpers/jquery.fancybox-media.js\u001b[39m","time":"2018-01-25T14:26:03.525Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/fonts/FontAwesome.otf\u001b[39m","time":"2018-01-25T14:26:03.529Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/fonts/fontawesome-webfont.eot\u001b[39m","time":"2018-01-25T14:26:03.530Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/fonts/fontawesome-webfont.ttf\u001b[39m","time":"2018-01-25T14:26:03.535Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/search/algolia-search/dom.swig\u001b[39m","time":"2018-01-25T14:26:03.539Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/algolia-instant-search/instantsearch.min.js\u001b[39m","time":"2018-01-25T14:26:03.542Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35mlayout/_third-party/search/algolia-search/assets.swig\u001b[39m","time":"2018-01-25T14:26:03.546Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/three/three.min.js\u001b[39m","time":"2018-01-25T14:26:03.548Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Processed: \u001b[35msource/lib/font-awesome/fonts/fontawesome-webfont.svg\u001b[39m","time":"2018-01-25T14:26:03.552Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2018-01-25T14:26:04.084Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2018-01-25T14:26:04.089Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2018-01-25T14:26:04.089Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2018-01-25T14:26:04.092Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2018-01-25T14:26:04.092Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2018-01-25T14:26:04.093Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Generator: \u001b[35mjson-content\u001b[39m","time":"2018-01-25T14:26:04.095Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2018-01-25T14:26:04.100Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":40,"msg":"===============================================================","time":"2018-01-25T14:26:04.107Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":40,"msg":"========================= ATTENTION! ==========================","time":"2018-01-25T14:26:04.110Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":40,"msg":"===============================================================","time":"2018-01-25T14:26:04.110Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":40,"msg":" NexT repository is moving here: https://github.com/theme-next ","time":"2018-01-25T14:26:04.111Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":40,"msg":"===============================================================","time":"2018-01-25T14:26:04.113Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":40,"msg":" It's rebase to v6.0.0 and future maintenance will resume there","time":"2018-01-25T14:26:04.114Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":40,"msg":"===============================================================","time":"2018-01-25T14:26:04.118Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":30,"msg":"Hexo is running at \u001b[4mhttp://localhost:4000/\u001b[24m. Press Ctrl+C to stop.","time":"2018-01-25T14:26:04.124Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Database saved","time":"2018-01-25T14:26:04.142Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":30,"msg":"Farewell","time":"2018-01-25T14:26:52.041Z","v":0}
+{"name":"hexo","hostname":"zeng","pid":21348,"level":20,"msg":"Database saved","time":"2018-01-25T14:26:52.070Z","v":0}

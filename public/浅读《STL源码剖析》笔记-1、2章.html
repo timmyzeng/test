@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="true" />
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,博客,C++,算法" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青匆" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1 STL概论与版本简介1.2 STL六大组件 容器(containers):vector,list,deque,set,map,用来存放数据 算法(algorithms):sort,search,copy,erase 迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅读《STL源码剖析》笔记 1、2章">
+<meta property="og:url" content="http://www.jingxxn.cn/浅读《STL源码剖析》笔记-1、2章.html">
+<meta property="og:site_name" content="青匆">
+<meta property="og:description" content="1 STL概论与版本简介1.2 STL六大组件 容器(containers):vector,list,deque,set,map,用来存放数据 算法(algorithms):sort,search,copy,erase 迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291947_629.png">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801292024_990.png">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802011438_654.png">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802011620_34.png">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802011647_747.png">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802171615_46.png-480.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802171658_88.png-480.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802171745_127.png-480.jpg">
+<meta property="og:updated_time" content="2018-02-17T10:06:30.111Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅读《STL源码剖析》笔记 1、2章">
+<meta name="twitter:description" content="1 STL概论与版本简介1.2 STL六大组件 容器(containers):vector,list,deque,set,map,用来存放数据 算法(algorithms):sort,search,copy,erase 迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，">
+<meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291947_629.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.jingxxn.cn/浅读《STL源码剖析》笔记-1、2章.html"/>
+
+
+
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title>浅读《STL源码剖析》笔记 1、2章 | 青匆</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青匆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/浅读《STL源码剖析》笔记-1、2章.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="timmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青匆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浅读《STL源码剖析》笔记 1、2章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-03T11:15:06+08:00">
+                2018-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learning/" itemprop="url" rel="index">
+                    <span itemprop="name">learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,917
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  17
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-STL概论与版本简介"><a href="#1-STL概论与版本简介" class="headerlink" title="1 STL概论与版本简介"></a>1 STL概论与版本简介</h2><h3 id="1-2-STL六大组件"><a href="#1-2-STL六大组件" class="headerlink" title="1.2 STL六大组件"></a>1.2 STL六大组件</h3><ol>
+<li>容器(containers):<code>vector,list,deque,set,map</code>,用来存放数据</li>
+<li>算法(algorithms):<code>sort,search,copy,erase</code></li>
+<li>迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，<a id="more"></a>迭代器器将<code>operator*,operator++,operator--,operator-&gt;</code>等指针进行了重载的class template。原生指针（native pointer）也是一种迭代器。</li>
+<li>仿函数(functors):行为类似函数，实现来看，重载了operator()的class或class template。</li>
+<li>配接器(adapters):一种用来修饰容器(containers)或仿函数(functors)或迭代器(iterators)接口的东西。如stack和queue他们的底层实现是deque。</li>
+<li>配置器(allocators):负责空间配置与管理，从实现的角度看来，配置器是一个实现了动态空间配置、空间管理、空间释放的class template。</li>
+</ol>
+<h3 id="1-5-1-8-STL版本之二"><a href="#1-5-1-8-STL版本之二" class="headerlink" title="1.5~1.8 STL版本之二"></a>1.5~1.8 STL版本之二</h3><ol>
+<li>P.J.Plauger (Microsoft Visual C++)</li>
+<li>SGI STL (Linux GCC)<br> C++标准规范下的C头文件: <code>cstdio,cstdlib,cstring</code><br> C++标准程序库中不属于STL范畴: <code>stream,string</code><br> STL标准头文件: <code>vector,deque,list,map,algorithm,functional</code><br> C++Standard定案前，HP所规范的STL头文件: <code>vector.h,deque.h,list.h,algo.h,function.h</code><br> SGI STL内部文件(STL真正实现于此): <code>stl_vector.h,stl_deque.h,stl_list.h,stl_map.h,stl_algo.h,stl_function.h</code></li>
+</ol>
+<h3 id="1-9-可能令你困惑的C-语法"><a href="#1-9-可能令你困惑的C-语法" class="headerlink" title="1.9 可能令你困惑的C++语法"></a>1.9 可能令你困惑的C++语法</h3><h4 id="1-9-2-临时对象的产生与运用"><a href="#1-9-2-临时对象的产生与运用" class="headerlink" title="1.9.2 临时对象的产生与运用"></a>1.9.2 临时对象的产生与运用</h4><p>临时对象就是匿名对象，创造临时对象的方法是，在类型后面直接加上()，同时可以赋初值。如：Shape(3,5),int(8)。他的意义相当于调用相应的constructor且不指定对象名称。<strong>STL中最常将此技巧用在仿函数(functor)中。</strong>临时对象的生命周期只有这一行指令。</p>
+<h4 id="1-9-3-静态常量整数成员在class内部直接初始化"><a href="#1-9-3-静态常量整数成员在class内部直接初始化" class="headerlink" title="1.9.3 静态常量整数成员在class内部直接初始化"></a>1.9.3 静态常量整数成员在class内部直接初始化</h4><p>class内含有<code>const static integral data member</code>，我们可以直接给予初值。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.9.3测试代码如下</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">testclass</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> datai = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">long</span> datal = <span class="number">3L</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">char</span> datac = <span class="string">'c'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; testclass&lt;<span class="keyword">int</span>&gt;::datai &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; testclass&lt;<span class="keyword">int</span>&gt;::datal &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; testclass&lt;<span class="keyword">int</span>&gt;::datac &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291947_629.png" alt="运行结果"></p>
+<h4 id="1-9-5-前闭后开区间表示法"><a href="#1-9-5-前闭后开区间表示法" class="headerlink" title="1.9.5 前闭后开区间表示法[)"></a>1.9.5 前闭后开区间表示法[)</h4><p><strong>STL中范围是用前闭后开。[first, last)元素从first开始，结束于last-1.迭代器中的last指的是最后一个元素的下一个。</strong></p>
+<h4 id="1-9-6-function-call操作符-operator"><a href="#1-9-6-function-call操作符-operator" class="headerlink" title="1.9.6 function call操作符(operator())"></a>1.9.6 function call操作符(operator())</h4><p>function call操作符(oprator())。C语言中用函数指针作为参数传递。有个缺点就是，没有可适配性，也就是确定了这个函数指针之后，无法再加上新的修饰条件从而改变他的状态。STL中用仿函数(functor)实现这个功能。<strong>如果你针对某个class进行operator()重载，它就成为一个仿函数。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.9.6测试代码如下</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">Add</span>&#123;</span></span><br><span class="line">    <span class="comment">//重载了operator()</span></span><br><span class="line">    <span class="function">T <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> T&amp;x, <span class="keyword">const</span> T&amp;y)</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x+y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Add&lt;<span class="keyword">int</span>&gt; addxy;</span><br><span class="line">    system( <span class="string">"clear"</span> );</span><br><span class="line">    <span class="comment">//调用重载函数</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; addxy(<span class="number">3</span>,<span class="number">5</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//调用匿名对象</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; Add&lt;<span class="keyword">int</span>&gt;()(<span class="number">5</span>,<span class="number">5</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801292024_990.png" alt="仿函数"></p>
+<h2 id="2-空间配置器-allocator"><a href="#2-空间配置器-allocator" class="headerlink" title="2 空间配置器(allocator)"></a>2 空间配置器(allocator)</h2><p>空间配置器在容器背后工作，整个STL的操作对象(所有的数值)，对存放在容器中，而容器一定要配置空间以置放资料。不一定是内存，也可以是磁盘或其他的辅助存储介质。</p>
+<h3 id="2-2-具备此配置力的SGI空间配置器"><a href="#2-2-具备此配置力的SGI空间配置器" class="headerlink" title="2.2 具备此配置力的SGI空间配置器"></a>2.2 具备此配置力的SGI空间配置器</h3><h4 id="2-2-1-SGI标准的空间配置器-std-allocator"><a href="#2-2-1-SGI标准的空间配置器-std-allocator" class="headerlink" title="2.2.1 SGI标准的空间配置器,std::allocator"></a>2.2.1 SGI标准的空间配置器,std::allocator</h4><p>SGI的空间配置器和标准规范不同，他的名称是alloc而不是allocator，且不接受任何参数。标准写法如下：<code>vector&lt;int,std::allocator&lt;int&gt;&gt;</code>;SGI STL写法如下：<code>vector&lt;int, std::aloc&gt;</code>绝大多数情况下，我们都是使用缺省的空间配置器。</p>
+<h4 id="2-2-2-SGI特殊的空间配置器，std-alloc"><a href="#2-2-2-SGI特殊的空间配置器，std-alloc" class="headerlink" title="2.2.2 SGI特殊的空间配置器，std::alloc"></a>2.2.2 SGI特殊的空间配置器，std::alloc</h4><p>SGI同时也配备了标准空间配置器<code>std::allocator</code>，但是这只是对C++的<code>operator new和operator delete</code>做了一层封装，效率低下，<strong>SGI并不使用，只是为了向前兼容语法。</strong></p>
+<p><strong>SGI自身使用的空间配置器是<code>std::alloc</code></strong>一般来说，我们习惯的C++内存操作和释放操作是这样的：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>&#123;</span>&#125;;</span><br><span class="line">Foo* pf = <span class="keyword">new</span> Foo;</span><br><span class="line"><span class="keyword">delete</span> pf;</span><br></pre></td></tr></table></figure></p>
+<p>这其中的new包含两个操作，一个是调用::operator new配置内存；另一个是调用Foo::Foo()构造对象内容。delete也是两个，一个是调用Foo::~Foo()析构对象，另一个是调用::operator detele 释放内存。<strong>为了分工，STL allocator将这个两个阶段分开来，内存配置操作有alloc:allocate()负责，内存释放操作有alloc::deallocate()负责，对象构造操作有:construct()负责，对象析构操作由::destroy()负责。</strong><br>STL的配置器(allocator)定于于<code>&lt;memory&gt;</code>，其中包含两个文件,一个是负责内存空间的配置与释放&lt;stl_alloc.h&gt;,这里定义了一二级配置器，配置器名为alloc；另一个是负责对象内容的构造与析构&lt;stl_construct.h&gt;，定义了全局函数construct()和destroy()。</p>
+<h4 id="2-2-3-构造和析构基本工具-construct-和destroy"><a href="#2-2-3-构造和析构基本工具-construct-和destroy" class="headerlink" title="2.2.3 构造和析构基本工具:construct()和destroy()"></a>2.2.3 构造和析构基本工具:construct()和destroy()</h4><p>construct()的实现如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;new.h&gt;    //使用placement new 需要这个头文件</span></span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T1</span>, <span class="title">class</span> <span class="title">T2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">inline</span> <span class="title">void</span> <span class="title">construct</span>(<span class="title">T1</span>* <span class="title">p</span>, <span class="title">const</span> <span class="title">T2</span>&amp; <span class="title">value</span>)&#123;</span></span><br><span class="line">    <span class="keyword">new</span> (p) T1(value);  <span class="comment">//使用了placement new;调用T1:T1(value);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码解释：<code>construct()</code>接收一个指针p和一个初始值value，用来将初值设定到指针所指向的空间，<strong>通过<code>placement new</code>实现</strong>。<br>destroy()有两个版本，实现如下:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一个版本，接受一个指针</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">inline</span> <span class="title">void</span> <span class="title">destroy</span>(<span class="title">T</span>* <span class="title">pointer</span>)&#123;</span></span><br><span class="line">    pointer-&gt;~T();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第二个版本，接受两个迭代器。此函数设法找出元素的数值型别，进而利用__type_traits&lt;&gt;求取最适当的措施。</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIterator</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">inline</span> <span class="title">void</span> <span class="title">destroy</span>(<span class="title">ForwardIterator</span> <span class="title">first</span>, <span class="title">ForwardIterator</span> <span class="title">last</span>)&#123;</span></span><br><span class="line">    __destroy(first, last, value_type(first));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断元素的数值型别(value type)是否有 trivial destructor</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIterator</span>, <span class="title">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">inline</span> <span class="title">void</span> __<span class="title">destroy</span>(<span class="title">ForwardIterator</span> <span class="title">first</span>, <span class="title">ForwardIterator</span> <span class="title">last</span>, <span class="title">T</span>*)&#123;</span></span><br><span class="line">    <span class="keyword">typedef</span> <span class="keyword">typename</span> __type_traits&lt;T&gt;::has_trivial_destructor trivial_destructor;</span><br><span class="line">    __destroy_aux(first, last, trivial_destructor());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果元素的数值型别(value type)有non-truvial destructor，循环释放</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIterator</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">inline</span> <span class="title">void</span> __<span class="title">destroy_aux</span>(<span class="title">ForwardIterator</span> <span class="title">first</span>, <span class="title">ForwardIterator</span> <span class="title">last</span>, __<span class="title">false_type</span>)&#123;</span></span><br><span class="line">    <span class="keyword">for</span>( ; first &lt; last; ++first)</span><br><span class="line">        <span class="comment">//调用第一个版本的destroy()</span></span><br><span class="line">        destroy(&amp;* first);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果元素的数值型别(value type)有trivial destructor,函数什么也不做</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIterator</span>, <span class="title">ForwardIterator</span>, __<span class="title">true_type</span>&gt;&#123;</span></span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">void</span> __destroy_aux(ForwardIterator, ForwardIterator, __true_type)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//destroy()中第二版本针对迭代器为char* 和 wchar_t*的特化版本,函数什么都不做</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">desroy</span><span class="params">(<span class="keyword">char</span>*, <span class="keyword">char</span>*)</span></span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">(<span class="keyword">wchar_t</span>*,<span class="keyword">wchar_t</span>*)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码解释：<code>destroy()</code>有两个版本，<strong>第一个版本接收一个指针，准备将该指针所指之物析构，这个直接调用该对象的析构函数即可</strong>。第二个版本接收first和last两个迭代器，准备将<code>[firat, last)</code>范围内的所有对象析构。我们不知道范围有多大，万一很大，而每个对象的析构函数都无关痛痒(所谓<code>trivial destructor</code>),那么一次次调用这些无关痛痒的析构函数，对效率是一个伤害，因此，<strong>这里首先利用<code>value_type()</code>获得迭代器所指对象的型别，再利用<code>__type_traits&lt;T&gt;</code>判断该型别的析构函数是否无关痛痒。若是<code>(__true_type)</code>，则什么都不做结束；若不是<code>(__false_type)</code>,这才循环巡防整个范围，并在循环中每经历一个对象就调用第一个版本的<code>destroy()</code>。</strong></p>
+<p>construct()和destroy()图解：对于C++本身并不支持“指针所指之物”的型别判断，也不支持对“对象析构函数是否为trivial”的判断，具体实现value_type()和__type_traits&lt;&gt;在3.7节。<br><img src="http://p3ax8ersb.bkt.clouddn.com/201802011438_654.png" alt="construct()和destroy()图解"></p>
+<h4 id="2-2-4-空间的配置与释放，std-alloc"><a href="#2-2-4-空间的配置与释放，std-alloc" class="headerlink" title="2.2.4 空间的配置与释放，std::alloc"></a>2.2.4 空间的配置与释放，std::alloc</h4><p>对象构造前的空间配置和对象析构后的空间释放，由<code>&lt;stl_alloc.h&gt;</code>负责。</p>
+<ol>
+<li>向 system heap 要求空间</li>
+<li>考虑多线程(multi-threads)状态(这里不考虑多线程的情况)</li>
+<li>考虑内存不足时的应变措施</li>
+<li>考虑过多“小型区域”可能造成的内存碎片(fragment)问题</li>
+</ol>
+<p><strong>C++内存配置的基本操作是:<code>:operator new()</code>，内存释放的基本操作是<code>::operator delete()</code>。这两个全局函数相当于C的malloc()和free()函数，所以SGI正是用malloc()和free()完成内存的配置和释放。</strong></p>
+<p>为了解决小型区块可能造成的内存破碎问题，SGI设计了双层级的配置器，<strong>第一级配置器<code>(__malloc_alloc_template)</code>用malloc()和free()，第二级配置器<code>(__default_alloc_template)</code>看情况而定：当配置区块超过128bytes，调用第一级配置器；小于128bytes，采用复杂的内存池<code>memory bool</code>整理方式。</strong>其中具体是开放了第一级配置器还是两级配置器都开放了由<strong>USE_MEALLOC是否定义决定，定义了</strong>USE_MEALLOC就将alloc定义为第一级配置器，没有定义就将alloc定义为第二级配置器。SGI STL采用第二级配置器。</p>
+<p>无论是第一级配置器还是第二级配置器，SGI都为其包装了一个接口<code>simple_alloc</code>，使其能够符合STL的接口规格。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">simple_alloc</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> T* <span class="title">allocate</span><span class="params">(<span class="keyword">size_t</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span> == n?<span class="number">0</span> : (T*) Alloc::allocate(n* <span class="keyword">sizeof</span> (T));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> T* <span class="title">allocate</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (T*) Alloc::allocatte(<span class="keyword">sizeof</span> (T));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">dallocate</span><span class="params">(T* p, <span class="keyword">size_t</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">0</span> != n)</span><br><span class="line">            Alloc::deallocate(p, n*<span class="keyword">sizeof</span> (T));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deallocat</span><span class="params">(T* p)</span></span>&#123;</span><br><span class="line">        Alloc::deallocate(p, <span class="keyword">sizeof</span> (T));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>内部四个成员函数都是单纯的转调用，这个接口使配置器的单位从bytes转为个别元素的大小(sizeof(T))。</p>
+<p>图解如下：<br>    第一级配置器和第二级配置器：<img src="http://p3ax8ersb.bkt.clouddn.com/201802011620_34.png" alt="第一级配置器和第二级配置器"><br>    包装接口和运用：<img src="http://p3ax8ersb.bkt.clouddn.com/201802011647_747.png" alt="包装接口和运用"></p>
+<p>更新时间：2018.02.17</p>
+<h4 id="2-2-5-第一级配置器-malloc-alloc-template-剖析"><a href="#2-2-5-第一级配置器-malloc-alloc-template-剖析" class="headerlink" title="2.2.5 第一级配置器 __malloc_alloc_template 剖析"></a>2.2.5 第一级配置器 __malloc_alloc_template 剖析</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">int</span> inst&gt; <span class="comment">//inst 没有用到</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> __<span class="title">malloc_alloc_template</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">//处理内存不够的情况</span></span><br><span class="line">    <span class="comment">//oom: out of memory</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> *<span class="title">oom_malloc</span><span class="params">(<span class="keyword">size_t</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> *<span class="title">oom_realloc</span><span class="params">(<span class="keyword">void</span>*, <span class="keyword">size_t</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="title">void</span> <span class="params">(* __malloc_alloc_oom_handler)</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//直接调用malloc，free，realloc，只是多了一层封装，使之可以处理内存不够的情况</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span>* <span class="title">allocate</span><span class="params">(<span class="keyword">size_t</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">void</span> *result = <span class="built_in">malloc</span>(n);</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">0</span> == result)</span><br><span class="line">            result = oom_malloc(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deallocate</span><span class="params">(<span class="keyword">void</span>* p, <span class="keyword">size_t</span>)</span></span>&#123;</span><br><span class="line">        <span class="built_in">free</span>(p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span>* <span class="title">reallocate</span><span class="params">(<span class="keyword">void</span>* p, <span class="keyword">size_t</span>, <span class="keyword">size_t</span> new_sz)</span></span>&#123;</span><br><span class="line">        <span class="keyword">void</span>* result = <span class="built_in">realloc</span>(p, new_sz);</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">0</span> = result)</span><br><span class="line">            result = oom_realloc(p, new_sz);</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//仿真c++的set_new_handdler()</span></span><br><span class="line">    static void(* set_malloc_handler(void(*f)()))()&#123;</span><br><span class="line">        <span class="comment">//被调用的函数__malloc_alloc_oom_handler</span></span><br><span class="line">        <span class="keyword">void</span>(* old)() = __malloc_alloc_oom_handler;</span><br><span class="line">        __malloc_alloc_oom_handler = f;</span><br><span class="line">        <span class="keyword">return</span> (old);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//__malloc_alloc_oom_handler函数初始值是0，该值由客端自己设定</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">int</span> inst&gt;</span><br><span class="line">    <span class="keyword">void</span> (* __malloc_alloc_template&lt;inst&gt; :: __malloc_alloc_oom_handler)() = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//oom_malloc</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">int</span> inst&gt;</span><br><span class="line">    <span class="keyword">void</span>* __malloc_alloc_template&lt;inst&gt; :: oom_malloc(<span class="keyword">size_t</span> n)&#123;</span><br><span class="line">        <span class="keyword">void</span> (* my_malloc_handler)();</span><br><span class="line">        <span class="keyword">void</span>* result;</span><br><span class="line">        <span class="keyword">for</span>(; ;)&#123;   <span class="comment">//不停的尝试，释放，配置，释放，配置……</span></span><br><span class="line">            my_malloc_handler = __malloc_alloc_oom_handler;</span><br><span class="line">            <span class="comment">//如果没有设置__malloc_alloc_oom_handler的值，直接抛出异常</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="number">0</span> == my_malloc_handler)&#123;</span><br><span class="line">                __THROW_BAD_ALLOC;</span><br><span class="line">            &#125;</span><br><span class="line">            (*my_malloc_handler)(); <span class="comment">//调用处理例程，企图释放内存</span></span><br><span class="line">            result = <span class="built_in">malloc</span>(n);     <span class="comment">//再次配置</span></span><br><span class="line">            <span class="keyword">if</span>(result)</span><br><span class="line">                <span class="keyword">return</span> (result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//oom_realloc</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">int</span> inst&gt;</span><br><span class="line">    <span class="keyword">void</span>* __malloc_alloc_template&lt;inst&gt; :: oom_realloc(<span class="keyword">void</span>* p, <span class="keyword">size_t</span> n)&#123;</span><br><span class="line">        <span class="keyword">void</span> (* my_malloc_handler)();</span><br><span class="line">        <span class="keyword">void</span>* result;</span><br><span class="line">        <span class="keyword">for</span>(; ;)&#123;   <span class="comment">//不停的尝试，释放，配置，释放，配置……</span></span><br><span class="line">            my_malloc_handler = __malloc_alloc_oom_handler;</span><br><span class="line">            <span class="comment">//如果没有设置__malloc_alloc_oom_handler的值，直接抛出异常</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="number">0</span> == my_malloc_handler)&#123;</span><br><span class="line">                __THROW_BAD_ALLOC;</span><br><span class="line">            &#125;</span><br><span class="line">            (*my_malloc_handler)(); <span class="comment">//调用处理例程，企图释放内存</span></span><br><span class="line">            result = <span class="built_in">malloc</span>(n);     <span class="comment">//再次配置</span></span><br><span class="line">            <span class="keyword">if</span>(result)</span><br><span class="line">                <span class="keyword">return</span> (result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一级配置器以malloc()、free()、realloc()等C函数执行实际的内存的配置、释放、重配置操作，同时实现出类似C++ new-handler的机制。所谓new-handler就是在系统内存配置需求无法被满足的情况下，调用一个指定的函数。</p>
+<h4 id="2-2-6-第二级配置器-default-alloc-template-剖析"><a href="#2-2-6-第二级配置器-default-alloc-template-剖析" class="headerlink" title="2.2.6 第二级配置器__default_alloc_template 剖析"></a>2.2.6 第二级配置器__default_alloc_template 剖析</h4><p>第二级配置器__default_alloc_template多了些机制，避免太多小额区块造成内存的碎片。</p>
+<p>当区块超过128bytes，则用内存池管理，此做法又称为次层配置(sub-allocation)：每次配置一大块内存，并维护对应自由链表(free-lists)。下次如果再有相同大小的内存需求，就直接从free-lists中取出。如果客端释放返还小额区块，就有配置器会受到free-lists中。二级配置器会自动将内存调整为8的倍数，并维护16个free-lists，各自管理8的倍数的小额区块。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//free-list的节点</span></span><br><span class="line"><span class="keyword">union</span> obj&#123;</span><br><span class="line">    <span class="keyword">union</span> obj *free_list_link;</span><br><span class="line">    <span class="keyword">char</span> client_data[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中，obj是一个obj指针，指向下一个相同大小的区块。同时obj是一个指针，指向实际中区块。结合2.2.7的图理解。<br>如图：<br><img src="http://p3ax8ersb.bkt.clouddn.com/201802171615_46.png-480.jpg" alt="free-lists"></p>
+<h4 id="2-2-7-空间配置函数allocate"><a href="#2-2-7-空间配置函数allocate" class="headerlink" title="2.2.7 空间配置函数allocate()"></a>2.2.7 空间配置函数allocate()</h4><p>allocate()是二级配置器__default_alloc_template的一个标准接口函数。这个函数首先判断区块大小，大于128bytes调用的第一级配置器，小于128bytes的查询对应free-list有可以用的区块，就直接拿来用，如果没有，就将区块大小调至8倍数边界，然后调用refill()，为free list重新填充空间。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//n &gt; 0</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span>* <span class="title">allocate</span><span class="params">(<span class="keyword">size_t</span> n)</span></span>&#123;</span><br><span class="line">    <span class="comment">//二级指针，但是volatile的用法不详</span></span><br><span class="line">    obj* <span class="keyword">volatile</span> *my_free_list;</span><br><span class="line">    obj* result;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n&gt;(<span class="keyword">size_t</span>) __MAX_BYTES)&#123;</span><br><span class="line">        <span class="keyword">return</span> (malloc_alloc::allocate(n));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//寻找16个free list中适合的一个</span></span><br><span class="line">    my_free_list = free_list + FREELIST_INDEX(n);</span><br><span class="line">    result  = *my_free_list;</span><br><span class="line">    <span class="keyword">if</span>(result == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="comment">//准备填充free list</span></span><br><span class="line">        <span class="keyword">void</span>* r = refill(ROUND_UP(n));</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//调整free list</span></span><br><span class="line">    *my_free_list = result -&gt; free_list_link;</span><br><span class="line">    <span class="keyword">return</span> (result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>图解如下：<br><img src="http://p3ax8ersb.bkt.clouddn.com/201802171658_88.png-480.jpg" alt="freel list 拔出"></p>
+<h4 id="2-2-8-空间释放函数-deallocate"><a href="#2-2-8-空间释放函数-deallocate" class="headerlink" title="2.2.8 空间释放函数 deallocate()"></a>2.2.8 空间释放函数 deallocate()</h4><p>deallocate()是配置器__default_alloc_template的一个标准接口函数。大于128bytes调用第一级配置器，小于128bytes找到对应的free list将区块回收。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// p不可以是 0</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deallocate</span><span class="params">(<span class="keyword">void</span> *p, <span class="keyword">size_t</span> n)</span></span>&#123;</span><br><span class="line">    obj* q = (obj* )p;</span><br><span class="line">    <span class="comment">//二级指针，但是volatile的用法不详</span></span><br><span class="line">    obj* <span class="keyword">volatile</span> *my_free_list;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n&gt;(<span class="keyword">size_t</span>) __MAX_BYTES)&#123;</span><br><span class="line">        malloc_alloc::deallocate(p, n);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//寻找对应的free list</span></span><br><span class="line">    my_free_list = free_list + FREELIST_INDEX(n);</span><br><span class="line">    <span class="comment">//调整free list，回收区域</span></span><br><span class="line">    q-&gt;free_list_link = *my_free_list();</span><br><span class="line">    *my_free_list = q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>图解如下：<br><img src="http://p3ax8ersb.bkt.clouddn.com/201802171745_127.png-480.jpg" alt="deallocate"></p>
+<h4 id="2-2-9-重新填充-free-lists"><a href="#2-2-9-重新填充-free-lists" class="headerlink" title="2.2.9 重新填充 free lists"></a>2.2.9 重新填充 free lists</h4><p>allocate()中，当它发现free list中没有可用区块的时候，调用refill()，为free list重新填充空间。新的空间将取自内存池(chunk_alloc()完成)。缺省获得20个新节点。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回一个大小为n的对象，并且有时候会为适当的free list增加节点</span></span><br><span class="line"><span class="comment">//假设n已经适当上调至8的倍数</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">bool</span> threads, <span class="keyword">int</span> inst&gt;</span><br><span class="line"><span class="keyword">void</span>* __default_alloc_template&lt;threads, inst&gt; :: refill(<span class="keyword">size_t</span> n)&#123;</span><br><span class="line">    <span class="keyword">int</span> nobjs = <span class="number">20</span>; <span class="comment">//缺省值</span></span><br><span class="line">    <span class="comment">//调用chunk_alloc()，尝试获得nobjs个区块作为free list的新节点</span></span><br><span class="line">    <span class="keyword">char</span>* chunk = chunk_alloc(n, nobjs);</span><br><span class="line">    obj* <span class="keyword">volatile</span>* my_free_list;</span><br><span class="line">    obj* result;</span><br><span class="line">    obj* current_obj, *next_obj;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="comment">//如果只获得一个区块，这个区块就分配给调用者使用，free list无新节点</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="number">1</span> == nobjs)</span><br><span class="line">        <span class="keyword">return</span> (chunk);</span><br><span class="line">    <span class="comment">//否则调整free list纳入新的节点</span></span><br><span class="line">    my_free_list = free_list + FREELIST_INDEX(n)；</span><br><span class="line">    <span class="comment">//以下在chunk空间创建free list</span></span><br><span class="line">    result = (obj *)chumk;</span><br><span class="line">    <span class="comment">//以下导引free list 指向新配置的空间(取自内存池)</span></span><br><span class="line">    *my_free_list = next_obj = (obj*)(chunk + n);</span><br><span class="line">    <span class="comment">//以下将free list 的各个节点串联起来</span></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; ; i++)&#123;  <span class="comment">//从n == 1开始，因为0号要返回给客端</span></span><br><span class="line">        current_obj = next_obj;</span><br><span class="line">        next_obj = (obj*)((<span class="keyword">char</span> *)next_obj + n);</span><br><span class="line">        <span class="keyword">if</span>(nobjs - <span class="number">1</span> == i)&#123;</span><br><span class="line">            current_obj -&gt; free_list_link = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            current_obj-&gt;free_list_link = next_obj;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>内存池暂时先按下……</p>
+<h4 id="2-2-10-内存池-memory-pool"><a href="#2-2-10-内存池-memory-pool" class="headerlink" title="2.2.10 内存池(memory pool)"></a>2.2.10 内存池(memory pool)</h4><h3 id="2-3-内存基本处理工具"><a href="#2-3-内存基本处理工具" class="headerlink" title="2.3 内存基本处理工具"></a>2.3 内存基本处理工具</h3><p>STL定义了五个全局函数，作用于未初始化化空间上：用于构造的<code>construct()</code>和析构的<code>destroy()</code>,另外三个是：<code>uninitialized_copy(),uninitialized_fill(),uninitialozed_fill_n()</code>(定于于<code>&lt;memory&gt;</code>),分别对应于高层次函数<code>copy(),fill(),fill_n()</code>,这些都是STL的算法。</p>
+<h4 id="2-3-1-uninitialized-copy"><a href="#2-3-1-uninitialized-copy" class="headerlink" title="2.3.1 uninitialized_copy"></a>2.3.1 uninitialized_copy</h4><h4 id="2-3-2-uninitialized-fill"><a href="#2-3-2-uninitialized-fill" class="headerlink" title="2.3.2 uninitialized_fill"></a>2.3.2 uninitialized_fill</h4><h4 id="2-3-3-uninitialized-fill-n"><a href="#2-3-3-uninitialized-fill-n" class="headerlink" title="2.3.3 uninitialized_fill_n"></a>2.3.3 uninitialized_fill_n</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/复杂单链表的复制.html" rel="next" title="复杂单链表的复制">
+                <i class="fa fa-chevron-left"></i> 复杂单链表的复制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/浅读《STL源码剖析》笔记-3章.html" rel="prev" title="浅读《STL源码剖析》笔记 3章">
+                浅读《STL源码剖析》笔记 3章 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzU3MS8xMDEyNg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="timmy" />
+            
+              <p class="site-author-name" itemprop="name">timmy</p>
+              <p class="site-description motion-element" itemprop="description">为即将来临的精彩。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/timmyzeng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("01/25/2018 18:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+<div id="music163player">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22712173&auto=1&height=66">
+</iframe>
+</div>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-STL概论与版本简介"><span class="nav-text">1 STL概论与版本简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-STL六大组件"><span class="nav-text">1.2 STL六大组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-1-8-STL版本之二"><span class="nav-text">1.5~1.8 STL版本之二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-可能令你困惑的C-语法"><span class="nav-text">1.9 可能令你困惑的C++语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-2-临时对象的产生与运用"><span class="nav-text">1.9.2 临时对象的产生与运用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-3-静态常量整数成员在class内部直接初始化"><span class="nav-text">1.9.3 静态常量整数成员在class内部直接初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-5-前闭后开区间表示法"><span class="nav-text">1.9.5 前闭后开区间表示法[)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-6-function-call操作符-operator"><span class="nav-text">1.9.6 function call操作符(operator())</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-空间配置器-allocator"><span class="nav-text">2 空间配置器(allocator)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-具备此配置力的SGI空间配置器"><span class="nav-text">2.2 具备此配置力的SGI空间配置器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-SGI标准的空间配置器-std-allocator"><span class="nav-text">2.2.1 SGI标准的空间配置器,std::allocator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-SGI特殊的空间配置器，std-alloc"><span class="nav-text">2.2.2 SGI特殊的空间配置器，std::alloc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-构造和析构基本工具-construct-和destroy"><span class="nav-text">2.2.3 构造和析构基本工具:construct()和destroy()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-空间的配置与释放，std-alloc"><span class="nav-text">2.2.4 空间的配置与释放，std::alloc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5-第一级配置器-malloc-alloc-template-剖析"><span class="nav-text">2.2.5 第一级配置器 __malloc_alloc_template 剖析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-6-第二级配置器-default-alloc-template-剖析"><span class="nav-text">2.2.6 第二级配置器__default_alloc_template 剖析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-7-空间配置函数allocate"><span class="nav-text">2.2.7 空间配置函数allocate()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-8-空间释放函数-deallocate"><span class="nav-text">2.2.8 空间释放函数 deallocate()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-9-重新填充-free-lists"><span class="nav-text">2.2.9 重新填充 free lists</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-10-内存池-memory-pool"><span class="nav-text">2.2.10 内存池(memory pool)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-内存基本处理工具"><span class="nav-text">2.3 内存基本处理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-uninitialized-copy"><span class="nav-text">2.3.1 uninitialized_copy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-uninitialized-fill"><span class="nav-text">2.3.2 uninitialized_fill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-uninitialized-fill-n"><span class="nav-text">2.3.3 uninitialized_fill_n</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  
+  <span itemprop="copyrightYear">
+    2018
+  </span>
+
+  <div class="powered-by">  
+  
+  <span class="post-meta-divider">|</span>
+  <span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+</div>
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" target="_blank" href="https://hexo.io" style="font-weight: bold">Hexo</a> 强力驱动
+  </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+    主题 
+    &mdash; 
+    <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+    </a>
+  </div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+</body>
+</html>

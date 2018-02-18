@@ -1,0 +1,109 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+#网站的标题
+title: 青匆
+#副标题
+#subtitle: 就这样试试看吧
+#描述
+description: 为即将来临的精彩。
+#作者信息
+author: timmy
+#头像，图片位置在相应主题目录下的images
+avatar:
+language: zh-Hans
+timezone: Asia/Shanghai
+
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://www.jingxxn.cn
+root: /
+permalink: :title.html
+permalink_defaults:
+
+# 自动生成sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+
+baidu_url_submit:
+  count: 1 ## 提交最新的一个链接
+  host: www.jingxxn.cn ## 在百度站长平台中注册的域名
+  token: 6AF5hBE5OmgbsuZI ## 请注意这是您的秘钥，所以请不要把博客源代码发布在公众仓库里!
+  path: baidu_urls.txt ## 文本文档的地址，新链接会保存在此文本文档里
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: true
+  tab_replace:
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 8
+  order_by: -date
+
+# Category & Tag
+default_category: uncategorized
+category_map: 
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination 归档的
+## Set per_page to 0 to disable pagination
+per_page: 25
+pagination_dir: page
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+#plugins: hexo-generate-feed
+## Themes: https://hexo.io/themes/
+#配置主题，这里使用next主题
+theme: next
+stylus:
+#自适应布局
+  compress: true
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  #部署环境，基于hexo+githubpage,所以这里使用git。注意：不同版本的hexo，type有可能不同，3.x以后应使用git,具体参看官方文档
+- type: git
+  repository:
+    github: git@github.com:timmyzeng/timmyzeng.github.io.git,master
+    coding: git@git.coding.net:timmyzeng/timmyzeng.git,master
+- type: baidu_url_submitter

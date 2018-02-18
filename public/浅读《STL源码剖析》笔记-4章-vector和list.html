@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="true" />
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,博客,C++,算法" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青匆" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="4 序列式容器4.1 容器的概观与分类所谓序列式容器，其中的元素都是可序的(ordered),但未必有序(sorted)。C++本身有array，其它是STL提供的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅读《STL源码剖析》笔记 4章-vector和list">
+<meta property="og:url" content="http://www.jingxxn.cn/浅读《STL源码剖析》笔记-4章-vector和list.html">
+<meta property="og:site_name" content="青匆">
+<meta property="og:description" content="4 序列式容器4.1 容器的概观与分类所谓序列式容器，其中的元素都是可序的(ordered),但未必有序(sorted)。C++本身有array，其它是STL提供的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801311638_540.png">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802021439_772.png">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802021641_929.png">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201802021656_767.png">
+<meta property="og:updated_time" content="2018-02-17T03:55:45.179Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅读《STL源码剖析》笔记 4章-vector和list">
+<meta name="twitter:description" content="4 序列式容器4.1 容器的概观与分类所谓序列式容器，其中的元素都是可序的(ordered),但未必有序(sorted)。C++本身有array，其它是STL提供的。">
+<meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201801311638_540.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.jingxxn.cn/浅读《STL源码剖析》笔记-4章-vector和list.html"/>
+
+
+
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title>浅读《STL源码剖析》笔记 4章-vector和list | 青匆</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青匆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/浅读《STL源码剖析》笔记-4章-vector和list.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="timmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青匆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浅读《STL源码剖析》笔记 4章-vector和list</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-09T10:13:57+08:00">
+                2018-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/learning/" itemprop="url" rel="index">
+                    <span itemprop="name">learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,886
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="4-序列式容器"><a href="#4-序列式容器" class="headerlink" title="4 序列式容器"></a>4 序列式容器</h2><h3 id="4-1-容器的概观与分类"><a href="#4-1-容器的概观与分类" class="headerlink" title="4.1 容器的概观与分类"></a>4.1 容器的概观与分类</h3><p><img src="http://p3ax8ersb.bkt.clouddn.com/201801311638_540.png" alt="SGI STL的各个容器"><br>所谓序列式容器，其中的元素都是可序的(ordered),但未必有序(sorted)。C++本身有array，其它是STL提供的。<br><a id="more"></a></p>
+<h3 id="4-2-vector"><a href="#4-2-vector" class="headerlink" title="4.2 vector"></a>4.2 vector</h3><h4 id="4-2-1-vector概述"><a href="#4-2-1-vector概述" class="headerlink" title="4.2.1 vector概述"></a>4.2.1 vector概述</h4><p>array是静态的，vector是动态增长的，随着元素的增加，内部机制自动扩充空间以容纳元素，不需要自己分配空间。</p>
+<h4 id="4-2-3-vector的迭代器"><a href="#4-2-3-vector的迭代器" class="headerlink" title="4.2.3 vector的迭代器"></a>4.2.3 vector的迭代器</h4><p>由于vector维护的是连续线性空间，所以不论元素类型是什么，普通指针都可以作为vector的迭代器而满足要求。vector支持随机存取，普通指针也满足。<code>vector&lt;int&gt; :: iterator ivite;vector&lt;Shape&gt; :: iterator svite;</code>其中 <code>ivite</code>的类型就是<code>int*</code>，<code>svite</code>的类型就是<code>Shape*</code> 。</p>
+<h4 id="4-2-4-vector的数据结构"><a href="#4-2-4-vector的数据结构" class="headerlink" title="4.2.4 vector的数据结构"></a>4.2.4 vector的数据结构</h4><p>vector的数据结构如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span> = <span class="title">alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">vecotr</span>&#123;</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">//注意STL的左闭右开特性。finish和end_of_storage指向最后一个元素的下一个位置</span></span><br><span class="line">        iterator start;             <span class="comment">//表示目前使用空间的头部</span></span><br><span class="line">        iterator finish;            <span class="comment">//表示目前使用空间的尾部</span></span><br><span class="line">        iterator end_of_storage;    <span class="comment">//表示目前可用空间的尾部</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>为了降低空间配置时的成本，实际上，vector配置的空间会比客户端需要的更大一些，这样是为了将来可能扩充的准备。当容量等于大小的时候，开辟新的空间。<br>运用 start，finish，end_of_storage三个迭代器，可以实现begin(),end(),size(),capacity(),empty(),operator[],front(),back()等方法。</p>
+<h4 id="4-2-5-vector的构造与内存管理：constructor，push-back"><a href="#4-2-5-vector的构造与内存管理：constructor，push-back" class="headerlink" title="4.2.5 vector的构造与内存管理：constructor，push_back"></a>4.2.5 vector的构造与内存管理：constructor，push_back</h4><p>push_back：将新元素插入vector尾端的时候，先检查是否还有备用空间，够的话，直接构造元素，并调整finish。如果没有备用空间，动态增长空间。这指并不是在原空间之后开辟新的空间，因为无法保证原空间之后还有可供配置的空间。而是以原大小的两倍例外配置一块大的空间，然后将原内容拷贝过来，然后才开始在原内容之后构造新元素，并释放原空间。<strong>因此，对于vector的任何操作，一旦引起了空间重新配置，指向原vector的所有迭代器都是失效了。</strong>push_back源代码节选如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">( <span class="keyword">const</span> T&amp; x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( finish != end_of_storage )&#123;</span><br><span class="line">        construct( finish, x );</span><br><span class="line">        ++finish;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>    <span class="comment">//无备用空间</span></span><br><span class="line">    insert_aux(end(), x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">vector</span>&lt;T, Alloc&gt;:</span>:insert_aux( iterator positon, <span class="keyword">const</span> T&amp; x )&#123;</span><br><span class="line">    <span class="keyword">if</span>( finish != end_of_storage )&#123; <span class="comment">//为什么还要再次判断</span></span><br><span class="line">        construct( finish, *(finish - <span class="number">1</span>));</span><br><span class="line">        ++finish;</span><br><span class="line">        T x_copy = x;</span><br><span class="line">        <span class="comment">//不懂</span></span><br><span class="line">        copy_backward(position, finish - <span class="number">2</span>, finish - <span class="number">1</span>);</span><br><span class="line">        *position = x_copy;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;   <span class="comment">//无备用空间</span></span><br><span class="line">        <span class="keyword">const</span> size_type old_size = size();</span><br><span class="line">        <span class="keyword">const</span> size_type len = old_size != <span class="number">0</span> ? <span class="number">2</span>*old_size : <span class="number">1</span>;</span><br><span class="line">        iterator new_start = data_allocator::allocatr(len); <span class="comment">//实际配置空间</span></span><br><span class="line">        iterator new_finish = new_start;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//将原来vector内容拷贝到新的vector</span></span><br><span class="line">            new_finish = uninitialized_copy(start, position, new_start);</span><br><span class="line">            <span class="comment">//为新元素设定初值x</span></span><br><span class="line">            construct(new_finish, x);</span><br><span class="line">            ++new_finish;</span><br><span class="line">            <span class="comment">//将安插点的原内容也拷贝过来//不懂</span></span><br><span class="line">            new_finish = uninitialized_copy(posiition, finish, new_finish);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(...)&#123;</span><br><span class="line">            <span class="comment">//开辟失败</span></span><br><span class="line">            destroy(new_start, new_finish);</span><br><span class="line">            data_allocator::deallocate(new_start, len);</span><br><span class="line">            <span class="keyword">throw</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//析构并释放原vector</span></span><br><span class="line">        destory(begin(), end());</span><br><span class="line">        deallocate();</span><br><span class="line">        <span class="comment">//调整迭代器，指向新的vector</span></span><br><span class="line">        start = new_start;</span><br><span class="line">        finish = new_finish;</span><br><span class="line">        end_of_storage = new_start+len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-2-6-vector的元素操作：pop-back-erase-clear-insert"><a href="#4-2-6-vector的元素操作：pop-back-erase-clear-insert" class="headerlink" title="4.2.6 vector的元素操作：pop_back, erase, clear, insert"></a>4.2.6 vector的元素操作：pop_back, erase, clear, insert</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清除[first, last)中的元素</span></span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">(iterator first, iterator last)</span></span>&#123;</span><br><span class="line">    iterator ii = copy(last, finish, first);    <span class="comment">//copy是全局函数，第六章</span></span><br><span class="line">    destory(i, finish);</span><br><span class="line">    finish = finish - (last - first);</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//清除某个位置上的元素</span></span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">(iterator position)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(position + <span class="number">1</span> != end())</span><br><span class="line">        copy(position + <span class="number">1</span>, finish, position);</span><br><span class="line">    --finish;</span><br><span class="line">    destroy(finish);</span><br><span class="line">    <span class="keyword">return</span> position;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123; erase(begin(), end()); &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//从position开始，插入n个元素，元素初值为x</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">vector</span>&lt;T, Alloc&gt;:</span>:insert(iterator position, size_type n ,<span class="keyword">const</span> T&amp; x)&#123;</span><br><span class="line">    <span class="keyword">if</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="comment">//备用空间大于等于新增元素个数</span></span><br><span class="line">        <span class="keyword">if</span>(size_type(end_of_storage - finish) &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            T x_copy = x;</span><br><span class="line">            <span class="comment">//计算插入点之后的现有元素个数</span></span><br><span class="line">            <span class="keyword">const</span> size_type elems_after = finish - position;</span><br><span class="line">            iterator old_finish = finish;</span><br><span class="line">            <span class="keyword">if</span>(elems_after &gt; n)&#123;    <span class="comment">//插入点之后的现有元素个数 &gt; 新增元素个数</span></span><br><span class="line">                uninitialized_copy(finish - n, finish, finish);</span><br><span class="line">                finish += n;    <span class="comment">//将vector 尾端标记后移</span></span><br><span class="line">                copy_backward(position, old_finish - n, old_finish);</span><br><span class="line">                fill(position, position+n, x_copy); <span class="comment">//从插入点开始填入新值</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                uninitialized_fill_n(finish, n-elems_affter, x_copy);</span><br><span class="line">                finish += n - elems_after;</span><br><span class="line">                uninitialized_copy(position, old_finish, finish);</span><br><span class="line">                finish += elems_after;</span><br><span class="line">                fill(position, old_finish, x_copy);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;   <span class="comment">//备用空间 &lt; 新增元素个数</span></span><br><span class="line">            <span class="keyword">const</span> size_type old_size = size();</span><br><span class="line">            <span class="comment">//决定新的长度为旧长度+新增元素个数</span></span><br><span class="line">            <span class="keyword">const</span> size_type len = old_size + max(old_size, n);</span><br><span class="line">            <span class="comment">//配置新的vector空间</span></span><br><span class="line">            iterator new_start = data_allocaator::allocate(len);</span><br><span class="line">            iterator new_finish = new_start;</span><br><span class="line">            __STL_TRY&#123;  <span class="comment">//&lt;-- 这个是什么</span></span><br><span class="line">                <span class="comment">//将旧的vector在插入点之前的元素复制到新空间</span></span><br><span class="line">                new_finish = uninitialized_copy(start, position, new_start);</span><br><span class="line">                <span class="comment">//将新增元素(初值为x)填入新空间</span></span><br><span class="line">                new_finish = uninitialized_fill_n(new_finish, n, x);</span><br><span class="line">                <span class="comment">//将旧的vector在插入点之后的元素复制到新空间</span></span><br><span class="line">                nwe_finish = uninitialized_copy(position, finish, new_finish);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//异常处理</span></span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//清除释放旧的空间</span></span><br><span class="line">            destroy(start，finish);</span><br><span class="line">            deallocate();</span><br><span class="line">            <span class="comment">//调整迭代器指向新的空间</span></span><br><span class="line">            start = new_start;</span><br><span class="line">            finish = new_finish;</span><br><span class="line">            end_of_storage = new_start+len;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//插入操作完成之后，新增节点应位于position的后面。</span></span><br></pre></td></tr></table></figure>
+<p>图解如下：<img src="http://p3ax8ersb.bkt.clouddn.com/201802021439_772.png" alt="insert"></p>
+<h3 id="4-3-list"><a href="#4-3-list" class="headerlink" title="4.3 list"></a>4.3 list</h3><h4 id="4-3-1-list概述"><a href="#4-3-1-list概述" class="headerlink" title="4.3.1 list概述"></a>4.3.1 list概述</h4><p>list每次插入或删除一个元素，就配置或释放一个元素空间。对于任何位置的元素插入或元素移除，是时间常数。</p>
+<h4 id="4-3-2-list的节点-node"><a href="#4-3-2-list的节点-node" class="headerlink" title="4.3.2 list的节点(node)"></a>4.3.2 list的节点(node)</h4><p>list的节点和list本身的设计是分开的。以下是STL list的节点结构：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> __<span class="title">list_node</span>&#123;</span></span><br><span class="line">    <span class="keyword">typedef</span> <span class="keyword">void</span>* void_pointer;</span><br><span class="line">    void_pointer prev;  <span class="comment">//型别为void*，其实可以是__list_node&lt;T&gt;</span></span><br><span class="line">    void_pointer next;</span><br><span class="line">    T data;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这是一个双向链表节点</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="4-3-3-list的迭代器"><a href="#4-3-3-list的迭代器" class="headerlink" title="4.3.3 list的迭代器"></a>4.3.3 list的迭代器</h4><p><strong>list的迭代器有一个重要性质，insert(插入)和splice(接合)操作都不会造成原有的迭代器失效。list的delete(删除)只有被删除的那个节点的迭代器失效</strong></p>
+<h4 id="4-3-4-list的数据结构"><a href="#4-3-4-list的数据结构" class="headerlink" title="4.3.4 list的数据结构"></a>4.3.4 list的数据结构</h4><p>SGI list 是一个双向循环链表。list结构如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span> = <span class="title">alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">list</span>&#123;</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">typedef</span> __list_node&lt;T&gt; list_node;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">typedef</span> list_node* link_type;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    link_type node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>STL中指针node指向尾端的一个空白节点，以符合STL中前闭后开规范。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">begin</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> (link_type)((*node).next); &#125;</span><br><span class="line"><span class="function">iterator <span class="title">end</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> node; &#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> node-&gt;next == node; &#125;</span><br><span class="line"><span class="function">size_type <span class="title">size</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    size_type result = <span class="number">0</span>;</span><br><span class="line">    distance(begin(), end(), result);   <span class="comment">//全局函数，第三章//计算两个迭代器之间的距离</span></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">reference <span class="title">front</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> *begin(); &#125;</span><br><span class="line"><span class="function">reference <span class="title">back</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> *(--end()); &#125;</span><br></pre></td></tr></table></figure></p>
+<p>图解如下：<img src="http://p3ax8ersb.bkt.clouddn.com/201802021641_929.png" alt="list"></p>
+<h4 id="4-3-5-list的构造与内存管理：constructor，-push-back-insert"><a href="#4-3-5-list的构造与内存管理：constructor，-push-back-insert" class="headerlink" title="4.3.5 list的构造与内存管理：constructor， push_back, insert"></a>4.3.5 list的构造与内存管理：constructor， push_back, insert</h4><p>list缺省使用alloc，并由此定义了一个list_node_alloctor是为了更方便的以节点大小为配置单位。<code>list_node_alloctor(n)</code>表示配置n个节点空间。同时有四个函数，如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置一个节点并传回</span></span><br><span class="line"><span class="function">link_type <span class="title">get_node</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">//释放一个节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">put_node</span><span class="params">(link_type p)</span></span>;</span><br><span class="line"><span class="comment">//配置并构造一个节点，带有元素值</span></span><br><span class="line"><span class="function">link_type <span class="title">create_node</span><span class="params">(<span class="keyword">const</span> T&amp; x)</span></span>;</span><br><span class="line"><span class="comment">//析构并释放一个节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">destroy_node</span><span class="params">(link_type p)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>list众多构造函数中，有一个允许我们构造一个空list出来：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">list</span>()&#123; empty_initialize(); &#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">empty_initialize</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//next、prev指针都指向自己</span></span><br><span class="line">        node = get_node();</span><br><span class="line">        node-&gt;next = node;</span><br><span class="line">        node-&gt;prev = node;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>空节点对象模型：<img src="http://p3ax8ersb.bkt.clouddn.com/201802021656_767.png" alt="空节点"><br>当我们用push_back()插入新节点的时候，函数内部调用insert()<code>void push_back(const T&amp; x) { inset( end(), x ); }</code>insert()有很多的重载函数，最简单的如下:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在迭代器position所指位置插入一个节点，值为x</span></span><br><span class="line"><span class="function">iterator <span class="title">insert</span><span class="params">(iterator position, <span class="keyword">const</span> T&amp; x)</span></span>&#123;</span><br><span class="line">    link_type tmp = create_node(x);</span><br><span class="line">    <span class="comment">//插入位置在position之前,这是STL规范。</span></span><br><span class="line">    tmp-&gt;next = position.node;</span><br><span class="line">    tmp-&gt;prev = position.node-&gt;prev;</span><br><span class="line">    (link_type(position.node-&gt;node-&gt;prev))-&gt;next = tmp;</span><br><span class="line">    position.node-&gt;prev = tmp;</span><br><span class="line">    <span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-3-6-list的元素操作：push-front-push-back-erase-pop-front-pop-back-clear-remove-unique-splice-merge-reverse-sort"><a href="#4-3-6-list的元素操作：push-front-push-back-erase-pop-front-pop-back-clear-remove-unique-splice-merge-reverse-sort" class="headerlink" title="4.3.6 list的元素操作：push_front, push_back, erase, pop_front, pop_back, clear, remove, unique, splice, merge, reverse, sort"></a>4.3.6 list的元素操作：<code>push_front, push_back, erase, pop_front, pop_back, clear, remove, unique, splice, merge, reverse, sort</code></h4><p>push_front, push_back复用insert；pop_front, pop_back复用erase。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//移除迭代器position所指节点</span></span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">(iterator position)</span></span>&#123;</span><br><span class="line">    link_type next_node = link_type(position.node-&gt;next);</span><br><span class="line">    link_type prev_node = link_type(position.node-&gt;prev);</span><br><span class="line">    prev_node-&gt;next = next_node;</span><br><span class="line">    next_node-&gt;prev = prev_node;</span><br><span class="line">    destroy_node(position.node);</span><br><span class="line">    <span class="keyword">return</span> iterator(next_node);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//清除所有节点</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">list</span>&lt;T, Alloc&gt;:</span>:clear()&#123;</span><br><span class="line">    link_type cur = (link__type) node-&gt;next;    <span class="comment">//begin();</span></span><br><span class="line">    <span class="keyword">while</span>( cur != node )&#123;</span><br><span class="line">        link_type tmp - cur;</span><br><span class="line">        cur = (link_type)cur-&gt;next;</span><br><span class="line">        destroy_node(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//恢复成空节点的初始结构</span></span><br><span class="line">    node-&gt;next = node;</span><br><span class="line">    node-&gt;prev = node;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//将数值为value的所有元素移除</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">list</span>&lt;T, Alloc&gt;:</span>:remove(<span class="keyword">const</span> T&amp; value)&#123;</span><br><span class="line">    iterator first = begin();</span><br><span class="line">    iterator last = end();</span><br><span class="line">    <span class="keyword">while</span>(first != last)&#123;</span><br><span class="line">        iterator next = first;</span><br><span class="line">        ++next;</span><br><span class="line">        <span class="keyword">if</span>(*first == value) erase(first);</span><br><span class="line">        first = next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//移除相同连续的元素，只有连续相同的元素才会被移除只剩一个</span></span><br><span class="line"><span class="comment">//很帅啊</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">list</span>&lt;T, Alloc&gt;:</span>:unique()&#123;</span><br><span class="line">    iterator first = begin();</span><br><span class="line">    iterator last = end();</span><br><span class="line">    <span class="keyword">if</span>(first == last) <span class="keyword">return</span>;   <span class="comment">//判空</span></span><br><span class="line">    iterator next = first;</span><br><span class="line">    <span class="keyword">while</span>(++next != last)&#123;</span><br><span class="line">        <span class="keyword">if</span>(*first == *next)</span><br><span class="line">            erase(next);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            first = next;</span><br><span class="line">        next = first;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>list 内部提供了一个迁移操作(transfer)：将某连续分为的元素迁移到某特定位置之前。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">//将[first, last)内的所有元素移动到position之前。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">(iterator position, iterator first, iterator last)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(position != last)&#123;</span><br><span class="line">            <span class="comment">//先处理各节点的next</span></span><br><span class="line">            (*(link_type((*last.node).prev))).next = position.node;</span><br><span class="line">            (*(link_type((*first.node).prev))).next = last.node;</span><br><span class="line">            (*(link_type((*position.node).prev))).next = first.node;</span><br><span class="line">            <span class="comment">//tmp为position的prev节点</span></span><br><span class="line">            link_type tmp = link_type((*position.node).prev);</span><br><span class="line">            <span class="comment">//处理各节点的prev</span></span><br><span class="line">            (*position.node).prev = (*last.node).prev;</span><br><span class="line">            (*last.node).prev = (*first.node).prev;</span><br><span class="line">            (*first.node).prev = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>splice各个版本：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//将list x接合与position所指位置之前，x必须不同于*this</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">splice</span><span class="params">(iterator position, <span class="built_in">list</span>&amp; x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!x.empty())</span><br><span class="line">            transfer(position, x.begin(), x.end());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//将i 所指元素接合于position所指元素之前。position和i可指向同一个list</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">splice</span><span class="params">(iterator position, <span class="built_in">list</span>&amp;, iterator i)</span></span>&#123;</span><br><span class="line">        iterator j = i;</span><br><span class="line">        ++j;</span><br><span class="line">        <span class="keyword">if</span>(position == i || position == j) <span class="keyword">return</span>;</span><br><span class="line">        trasfer(position, i, j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//将[first, last)内的所有元素接合于position所指位置之前，</span></span><br><span class="line">    <span class="comment">//position和[first, last)可指向同一个list。</span></span><br><span class="line">    <span class="comment">//但是position不能在[first, last)范围之内</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">splice</span><span class="params">(iterator posiition, <span class="built_in">list</span>&amp;, iterator first, iterator last)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(first != last)</span><br><span class="line">            transfer(position, first, last);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>merge(), reverse(), sort()源码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//merge()将x合并到*this上，两个list必须是递增排序的</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">list</span>&lt;T, Alloc&gt;:</span>:merge(<span class="built_in">list</span>&lt;T, Alloc&gt;&amp; x)&#123;</span><br><span class="line">    iterator first1 = begin();</span><br><span class="line">    iterator last1 = end();</span><br><span class="line">    iterator first2 = x.begin();</span><br><span class="line">    iterator last2 = x.end();</span><br><span class="line">    <span class="keyword">while</span>(first1 != last1 &amp;&amp; first2 != last2)&#123;</span><br><span class="line">        <span class="keyword">if</span>(*first2 &lt; *first1)&#123;</span><br><span class="line">            iterator next = first2;</span><br><span class="line">            transfer(first1, first2, ++next);</span><br><span class="line">            first2 = next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            ++first1;</span><br><span class="line">        <span class="keyword">if</span>(first2 !=  last2) transfer(last1, first2,last2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//reverse()将*this的内容逆置</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">list</span>&lt;T, Alloc&gt;:</span>:reverse()&#123;</span><br><span class="line">    <span class="comment">//判空或只有一个节点，用size() == 0 || size() == 1速度比较慢</span></span><br><span class="line">    <span class="keyword">if</span>(node-&gt;next == node || link_type(node-&gt;next)-&gt;next == node)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    iterator first = begin();</span><br><span class="line">    ++first;</span><br><span class="line">    <span class="keyword">while</span>(first != end())&#123;</span><br><span class="line">        iterator old = first;</span><br><span class="line">        ++first;</span><br><span class="line">        transfer(begin(), old, first);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//list不能使用STL中的sort()算法，只能使用自己的sort()</span></span><br><span class="line"><span class="comment">//因为STL的sort()只接受RamdonAccessIterator</span></span><br><span class="line"><span class="comment">//本函数使用quick sort</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">list</span>&lt;T, Alloc&gt;:</span>:sort()&#123;</span><br><span class="line">     <span class="comment">//判空或只有一个节点，用size() == 0 || size() == 1速度比较慢</span></span><br><span class="line">    <span class="keyword">if</span>(node-&gt;next == node || link_type(node-&gt;next)-&gt;next == node)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">//创建新的list空间，作为中介数据存放区</span></span><br><span class="line">    <span class="built_in">list</span>&lt;T, Alloc&gt; carry;</span><br><span class="line">    <span class="built_in">list</span>&lt;T, Alloc&gt; counter[<span class="number">64</span>];</span><br><span class="line">    <span class="keyword">int</span> fill = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!empty())&#123;</span><br><span class="line">        carry.splice(carry.begin(), *<span class="keyword">this</span>, begin());</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; fill &amp;&amp; !counter[i].empty())&#123;</span><br><span class="line">            counter[i].merge(carry);</span><br><span class="line">            carry.swap(counter[i++]);</span><br><span class="line">        &#125;</span><br><span class="line">        carry.swap(counter[i]);</span><br><span class="line">        <span class="keyword">if</span>(i == fill)</span><br><span class="line">            ++fill;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; fill; ++i)</span><br><span class="line">        counter[i].merge(counter[i<span class="number">-1</span>]);</span><br><span class="line">    swap(counter[fill<span class="number">-1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/浅读《STL源码剖析》笔记-3章.html" rel="next" title="浅读《STL源码剖析》笔记 3章">
+                <i class="fa fa-chevron-left"></i> 浅读《STL源码剖析》笔记 3章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzU3MS8xMDEyNg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="timmy" />
+            
+              <p class="site-author-name" itemprop="name">timmy</p>
+              <p class="site-description motion-element" itemprop="description">为即将来临的精彩。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/timmyzeng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("01/25/2018 18:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+<div id="music163player">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22712173&auto=1&height=66">
+</iframe>
+</div>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-序列式容器"><span class="nav-text">4 序列式容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-容器的概观与分类"><span class="nav-text">4.1 容器的概观与分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-vector"><span class="nav-text">4.2 vector</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-1-vector概述"><span class="nav-text">4.2.1 vector概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-3-vector的迭代器"><span class="nav-text">4.2.3 vector的迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-4-vector的数据结构"><span class="nav-text">4.2.4 vector的数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-5-vector的构造与内存管理：constructor，push-back"><span class="nav-text">4.2.5 vector的构造与内存管理：constructor，push_back</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-6-vector的元素操作：pop-back-erase-clear-insert"><span class="nav-text">4.2.6 vector的元素操作：pop_back, erase, clear, insert</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-list"><span class="nav-text">4.3 list</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-list概述"><span class="nav-text">4.3.1 list概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-list的节点-node"><span class="nav-text">4.3.2 list的节点(node)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-list的迭代器"><span class="nav-text">4.3.3 list的迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-4-list的数据结构"><span class="nav-text">4.3.4 list的数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-5-list的构造与内存管理：constructor，-push-back-insert"><span class="nav-text">4.3.5 list的构造与内存管理：constructor， push_back, insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-6-list的元素操作：push-front-push-back-erase-pop-front-pop-back-clear-remove-unique-splice-merge-reverse-sort"><span class="nav-text">4.3.6 list的元素操作：push_front, push_back, erase, pop_front, pop_back, clear, remove, unique, splice, merge, reverse, sort</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  
+  <span itemprop="copyrightYear">
+    2018
+  </span>
+
+  <div class="powered-by">  
+  
+  <span class="post-meta-divider">|</span>
+  <span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+</div>
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" target="_blank" href="https://hexo.io" style="font-weight: bold">Hexo</a> 强力驱动
+  </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+    主题 
+    &mdash; 
+    <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+    </a>
+  </div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+</body>
+</html>
