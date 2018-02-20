@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="青匆">
 <meta property="og:description" content="第一章 基础议题条款1：区分指针和引用不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。123//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。char* pc = 0;char &amp;amp;rc = *pc; 因为不存在空引用这种情况，所以使引用会比指针更高效。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-19T03:18:39.909Z">
+<meta property="og:updated_time" content="2018-02-20T02:34:19.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅读《More Effective C++》笔记">
 <meta name="twitter:description" content="第一章 基础议题条款1：区分指针和引用不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。123//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。char* pc = 0;char &amp;amp;rc = *pc; 因为不存在空引用这种情况，所以使引用会比指针更高效。">
@@ -375,7 +375,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,042
+                  2,194
                 </span>
               
 
@@ -435,10 +435,9 @@
 <p>第三种方法，为数组分配原始内存，可以避免额外的内存消耗，利用placement new技术，如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> * rawMemory = <span class="keyword">operator</span> <span class="keyword">new</span>[](<span class="number">10</span>*<span class="keyword">sizeof</span>(EquipmentPiece));</span><br><span class="line">EquipmentPiece* bestPieces = <span class="keyword">static_cast</span>&lt;EquipmentPiece*&gt;(rawMemory);</span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i )&#123;</span><br><span class="line">    <span class="keyword">new</span>(bestPieces+i) EquipmentPiece( ID Number );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这个方法的缺点是，删除的时候，先要手工调用析构函数，然后再手工调用delete[]函数，这样才能够释放原始内存。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">9</span>; i &gt;= <span class="number">0</span>; --i )&#123;</span><br><span class="line">    bestPieces[i].~EquipmentPiece();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">operator</span> <span class="keyword">delete</span>[](rawMemory);</span><br></pre></td></tr></table></figure></p>
 <p>没有默认构造函数所造成的第二个问题是，他们没有办法作为许多基于模板的容器类的类型参数使用。因为通常用于实例化模板的那些类型需要提供默认构造函数。这个要求大多数时候来自模板内部需要创建关于模板参数类型的数组。例子如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Array</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Array( <span class="keyword">int</span> size );</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T* data;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Array</span>&lt;T&gt;:</span>:Array(<span class="keyword">int</span> size)&#123;</span><br><span class="line">    date = <span class="keyword">new</span> T[size];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在大多数情况下，可以通过谨慎的设计排除对默认构造函数的需要。标准的vector模板就不要求。</p>
-<p>没有默认构造函数的第三个问题是。在有虚基类的时候，到底要不要提供默认构造函数。没有默认构造函数的虚基类使用起来十分痛苦。这是因为虚基类的构造函数所要求的参数必须由被创建对象所属的最远的派生类提供。这样就导致了，没有默认构造函数的虚基类会要求所有由它继承下来的派生类都必须知道、理解虚基类构造函数的参数的含义并提供这些参数。</p>
-<h2 id="第二章-运算符"><a href="#第二章-运算符" class="headerlink" title="第二章 运算符"></a>第二章 运算符</h2><h3 id="条款5：小心用户自定义的转换函数"><a href="#条款5：小心用户自定义的转换函数" class="headerlink" title="条款5：小心用户自定义的转换函数"></a>条款5：小心用户自定义的转换函数</h3><p>C++允许编译器在两种数据类型之间进行隐式转换，char到int、short到double。甚至会出现数据丢失的也可以，int到char、double到short的转换。</p>
-<p>接下来介绍两种类型函数可以让编译器实施这种隐式转换：单个参数的构造函数和隐式的类型转换运算符。</p>
+<p>在大多数情况下，可以通过谨慎的设计排除对默认构造函数的需要。标准的vector模板就不要求。<br>没有默认构造函数的第三个问题是。在有虚基类的时候，到底要不要提供默认构造函数。没有默认构造函数的虚基类使用起来十分痛苦。这是因为虚基类的构造函数所要求的参数必须由被创建对象所属的最远的派生类提供。这样就导致了，没有默认构造函数的虚基类会要求所有由它继承下来的派生类都必须知道、理解虚基类构造函数的参数的含义并提供这些参数。</p>
+<h2 id="第二章-运算符"><a href="#第二章-运算符" class="headerlink" title="第二章 运算符"></a>第二章 运算符</h2><h3 id="条款5：小心用户自定义的转换函数"><a href="#条款5：小心用户自定义的转换函数" class="headerlink" title="条款5：小心用户自定义的转换函数"></a>条款5：小心用户自定义的转换函数</h3><p>C++允许编译器在两种数据类型之间进行隐式转换，char到int、short到double。甚至会出现数据丢失的也可以，int到char、double到short的转换。<br>接下来介绍两种类型函数可以让编译器实施这种隐式转换：单个参数的构造函数和隐式的类型转换运算符。<br><strong>单个参数的构造函数</strong>指的是，只传递给它一个参数就可以调用的构造函数。这种构造函数可以只定义一个参数，也可以定义多个参数。定义多个参数的时候，除了第一个参数，后面的参数应该是有默认值的。例子如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Name(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ratinal</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Rational(<span class="keyword">int</span> numerator = <span class="number">0</span>, <span class="keyword">int</span> denominator = <span class="number">1</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>隐式的类型转换运算符只不过是名字看上去比较奇怪的成员函数：在operator关键字后面指定类型。</p>
 
       
     </div>
@@ -563,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
