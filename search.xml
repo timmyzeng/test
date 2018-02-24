@@ -13,6 +13,10 @@
     <title><![CDATA[模板与分离编译]]></title>
     <url>%2F%E6%A8%A1%E6%9D%BF%E4%B8%8E%E5%88%86%E7%A6%BB%E7%BC%96%E8%AF%91.html</url>
     <content type="text"><![CDATA[分离编译模式一个项目如果有多个源文件组成，每个源文件单独编译，形成目标文件。最后通过链接器将所有的目标文件链接起来，形成一个可执行的文件。这个过程就叫做分离编译。 模板不能分离编译有一个项目，其中函数声明放在”test.h”中，函数实现放在”test.cpp”中，函数调用放在”main.cpp”中。如果没用使用模板，将不会有任何问题。而且这样是被推荐使用的。但是如果有函数的实现是模板函数或有模板类，将会出现链接错误。代码如下:1234567891011121314151617181920//test.h#pragma oncetemplate &lt;class T&gt;void print(T num);//test.cpptemplate &lt;class T&gt;void print(T num)&#123; cout &lt;&lt; num &lt;&lt; endl; &#125;//main.cpp#include &lt;iostream&gt;#include "test.h"using namespace std;int main()&#123; int number = 10; print(number); return 0;&#125; 这样的代码看起来是没有问题的。执行的时候并不会出现编译错误，但是会出现链接错误。这是因为采取了分离编译之后，我们的.cpp文件是独立编译的。test.cpp中的模板函数，由于没有被调用，所以它的T并没有被实例化相应的类型，比如例子中的int类型。main.cpp中调用了函数print，他需要实例print(int num)。在链接的时候，找不到需要的实例化函数，这样就产生了错误。 解决办法1-显示实例化在函数定义的时候，指定我们需要实例化的类型。在头文件定义中添加指定类型的定义：123456#pragma oncetemplate &lt;class T&gt;void print(T num);//添加int定义template void print&lt;int&gt;(int num); 这种方式是最简单，但是这样却是最麻烦的。如果我有多个不同类型，就需要有相应个数的特化。 解决办法2-不使用分离编译既然不能使用，那么我们不使用分离编译就是了。将我们的函数声明和函数定义放在test.h中。这样我们编译的时候，需要将头文件展开，这样就可以将模板函数在编译的时候实例化。123456//test.h//不需要test.cpp#pragma oncetemplate &lt;class T&gt;void print(T num)&#123; cout &lt;&lt; num &lt;&lt; endl; &#125; 这样解决了模板的分离编译的问题，但是这样也就暴露了我们的函数定义。]]></content>
+      <categories>
+        <category>knowledge</category>
+        <category>C/C++</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[浅读《STL源码剖析》笔记 4章-vector和list]]></title>
