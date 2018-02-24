@@ -1,1 +1,1 @@
-http://www.jingxxn.cn/浅读《STL源码剖析》笔记-4章-vector和list.html
+http://www.jingxxn.cn/模板的类型萃取.html
