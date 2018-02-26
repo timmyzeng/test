@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="linux,博客,C++,算法" />
+  <meta name="keywords" content="类,继承" />
 
 
 
@@ -84,19 +84,20 @@
 
 
 <meta name="description" content="题目：题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。 思路： 题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。">
+<meta name="keywords" content="类,继承">
 <meta property="og:type" content="article">
 <meta property="og:title" content="创建一个不能被继承的类">
 <meta property="og:url" content="http://www.jingxxn.cn/创建一个不能被继承的类.html">
 <meta property="og:site_name" content="青匆">
 <meta property="og:description" content="题目：题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。 思路： 题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png">
-<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291733_414.png">
-<meta property="og:updated_time" content="2018-02-08T06:19:49.872Z">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291733_414.png-<960 class="jpg"></960">
+<meta property="og:updated_time" content="2018-02-24T08:04:44.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="创建一个不能被继承的类">
 <meta name="twitter:description" content="题目：题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。 思路： 题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。">
-<meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png">
+<meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png-960.jpg">
 
 
 
@@ -435,8 +436,8 @@
 <li><strong>让man虚继承person是为了让继承man的类，都需要在man的父类，即person中调用构造函数，但只有man是person的友元类，其他的类都不能访问person的构造函数。因此man就成为了不能被继承的类，而man本身可以正常使用。</strong></li>
 </ul>
 <h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//设计一个不能被继承的类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">man</span>;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="comment">//构造函数为private</span></span><br><span class="line">        person()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//man虚拟继承person</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">man</span>:</span><span class="keyword">virtual</span> <span class="keyword">public</span> person &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        man()&#123;</span><br><span class="line">            age = <span class="number">18</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; age &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// class son:public man&#123;</span></span><br><span class="line"><span class="comment">//  public:</span></span><br><span class="line"><span class="comment">//      son()&#123;&#125;</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    man bob;</span><br><span class="line">    system( <span class="string">"clear"</span> );</span><br><span class="line">    bob.show();</span><br><span class="line">    <span class="comment">//son tom;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不定义man的继承类son，正常输出man的age = 18<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png" alt=""></p>
-<p>定义man的继承类son失败<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291733_414.png" alt=""></p>
+<p>不定义man的继承类son，正常输出man的age = 18<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png-960.jpg" alt=""></p>
+<p>定义man的继承类son失败<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291733_414.png-&lt;960 class=&quot;jpg&quot;&gt;&lt;/960" alt=""></p>
 
       
     </div>
@@ -561,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -636,10 +637,7 @@ return i;
 }
 show_date_time();
 </script>
-<div id="music163player">
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22712173&auto=1&height=66">
-</iframe>
-</div>
+
         </div>
       </section>
 

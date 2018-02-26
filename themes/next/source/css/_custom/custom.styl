@@ -183,19 +183,26 @@ body{
     font-size: 18px;
     border: none;
 }
+@media (max-width: 767px) {
+    .pagination .page-number {
+        padding: 0px 10px 20px 10px;
+    }
+}
+
 .pagination .space {
     color: rgb(255, 255, 255);
 }
 
 // 页面底部页脚
 .footer {
-    line-height: 1.5;
+    line-height: 1.25;
     background-color: rgba(255, 255, 255, 0.75);
     color: #333;
-    border-top-width: 3px;
+    border-top-width: 0px;
     border-top-style: solid;
     border-top-color: rgba(134, 168, 193, 0);
-    box-shadow: 0px -10px 10px 0px rgba(0, 0, 0, 0.15);
+    
+    box-shadow: inset 13px 8px 10px 0 rgba(0,0,0,0.15);
 }
 
 // 文章底部的tags
@@ -525,7 +532,7 @@ h2.about-title {
     background-color: #ccc;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(86, 122, 166);
 }
 
 /*
@@ -610,7 +617,7 @@ a.fancybox{
 }
 
 // 移动端样式
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
     .container {
         background-color: rgba(0, 0, 0, 0);
     }
