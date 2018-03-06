@@ -46,7 +46,7 @@ int main(){
 }
 ```
 运行结果：
-![运行结果](http://p3ax8ersb.bkt.clouddn.com/201801291947_629.png)
+![运行结果](http://p3ax8ersb.bkt.clouddn.com/201801291947_629.png-960.jpg)
 #### 1.9.5 前闭后开区间表示法[)
 **STL中范围是用前闭后开。[first, last)元素从first开始，结束于last-1.迭代器中的last指的是最后一个元素的下一个。**
 #### 1.9.6 function call操作符(operator())
@@ -71,7 +71,7 @@ int main(){
 }
 ```
 运行结果：
-![仿函数](http://p3ax8ersb.bkt.clouddn.com/201801292024_990.png)
+![仿函数](http://p3ax8ersb.bkt.clouddn.com/201801292024_990.png-960.jpg)
 
 ## 2 空间配置器(allocator)
 空间配置器在容器背后工作，整个STL的操作对象(所有的数值)，对存放在容器中，而容器一定要配置空间以置放资料。不一定是内存，也可以是磁盘或其他的辅助存储介质。
@@ -136,7 +136,7 @@ inline void destroy(wchar_t*,wchar_t*){}
 代码解释：`destroy()`有两个版本，**第一个版本接收一个指针，准备将该指针所指之物析构，这个直接调用该对象的析构函数即可**。第二个版本接收first和last两个迭代器，准备将`[firat, last)`范围内的所有对象析构。我们不知道范围有多大，万一很大，而每个对象的析构函数都无关痛痒(所谓`trivial destructor`),那么一次次调用这些无关痛痒的析构函数，对效率是一个伤害，因此，**这里首先利用`value_type()`获得迭代器所指对象的型别，再利用`__type_traits<T>`判断该型别的析构函数是否无关痛痒。若是`(__true_type)`，则什么都不做结束；若不是`(__false_type)`,这才循环巡防整个范围，并在循环中每经历一个对象就调用第一个版本的`destroy()`。**
 
 construct()和destroy()图解：对于C++本身并不支持“指针所指之物”的型别判断，也不支持对“对象析构函数是否为trivial”的判断，具体实现value_type()和__type_traits<>在3.7节。
-![construct()和destroy()图解](http://p3ax8ersb.bkt.clouddn.com/201802011438_654.png)
+![construct()和destroy()图解](http://p3ax8ersb.bkt.clouddn.com/201802011438_654.png-960.jpg)
 
 #### 2.2.4 空间的配置与释放，std::alloc
 对象构造前的空间配置和对象析构后的空间释放，由`<stl_alloc.h>`负责。
@@ -172,8 +172,8 @@ public:
 内部四个成员函数都是单纯的转调用，这个接口使配置器的单位从bytes转为个别元素的大小(sizeof(T))。
 
 图解如下：
-    第一级配置器和第二级配置器：![第一级配置器和第二级配置器](http://p3ax8ersb.bkt.clouddn.com/201802011620_34.png)
-    包装接口和运用：![包装接口和运用](http://p3ax8ersb.bkt.clouddn.com/201802011647_747.png)
+    第一级配置器和第二级配置器：![第一级配置器和第二级配置器](http://p3ax8ersb.bkt.clouddn.com/201802011620_34.png-960.jpg)
+    包装接口和运用：![包装接口和运用](http://p3ax8ersb.bkt.clouddn.com/201802011647_747.png-960.jpg)
 
 更新时间：2018.02.17
 #### 2.2.5 第一级配置器 __malloc_alloc_template 剖析

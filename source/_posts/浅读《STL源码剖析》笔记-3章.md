@@ -53,7 +53,7 @@ int main(){
 }
 ```
 运行结果：
-![迭代器](http://p3ax8ersb.bkt.clouddn.com/201802011511_588.png)
+![迭代器](http://p3ax8ersb.bkt.clouddn.com/201802011511_588.png-960.jpg)
 
 ### 3.2 迭代器(ierator)是一种smart pointer
 **迭代器是一个行为类似指针的对象，所以迭代器最重要的编程工作就是对operator* 和 operator-> 进行重载工作。**
@@ -143,7 +143,7 @@ template <typename T>
 bool operator!=(const ListItem<T>& item, T n){ return item.value() != n; }
 ```
 ### 3.3 迭代器相应型别(associated types)
-当算法中有必要声明一个变量，需要获取“迭代器所指对象的型别”为型别，我们可以通过function template 的参数推导(argument deducation)机制实现。例如：![function template的例子](http://p3ax8ersb.bkt.clouddn.com/201802011841_231.png)
+当算法中有必要声明一个变量，需要获取“迭代器所指对象的型别”为型别，我们可以通过function template 的参数推导(argument deducation)机制实现。例如：![function template的例子](http://p3ax8ersb.bkt.clouddn.com/201802011841_231.png-960.jpg)
 以func()为对外接口，实际操作全部置于func_imp中，由于func_imp()是一个function template，一旦被调用，编译器会自动进行template参数推导。推导出型别T，顺利解决了问题。
 ### 3.4 Traits 编程技法——STL源代码门钥
 **value type：迭代器所指对象的型别。**上述的参数型别推导技巧在value type需要用于函数的传回值就束手无策了，因为函数的"template参数推导机制"推导的只是参数，无法推导函数的返回值型别。我们需要别的方法，例如声明内嵌型别。如下：
@@ -208,7 +208,7 @@ struct iterator_traits<const T*>{   //偏特化版本，当迭代器是一个con
 ```
 到这里为止，**不论是面对class-type迭代器，原生指针，const修饰的原生指针。我们都可以通过traits萃取出正确的value type。但是，需要这traits正常运作，每一个迭代器必须自行以内嵌型别定义(nested typedef)的方式定义出相应型别(associated types)。这是一个约定，STL中必须满足。**
 
-图解iterator_traits：![iterator_traits](http://p3ax8ersb.bkt.clouddn.com/201802012217_572.png)
+图解iterator_traits：![iterator_traits](http://p3ax8ersb.bkt.clouddn.com/201802012217_572.png-960.jpg)
 常用的迭代器相应型别有以上五种，“特性萃取机”traits会原汁原味的榨取出来：
 ```c++
 template <class I>

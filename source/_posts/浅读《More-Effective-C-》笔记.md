@@ -53,7 +53,8 @@ v[5] = 10;
 - **dynamic_cast：它是用来针对一个继承体系做向下或者横向的安全转换的。也就是说，用dynamic_cast把指向基类的指针或引用转换成指向派生类或者基类的兄弟类的指针或引用，同时可以知道是否成功。出现空指针(转换指针的时候)或者出现异常(转换引用的时候)意味着失败。他不能用于哪些没有虚函数的类型，也不能去除const属性。**
 - **reinterpret_const：这个操作符，转换结果往往是编译器定义的。因此它几乎是不可以移植的。最常见的用法是在函数指针之间进行类型转换。但是一般我们不使用这种转换，因为c++没有规定这种做法，有可能出现未知的错误，除非万不得已，不然不使用。**
 
-使用格式举例：`static_cast<double> (first); const_cast<special*>(first); dynamic_cast<special *>(&first); reinterpret_cast<funcptr> (&dosomething);`
+使用格式举例：
+`static_cast<double> (first); const_cast<special*>(first); dynamic_cast<special *>(&first); reinterpret_cast<funcptr> (&dosomething)`
 
 ### 条款3：绝不要把多态应用于数组
 继承的一大特性，它允许你通过指向基类的指针和引用来操纵派生类对象。这种指针和引用的行为具有多态性。**同时C++也允许你通过基类指针和引用来操纵派生类数组，但是这个应该不被允许**。见下面这个例子：

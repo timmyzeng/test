@@ -7,7 +7,7 @@ categories:
 ---
 ## 4 序列式容器
 ### 4.1 容器的概观与分类
-![SGI STL的各个容器](http://p3ax8ersb.bkt.clouddn.com/201801311638_540.png)
+![SGI STL的各个容器](http://p3ax8ersb.bkt.clouddn.com/201801311638_540.png-960.jpg)
 所谓序列式容器，其中的元素都是可序的(ordered),但未必有序(sorted)。C++本身有array，其它是STL提供的。
 <!--more-->
 ### 4.2 vector
@@ -158,7 +158,7 @@ void vector<T, Alloc>::insert(iterator position, size_type n ,const T& x){
 }
 //插入操作完成之后，新增节点应位于position的后面。
 ```
-图解如下：![insert](http://p3ax8ersb.bkt.clouddn.com/201802021439_772.png)
+图解如下：![insert](http://p3ax8ersb.bkt.clouddn.com/201802021439_772.png-960.jpg)
 ### 4.3 list
 #### 4.3.1 list概述
 list每次插入或删除一个元素，就配置或释放一个元素空间。对于任何位置的元素插入或元素移除，是时间常数。
@@ -202,7 +202,7 @@ size_type size() const {
 reference front() { return *begin(); }
 reference back() { return *(--end()); }
 ```
-图解如下：![list](http://p3ax8ersb.bkt.clouddn.com/201802021641_929.png)
+图解如下：![list](http://p3ax8ersb.bkt.clouddn.com/201802021641_929.png-960.jpg)
 
 #### 4.3.5 list的构造与内存管理：constructor， push_back, insert
 list缺省使用alloc，并由此定义了一个list_node_alloctor是为了更方便的以节点大小为配置单位。`list_node_alloctor(n)`表示配置n个节点空间。同时有四个函数，如下：
@@ -228,7 +228,7 @@ protected:
         node->prev = node;
     }
 ```
-空节点对象模型：![空节点](http://p3ax8ersb.bkt.clouddn.com/201802021656_767.png)
+空节点对象模型：![空节点](http://p3ax8ersb.bkt.clouddn.com/201802021656_767.png-960.jpg)
 当我们用push_back()插入新节点的时候，函数内部调用insert()`void push_back(const T& x) { inset( end(), x ); }`insert()有很多的重载函数，最简单的如下:
 ```c++
 //在迭代器position所指位置插入一个节点，值为x
