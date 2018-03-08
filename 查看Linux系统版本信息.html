@@ -83,13 +83,13 @@
 
 
 
-<meta name="description" content="查看Linux版本信息几种办法查看内核版本 cat /proc/version    uname -a   查看系统版本 cat /etc/redhat-release    lsb_release -a  这个命令需要安装，安装命令：  yum install lsb -y    cat /etc/issue  都说可以，这个我的查出来很奇怪  rpm -q centos-release   查">
+<meta name="description" content="查看内核版本 cat /proc/version    uname -a">
 <meta name="keywords" content="Linux,version">
 <meta property="og:type" content="article">
 <meta property="og:title" content="查看Linux系统版本信息">
 <meta property="og:url" content="http://www.jingxxn.cn/查看Linux系统版本信息.html">
 <meta property="og:site_name" content="青匆">
-<meta property="og:description" content="查看Linux版本信息几种办法查看内核版本 cat /proc/version    uname -a   查看系统版本 cat /etc/redhat-release    lsb_release -a  这个命令需要安装，安装命令：  yum install lsb -y    cat /etc/issue  都说可以，这个我的查出来很奇怪  rpm -q centos-release   查">
+<meta property="og:description" content="查看内核版本 cat /proc/version    uname -a">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201803081150_955.png-960.jpg">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201803081151_552.png-960.jpg">
@@ -98,10 +98,10 @@
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201803081223_694.png-960.jpg">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201803081235_126.png-960.jpg">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201803081226_578.png-960.jpg">
-<meta property="og:updated_time" content="2018-03-08T04:43:30.518Z">
+<meta property="og:updated_time" content="2018-03-08T08:32:20.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查看Linux系统版本信息">
-<meta name="twitter:description" content="查看Linux版本信息几种办法查看内核版本 cat /proc/version    uname -a   查看系统版本 cat /etc/redhat-release    lsb_release -a  这个命令需要安装，安装命令：  yum install lsb -y    cat /etc/issue  都说可以，这个我的查出来很奇怪  rpm -q centos-release   查">
+<meta name="twitter:description" content="查看内核版本 cat /proc/version    uname -a">
 <meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201803081150_955.png-960.jpg">
 
 
@@ -395,7 +395,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  102
+                  91
                 </span>
               
 
@@ -432,20 +432,21 @@
       
 
       
-        <h4 id="查看Linux版本信息几种办法"><a href="#查看Linux版本信息几种办法" class="headerlink" title="查看Linux版本信息几种办法"></a>查看Linux版本信息几种办法</h4><h5 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h5><blockquote>
-<p>cat /proc/version</p>
+        <h4 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h4><blockquote>
+<p><strong>cat /proc/version</strong></p>
 </blockquote>
 <p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081150_955.png-960.jpg" alt="cat /proc/version"></p>
 <blockquote>
-<p>uname -a</p>
+<p><strong>uname -a</strong></p>
 </blockquote>
+<a id="more"></a>
 <p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081151_552.png-960.jpg" alt="uname -a"></p>
-<h5 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h5><blockquote>
-<p>cat /etc/redhat-release</p>
+<h4 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h4><blockquote>
+<p><strong>cat /etc/redhat-release</strong></p>
 </blockquote>
 <p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081158_576.png-960.jpg" alt="查看版本"></p>
 <blockquote>
-<p>lsb_release -a</p>
+<p><strong>lsb_release -a</strong></p>
 </blockquote>
 <p>这个命令需要安装，安装命令：</p>
 <blockquote>
@@ -453,15 +454,15 @@
 </blockquote>
 <p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081233_128.png-960.jpg" alt="lsb_release"></p>
 <blockquote>
-<p>cat /etc/issue</p>
+<p><strong>cat /etc/issue</strong></p>
 </blockquote>
 <p>都说可以，这个我的查出来很奇怪<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081223_694.png-960.jpg" alt="有错误"></p>
 <blockquote>
-<p>rpm -q centos-release</p>
+<p><strong>rpm -q centos-release</strong></p>
 </blockquote>
 <p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081235_126.png-960.jpg" alt="rpm"></p>
-<h5 id="查看cpu相关信息，包括型号、主频、内核等信息"><a href="#查看cpu相关信息，包括型号、主频、内核等信息" class="headerlink" title="查看cpu相关信息，包括型号、主频、内核等信息"></a>查看cpu相关信息，包括型号、主频、内核等信息</h5><blockquote>
-<p>cat /proc/cpuinfo</p>
+<h4 id="查看cpu相关信息，包括型号、主频、内核等信息"><a href="#查看cpu相关信息，包括型号、主频、内核等信息" class="headerlink" title="查看cpu相关信息，包括型号、主频、内核等信息"></a>查看cpu相关信息，包括型号、主频、内核等信息</h4><blockquote>
+<p><strong>cat /proc/cpuinfo</strong></p>
 </blockquote>
 <p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081226_578.png-960.jpg" alt="cpuinfo"></p>
 <p><a href="https://www.linuxidc.com/Linux/2016-05/131749.htm" target="_blank" rel="noopener">参考地址1</a><br><a href="http://blog.csdn.net/Aoril/article/details/53518917" target="_blank" rel="noopener">参考地址2</a></p>
@@ -489,8 +490,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/判断元素的入栈和出栈顺序是否一致.html" rel="next" title="判断元素的入栈和出栈顺序是否合法">
-                <i class="fa fa-chevron-left"></i> 判断元素的入栈和出栈顺序是否合法
+              <a href="/Linux中时间的设置.html" rel="next" title="Linux中时间的设置">
+                <i class="fa fa-chevron-left"></i> Linux中时间的设置
               </a>
             
           </div>
@@ -585,7 +586,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -674,7 +675,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看Linux版本信息几种办法"><span class="nav-text">查看Linux版本信息几种办法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查看内核版本"><span class="nav-text">查看内核版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看系统版本"><span class="nav-text">查看系统版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看cpu相关信息，包括型号、主频、内核等信息"><span class="nav-text">查看cpu相关信息，包括型号、主频、内核等信息</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看内核版本"><span class="nav-text">查看内核版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看系统版本"><span class="nav-text">查看系统版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看cpu相关信息，包括型号、主频、内核等信息"><span class="nav-text">查看cpu相关信息，包括型号、主频、内核等信息</span></a></li></ol></div>
             
 
           </div>

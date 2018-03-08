@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jingxxn.cn/"/>
-  <updated>2018-03-08T04:43:30.518Z</updated>
+  <updated>2018-03-08T08:32:20.222Z</updated>
   <id>http://www.jingxxn.cn/</id>
   
   <author>
@@ -21,16 +21,48 @@
     <link href="http://www.jingxxn.cn/%E6%9F%A5%E7%9C%8BLinux%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF.html"/>
     <id>http://www.jingxxn.cn/查看Linux系统版本信息.html</id>
     <published>2018-03-08T03:44:55.000Z</published>
-    <updated>2018-03-08T04:43:30.518Z</updated>
+    <updated>2018-03-08T08:32:20.222Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="查看Linux版本信息几种办法"><a href="#查看Linux版本信息几种办法" class="headerlink" title="查看Linux版本信息几种办法"></a>查看Linux版本信息几种办法</h4><h5 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h5><blockquote><p>cat /proc/version</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081150_955.png-960.jpg" alt="cat /proc/version"></p><blockquote><p>uname -a</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081151_552.png-960.jpg" alt="uname -a"></p><h5 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h5><blockquote><p>cat /etc/redhat-release</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081158_576.png-960.jpg" alt="查看版本"></p><blockquote><p>lsb_release -a</p></blockquote><p>这个命令需要安装，安装命令：</p><blockquote><p>yum install lsb -y</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081233_128.png-960.jpg" alt="lsb_release"></p><blockquote><p>cat /etc/issue</p></blockquote><p>都说可以，这个我的查出来很奇怪<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081223_694.png-960.jpg" alt="有错误"></p><blockquote><p>rpm -q centos-release</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081235_126.png-960.jpg" alt="rpm"></p><h5 id="查看cpu相关信息，包括型号、主频、内核等信息"><a href="#查看cpu相关信息，包括型号、主频、内核等信息" class="headerlink" title="查看cpu相关信息，包括型号、主频、内核等信息"></a>查看cpu相关信息，包括型号、主频、内核等信息</h5><blockquote><p>cat /proc/cpuinfo</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081226_578.png-960.jpg" alt="cpuinfo"></p><p><a href="https://www.linuxidc.com/Linux/2016-05/131749.htm" target="_blank" rel="noopener">参考地址1</a><br><a href="http://blog.csdn.net/Aoril/article/details/53518917" target="_blank" rel="noopener">参考地址2</a></p>]]></content>
+    <content type="html"><![CDATA[<h4 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h4><blockquote><p><strong>cat /proc/version</strong></p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081150_955.png-960.jpg" alt="cat /proc/version"></p><blockquote><p><strong>uname -a</strong></p></blockquote><a id="more"></a><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081151_552.png-960.jpg" alt="uname -a"></p><h4 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h4><blockquote><p><strong>cat /etc/redhat-release</strong></p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081158_576.png-960.jpg" alt="查看版本"></p><blockquote><p><strong>lsb_release -a</strong></p></blockquote><p>这个命令需要安装，安装命令：</p><blockquote><p>yum install lsb -y</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081233_128.png-960.jpg" alt="lsb_release"></p><blockquote><p><strong>cat /etc/issue</strong></p></blockquote><p>都说可以，这个我的查出来很奇怪<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081223_694.png-960.jpg" alt="有错误"></p><blockquote><p><strong>rpm -q centos-release</strong></p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081235_126.png-960.jpg" alt="rpm"></p><h4 id="查看cpu相关信息，包括型号、主频、内核等信息"><a href="#查看cpu相关信息，包括型号、主频、内核等信息" class="headerlink" title="查看cpu相关信息，包括型号、主频、内核等信息"></a>查看cpu相关信息，包括型号、主频、内核等信息</h4><blockquote><p><strong>cat /proc/cpuinfo</strong></p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081226_578.png-960.jpg" alt="cpuinfo"></p><p><a href="https://www.linuxidc.com/Linux/2016-05/131749.htm" target="_blank" rel="noopener">参考地址1</a><br><a href="http://blog.csdn.net/Aoril/article/details/53518917" target="_blank" rel="noopener">参考地址2</a></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h4 id=&quot;查看Linux版本信息几种办法&quot;&gt;&lt;a href=&quot;#查看Linux版本信息几种办法&quot; class=&quot;headerlink&quot; title=&quot;查看Linux版本信息几种办法&quot;&gt;&lt;/a&gt;查看Linux版本信息几种办法&lt;/h4&gt;&lt;h5 id=&quot;查看内核版本&quot;&gt;&lt;a hr
-      
+      &lt;h4 id=&quot;查看内核版本&quot;&gt;&lt;a href=&quot;#查看内核版本&quot; class=&quot;headerlink&quot; title=&quot;查看内核版本&quot;&gt;&lt;/a&gt;查看内核版本&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;cat /proc/version&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://p3ax8ersb.bkt.clouddn.com/201803081150_955.png-960.jpg&quot; alt=&quot;cat /proc/version&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;uname -a&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.jingxxn.cn/categories/Linux/"/>
+    
+      <category term="method" scheme="http://www.jingxxn.cn/categories/Linux/method/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux中时间的设置</title>
+    <link href="http://www.jingxxn.cn/Linux%E4%B8%AD%E6%97%B6%E9%97%B4%E7%9A%84%E8%AE%BE%E7%BD%AE.html"/>
+    <id>http://www.jingxxn.cn/Linux中时间的设置.html</id>
+    <published>2018-03-08T03:36:45.000Z</published>
+    <updated>2018-03-08T12:17:29.692Z</updated>
+    
+    <content type="html"><![CDATA[<p>test: CentOS Linux release 7.4.1708 (Core)</p><h4 id="查看时区"><a href="#查看时区" class="headerlink" title="查看时区"></a>查看时区</h4><blockquote><p><strong>data -R</strong></p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081634_167.png-960.jpg" alt="查看时区"><br>+0800 表示在东八区<br>其中：<br>CST：中国标准时间（China Standard Time），这个解释可能是针对RedHat Linux。<br>UTC：协调世界时，又称世界标准时间，简称UTC，从英文国际时间/法文协调时间”Universal Time/Temps Cordonné”而来。中国大陆、香港、澳门、台湾、蒙古国、新加坡、马来西亚、菲律宾、澳洲西部的时间与UTC的时差均为+8，也就是UTC+8。UTC较于GMT更准确。<br>GMT：格林尼治标准时间（旧译格林威治平均时间或格林威治标准时间；英语：Greenwich Mean Time，GMT）是指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，因为本初子午线被定义在通过那里的经线。</p><h4 id="修改时区"><a href="#修改时区" class="headerlink" title="修改时区"></a>修改时区</h4><blockquote><p><strong>tzselect</strong></p></blockquote><a id="more"></a><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081645_514.png-960.jpg" alt="tzselect1"><br><strong>这个命令并不是用来修改时区的</strong>，这个命令可以通过你自己的选择然后清楚的知道每个时区的样式。然后你通过修改.progile、.bash_profile或者/etc/profile文件，设置正确的TZ环境变量并导出，可以成功改变时区。<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081647_798.png-960.jpg" alt="tzselect2"></p><p><strong>tip：这些修改应该出现用户家目录下</strong><br>下面例子，我将时区由东八区改变为波兰的时区，东一区：<br>先通过tzselect查询波兰的时区书写格式：<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081702_845.png-960.jpg" alt="tzselect3"><br>然后通过修改文件.bash_profile并应用得以修改。<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081701_60.png-960.jpg" alt="tzselect4"></p><blockquote><p><strong>通过替换系统时区文件，或者创建链接文件</strong></p></blockquote><p>1、在目录/usr/share/zoneinfo中有所有的时区文件，通过复制替换到/etc/locatime即可<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081715_394.png-960.jpg" alt="替换"><br>但是有的时候会出现没有效果的情况，比如上例子。这是因为修改了在profile或.bash_profile中设置了TZ。这个时候就需要重新修改TZ。</p><p>2、创建链接文件<br>这里如果出现修改失败，同上。<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081722_543.png-960.jpg" alt="ln"></p><h4 id="查看和修改时间和日期"><a href="#查看和修改时间和日期" class="headerlink" title="查看和修改时间和日期"></a>查看和修改时间和日期</h4><blockquote><p><strong>date</strong><br>date用于查看和设置 <strong>系统时间</strong></p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081733_375.png-960.jpg" alt="date"><br>如果不输入命令”hwclock -w”将时间写入硬件时间，电脑重启之后将会返回原样。</p><blockquote><p><strong>hwclock</strong><br>hwclock用来查看设置 <strong>硬件时间</strong>。</p></blockquote><blockquote><p><strong>hwclock –hctosys</strong><br>hc代表硬件时间，sys代表系统时间，即用硬件时钟同步系统时钟</p></blockquote><blockquote><p><strong>hwclock –systohc</strong><br>即用系统时钟同步硬件时钟,等于 <strong>hwclock -w</strong></p></blockquote><p>执行完这两个命令系统没有任何反馈。<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081739_539.png-960.jpg" alt="hwclock"></p><p>解释一下硬件时钟和系统时钟的区别：<br>硬件时钟指的是主板上由电池供电的那个时间，可以在BIOS中设置。<strong>Linux可以通过hwclock设置。当Linux启动的时候，硬件时钟会赋值给系统时钟。然后系统时钟会独立于硬件时钟工作。</strong><br>系统时钟指的是当前Linux Kernel中的时钟。Linux中的所有命令包括函数都是采用系统时钟设置的。<br>这就是为什么当我们用date修改了时间，没有同步到硬件时钟的时候，这个修改是无效的。</p><h4 id="时间自动同步"><a href="#时间自动同步" class="headerlink" title="时间自动同步"></a>时间自动同步</h4><blockquote><p><strong>yum install -y ntpdate</strong><br>首先安装ntpdate软件，用来同步Linux时间服务。</p></blockquote><blockquote><p><strong>ntpdate time.nist.gov</strong></p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081941_193.png-960.jpg" alt="ntpdate"><br>上面表示同步成功，调整时间为服务器129.6.15.29的时间，时间相差0.136318 sec</p><blockquote><p><strong>hwclock -w</strong><br>调整硬件时间</p></blockquote><blockquote><p><strong>crontab -e</strong><br>设定crontab计划任务自动校时，并添加下列内容<br><strong>0 1 <em> </em> * ntpdate time.nist.gov</strong><br>这样设定一个小时自动进行网络校时。</p></blockquote><p>通过cat /etc/crontab 查看crontab的设置解释，如下：<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803082006_609.png-1920.jpg" alt="crontab"><br><a href="https://www.cnblogs.com/kerrycode/p/4217995.html" target="_blank" rel="noopener">参考文章1</a><br><a href="https://www.cnblogs.com/wanghuaijun/p/6547046.html" target="_blank" rel="noopener">参考文章2</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;test: CentOS Linux release 7.4.1708 (Core)&lt;/p&gt;
+&lt;h4 id=&quot;查看时区&quot;&gt;&lt;a href=&quot;#查看时区&quot; class=&quot;headerlink&quot; title=&quot;查看时区&quot;&gt;&lt;/a&gt;查看时区&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;data -R&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://p3ax8ersb.bkt.clouddn.com/201803081634_167.png-960.jpg&quot; alt=&quot;查看时区&quot;&gt;&lt;br&gt;+0800 表示在东八区&lt;br&gt;其中：&lt;br&gt;CST：中国标准时间（China Standard Time），这个解释可能是针对RedHat Linux。&lt;br&gt;UTC：协调世界时，又称世界标准时间，简称UTC，从英文国际时间/法文协调时间”Universal Time/Temps Cordonné”而来。中国大陆、香港、澳门、台湾、蒙古国、新加坡、马来西亚、菲律宾、澳洲西部的时间与UTC的时差均为+8，也就是UTC+8。UTC较于GMT更准确。&lt;br&gt;GMT：格林尼治标准时间（旧译格林威治平均时间或格林威治标准时间；英语：Greenwich Mean Time，GMT）是指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，因为本初子午线被定义在通过那里的经线。&lt;/p&gt;
+&lt;h4 id=&quot;修改时区&quot;&gt;&lt;a href=&quot;#修改时区&quot; class=&quot;headerlink&quot; title=&quot;修改时区&quot;&gt;&lt;/a&gt;修改时区&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;tzselect&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
