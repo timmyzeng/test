@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="青匆">
 <meta property="og:description" content="第一章 基础议题条款1：区分指针和引用不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。123//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。char* pc = 0;char &amp;amp;rc = *pc; 因为不存在空引用这种情况，所以使引用会比指针更高效。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-06T08:46:24.665Z">
+<meta property="og:updated_time" content="2018-03-06T13:52:36.574Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅读《More Effective C++》笔记">
 <meta name="twitter:description" content="第一章 基础议题条款1：区分指针和引用不存在空引用，引用必须要指向某个对象。当确定某个对象不允许有空值，就需要定义为引用，而不是指针。123//这种做法语法上没有错误，出现了引用为空的情况。但是不同的编译器会有不同的报错。不允许出现这样的代码。char* pc = 0;char &amp;amp;rc = *pc; 因为不存在空引用这种情况，所以使引用会比指针更高效。">
@@ -375,7 +375,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,194
+                  3,077
                 </span>
               
 
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  12
                 </span>
               
             </div>
@@ -438,6 +438,30 @@
 <p>在大多数情况下，可以通过谨慎的设计排除对默认构造函数的需要。标准的vector模板就不要求。<br>没有默认构造函数的第三个问题是。在有虚基类的时候，到底要不要提供默认构造函数。没有默认构造函数的虚基类使用起来十分痛苦。这是因为虚基类的构造函数所要求的参数必须由被创建对象所属的最远的派生类提供。这样就导致了，没有默认构造函数的虚基类会要求所有由它继承下来的派生类都必须知道、理解虚基类构造函数的参数的含义并提供这些参数。</p>
 <h2 id="第二章-运算符"><a href="#第二章-运算符" class="headerlink" title="第二章 运算符"></a>第二章 运算符</h2><h3 id="条款5：小心用户自定义的转换函数"><a href="#条款5：小心用户自定义的转换函数" class="headerlink" title="条款5：小心用户自定义的转换函数"></a>条款5：小心用户自定义的转换函数</h3><p>C++允许编译器在两种数据类型之间进行隐式转换，char到int、short到double。甚至会出现数据丢失的也可以，int到char、double到short的转换。<br>接下来介绍两种类型函数可以让编译器实施这种隐式转换：单个参数的构造函数和隐式的类型转换运算符。<br><strong>单个参数的构造函数</strong>指的是，只传递给它一个参数就可以调用的构造函数。这种构造函数可以只定义一个参数，也可以定义多个参数。定义多个参数的时候，除了第一个参数，后面的参数应该是有默认值的。例子如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Name(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ratinal</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Rational(<span class="keyword">int</span> numerator = <span class="number">0</span>, <span class="keyword">int</span> denominator = <span class="number">1</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>隐式的类型转换运算符只不过是名字看上去比较奇怪的成员函数：在operator关键字后面指定类型。</p>
+<h3 id="条款6：区分自增运算符和自减运算符的前缀形式和后缀形式"><a href="#条款6：区分自增运算符和自减运算符的前缀形式和后缀形式" class="headerlink" title="条款6：区分自增运算符和自减运算符的前缀形式和后缀形式"></a>条款6：区分自增运算符和自减运算符的前缀形式和后缀形式</h3><h4 id="前缀形式和后缀形式的区别"><a href="#前缀形式和后缀形式的区别" class="headerlink" title="前缀形式和后缀形式的区别"></a>前缀形式和后缀形式的区别</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UPInt</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    UPInt&amp; <span class="keyword">operator</span>++();</span><br><span class="line">    <span class="keyword">const</span> UPInt <span class="keyword">operator</span>++(<span class="keyword">int</span>);</span><br><span class="line">    UPInt&amp; <span class="keyword">operator</span>--();</span><br><span class="line">    <span class="keyword">const</span> UPInt <span class="keyword">operator</span>--(<span class="keyword">int</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>当函数被调用的时候，编译器悄无声息的传递一个0作为int参数的值给该函数。<strong>其中前缀形式返回一个引用，后缀形式返回一个const对象。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">UPInt&amp; UPInt::<span class="keyword">operator</span>++()&#123;</span><br><span class="line">    *<span class="keyword">this</span> += <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> UPInt UPInt::<span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line">    count UPInt oldvalue = *<span class="keyword">this</span>;</span><br><span class="line">    <span class="comment">//*this += 1;</span></span><br><span class="line">    <span class="comment">//复用前缀自增</span></span><br><span class="line">    ++(*<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">return</span> oldvalue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="后缀形式返回const"><a href="#后缀形式返回const" class="headerlink" title="后缀形式返回const"></a>后缀形式返回const</h4><p>后缀自增形式的返回值是一个const对象，为什么是一个const对象呢？如果不是const对象，那么下面这个代码就是正确的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPInt i;</span><br><span class="line">i++++;</span><br></pre></td></tr></table></figure>
+<p>但是很明显这样是不正确的。根据内置类型的性质，当我们自增两次int类型的数据的时候，这个是不允许发生的。<br>有一个点需要说明的是，如果不是很必要使用后缀自增的形式，那么尽量使用前缀自增。<strong>因为后缀自增首先需要显示创建一个临时变量，然后返回的时候，还需要创建一个临时对象作为返回。最后结束函数的时候需要析构两者。如果十分在意效率问题，尽量使用前缀自增。</strong><br>最后，为了降低维护成本，后缀自增或自减最好复用前缀自增或自减。这样只需要维护前缀自增或自减即可。</p>
+<h3 id="条款7：不要重载“-amp-amp-”、“-”和“-”"><a href="#条款7：不要重载“-amp-amp-”、“-”和“-”" class="headerlink" title="条款7：不要重载“ &amp;&amp; ”、“ || ”和“ , ”"></a>条款7：不要重载“ &amp;&amp; ”、“ || ”和“ , ”</h3><h4 id="短路求值法"><a href="#短路求值法" class="headerlink" title="短路求值法"></a>短路求值法</h4><p>C++使用了<strong>短路求值法</strong>对布尔表达式求值。这个表示，一旦确定了布尔表达式为真或为假，即使还有部分表达式还没有测试，布尔表达式也会停止运算。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* p;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="keyword">if</span>(p != <span class="number">0</span> &amp;&amp; <span class="built_in">strlen</span>(p) &gt; <span class="number">10</span>)</span><br><span class="line">    <span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+<p>这里我们永远不需要担心strlen中的p是否为0值，因为p=0的时候，strlen(p)根本就不会进行运算。</p>
+<h4 id="不要重载“-amp-amp-”-和-“-”"><a href="#不要重载“-amp-amp-”-和-“-”" class="headerlink" title="不要重载“ &amp;&amp; ” 和 “ || ”"></a>不要重载“ &amp;&amp; ” 和 “ || ”</h4><p>实际上，C++允许我们对<code>&amp;&amp; ||</code>进行重载，但是为了保证短路求值法的正确性，我们要确定不要重载<code>&amp;&amp; ||</code>这两个运算符。如果重载了<code>&amp;&amp;</code>，效果如下：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(<span class="name">exp1</span> <span class="symbol">&amp;&amp;</span> exp2)</span><br><span class="line">if(<span class="name">exp1</span>.operator&amp;&amp;(<span class="name">exp2</span>)</span><br><span class="line">if(<span class="name">operator</span>(<span class="name">ex1</span>, ex2)</span><br></pre></td></tr></table></figure>
+<p>这样就变成了函数的调用，首先，函数的调用需要求出两个参数的运算结果，这样就不能实现短路求值的功能；其次，函数的调用没有规定先运算哪个参数，有可能是第一个，也有可能是第二个。</p>
+<h3 id="不要重载逗号运算符"><a href="#不要重载逗号运算符" class="headerlink" title="不要重载逗号运算符"></a>不要重载逗号运算符</h3><p>逆置一个字符串的例子：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">char</span> s[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="built_in">strlen</span>(s) - <span class="number">1</span>; i &lt; j; ++i, --j)&#123;</span><br><span class="line">        <span class="keyword">int</span> c = s[i];</span><br><span class="line">        s[i] = s[j];</span><br><span class="line">        s[j] = c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>包含逗号的表达式，首先计算逗号左边的表达式，然后计算右边的表达式；整个表达式返回最右边的表达式的值。</strong>鉴于你完全没有办法模拟这个行为，所以不要重载逗号运算符。</p>
+<h4 id="同时也不要重载以下的运算符"><a href="#同时也不要重载以下的运算符" class="headerlink" title="同时也不要重载以下的运算符"></a>同时也不要重载以下的运算符</h4><ul>
+<li><code>.</code></li>
+<li><code>.*</code></li>
+<li><code>::</code></li>
+<li><code>?:</code></li>
+<li><code>new delete sizeof typeid</code></li>
+<li><code>static_cast dynamic_cast const_cast reinterpret_cast</code></li>
+</ul>
+<h3 id="条款8：理解new和delete在不同情形下的含义"><a href="#条款8：理解new和delete在不同情形下的含义" class="headerlink" title="条款8：理解new和delete在不同情形下的含义"></a>条款8：理解new和delete在不同情形下的含义</h3><h4 id="区分-new-操作符-new-operator-和-operator-new-函数"><a href="#区分-new-操作符-new-operator-和-operator-new-函数" class="headerlink" title="区分 new 操作符(new operator)和 operator new 函数"></a>区分 new 操作符(new operator)和 operator new 函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> *ps = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">"Memory Management"</span>);</span><br></pre></td></tr></table></figure>
+<p>上面的代码中使用的new 指的是 new 操作符。</p>
 
       
     </div>
@@ -562,7 +586,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -573,7 +597,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -651,7 +675,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-基础议题"><span class="nav-text">第一章 基础议题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条款1：区分指针和引用"><span class="nav-text">条款1：区分指针和引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款2：优先考虑C-风格的类型转换"><span class="nav-text">条款2：优先考虑C++风格的类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款3：绝不要把多态应用于数组"><span class="nav-text">条款3：绝不要把多态应用于数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款4-避免不必要的默认构造函数"><span class="nav-text">条款4 避免不必要的默认构造函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-运算符"><span class="nav-text">第二章 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条款5：小心用户自定义的转换函数"><span class="nav-text">条款5：小心用户自定义的转换函数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-基础议题"><span class="nav-text">第一章 基础议题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条款1：区分指针和引用"><span class="nav-text">条款1：区分指针和引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款2：优先考虑C-风格的类型转换"><span class="nav-text">条款2：优先考虑C++风格的类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款3：绝不要把多态应用于数组"><span class="nav-text">条款3：绝不要把多态应用于数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款4-避免不必要的默认构造函数"><span class="nav-text">条款4 避免不必要的默认构造函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-运算符"><span class="nav-text">第二章 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条款5：小心用户自定义的转换函数"><span class="nav-text">条款5：小心用户自定义的转换函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款6：区分自增运算符和自减运算符的前缀形式和后缀形式"><span class="nav-text">条款6：区分自增运算符和自减运算符的前缀形式和后缀形式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前缀形式和后缀形式的区别"><span class="nav-text">前缀形式和后缀形式的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后缀形式返回const"><span class="nav-text">后缀形式返回const</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款7：不要重载“-amp-amp-”、“-”和“-”"><span class="nav-text">条款7：不要重载“ &amp;&amp; ”、“ || ”和“ , ”</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#短路求值法"><span class="nav-text">短路求值法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要重载“-amp-amp-”-和-“-”"><span class="nav-text">不要重载“ &amp;&amp; ” 和 “ || ”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要重载逗号运算符"><span class="nav-text">不要重载逗号运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同时也不要重载以下的运算符"><span class="nav-text">同时也不要重载以下的运算符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款8：理解new和delete在不同情形下的含义"><span class="nav-text">条款8：理解new和delete在不同情形下的含义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区分-new-操作符-new-operator-和-operator-new-函数"><span class="nav-text">区分 new 操作符(new operator)和 operator new 函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
