@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jingxxn.cn/"/>
-  <updated>2018-03-07T07:38:51.604Z</updated>
+  <updated>2018-03-08T04:43:30.518Z</updated>
   <id>http://www.jingxxn.cn/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>判断元素的入栈和出栈顺序是否一致</title>
+    <title>查看Linux系统版本信息</title>
+    <link href="http://www.jingxxn.cn/%E6%9F%A5%E7%9C%8BLinux%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF.html"/>
+    <id>http://www.jingxxn.cn/查看Linux系统版本信息.html</id>
+    <published>2018-03-08T03:44:55.000Z</published>
+    <updated>2018-03-08T04:43:30.518Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="查看Linux版本信息几种办法"><a href="#查看Linux版本信息几种办法" class="headerlink" title="查看Linux版本信息几种办法"></a>查看Linux版本信息几种办法</h4><h5 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h5><blockquote><p>cat /proc/version</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081150_955.png-960.jpg" alt="cat /proc/version"></p><blockquote><p>uname -a</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081151_552.png-960.jpg" alt="uname -a"></p><h5 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h5><blockquote><p>cat /etc/redhat-release</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081158_576.png-960.jpg" alt="查看版本"></p><blockquote><p>lsb_release -a</p></blockquote><p>这个命令需要安装，安装命令：</p><blockquote><p>yum install lsb -y</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081233_128.png-960.jpg" alt="lsb_release"></p><blockquote><p>cat /etc/issue</p></blockquote><p>都说可以，这个我的查出来很奇怪<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081223_694.png-960.jpg" alt="有错误"></p><blockquote><p>rpm -q centos-release</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081235_126.png-960.jpg" alt="rpm"></p><h5 id="查看cpu相关信息，包括型号、主频、内核等信息"><a href="#查看cpu相关信息，包括型号、主频、内核等信息" class="headerlink" title="查看cpu相关信息，包括型号、主频、内核等信息"></a>查看cpu相关信息，包括型号、主频、内核等信息</h5><blockquote><p>cat /proc/cpuinfo</p></blockquote><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081226_578.png-960.jpg" alt="cpuinfo"></p><p><a href="https://www.linuxidc.com/Linux/2016-05/131749.htm" target="_blank" rel="noopener">参考地址1</a><br><a href="http://blog.csdn.net/Aoril/article/details/53518917" target="_blank" rel="noopener">参考地址2</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;查看Linux版本信息几种办法&quot;&gt;&lt;a href=&quot;#查看Linux版本信息几种办法&quot; class=&quot;headerlink&quot; title=&quot;查看Linux版本信息几种办法&quot;&gt;&lt;/a&gt;查看Linux版本信息几种办法&lt;/h4&gt;&lt;h5 id=&quot;查看内核版本&quot;&gt;&lt;a hr
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.jingxxn.cn/categories/Linux/"/>
+    
+      <category term="method" scheme="http://www.jingxxn.cn/categories/Linux/method/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>判断元素的入栈和出栈顺序是否合法</title>
     <link href="http://www.jingxxn.cn/%E5%88%A4%E6%96%AD%E5%85%83%E7%B4%A0%E7%9A%84%E5%85%A5%E6%A0%88%E5%92%8C%E5%87%BA%E6%A0%88%E9%A1%BA%E5%BA%8F%E6%98%AF%E5%90%A6%E4%B8%80%E8%87%B4.html"/>
     <id>http://www.jingxxn.cn/判断元素的入栈和出栈顺序是否一致.html</id>
     <published>2018-03-07T06:46:00.000Z</published>
-    <updated>2018-03-07T07:38:51.604Z</updated>
+    <updated>2018-03-07T07:48:17.619Z</updated>
     
     <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>提供两个元素的集合，一个是元素入栈的顺序，另一个是元素出栈的顺序。设计一个函数，判断两个元素集合是否满足入栈出栈的规则。如：入栈顺序：“12345”，出栈顺序是：“54321”，这样就是符合要求的。如果出栈顺序是：“51234”，这样不符合要求。<br><a id="more"></a></p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>根据题目的要求，就是判断两数组是否满足出栈入栈的顺序。可以这样做：<strong>1、先按照入栈顺序的集合进行入栈。2、在入栈的同时，跟出栈顺序的元素进行比较。如果相同就将入栈的元素pop出来。3、结束的时候，如果栈为空，说明两者的入栈顺序和出栈顺序可以匹配，那么就是符合要求的；如果栈不为空，那就是不符合要求。</strong><br>还有一点：<strong>如果两元素的个数不一样或者同时为空，直接判定不符合要求。</strong></p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">stack_io_right</span><span class="params">(<span class="keyword">char</span>* src, <span class="keyword">char</span>* dst)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> src_len = <span class="keyword">sizeof</span>(src);</span><br><span class="line">    <span class="keyword">int</span> dst_len = <span class="keyword">sizeof</span>(dst);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(src_len == <span class="number">0</span> || src_len != dst_len)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(; i &lt; src_len; ++i)&#123;</span><br><span class="line">        s.push(*(src+i));</span><br><span class="line">        <span class="keyword">while</span>(s.size() &amp;&amp; s.top() == *(dst+j))&#123;</span><br><span class="line">            ++j;</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(s.empty())</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    system(<span class="string">"clear"</span>);</span><br><span class="line">    <span class="keyword">char</span> src[] = <span class="string">"12345"</span>;</span><br><span class="line">    <span class="keyword">char</span> dst[] = <span class="string">"32145"</span>;</span><br><span class="line">    <span class="keyword">char</span> dst1[] = <span class="string">"51243"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; stack_io_right(src, dst) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; stack_io_right(src, dst1) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803071537_435.png-480.jpg" alt="运行结果"></p>]]></content>
     

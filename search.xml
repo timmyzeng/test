@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[判断元素的入栈和出栈顺序是否一致]]></title>
+    <title><![CDATA[查看Linux系统版本信息]]></title>
+    <url>%2F%E6%9F%A5%E7%9C%8BLinux%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF.html</url>
+    <content type="text"><![CDATA[查看Linux版本信息几种办法查看内核版本 cat /proc/version uname -a 查看系统版本 cat /etc/redhat-release lsb_release -a 这个命令需要安装，安装命令： yum install lsb -y cat /etc/issue 都说可以，这个我的查出来很奇怪 rpm -q centos-release 查看cpu相关信息，包括型号、主频、内核等信息 cat /proc/cpuinfo 参考地址1参考地址2]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>method</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[判断元素的入栈和出栈顺序是否合法]]></title>
     <url>%2F%E5%88%A4%E6%96%AD%E5%85%83%E7%B4%A0%E7%9A%84%E5%85%A5%E6%A0%88%E5%92%8C%E5%87%BA%E6%A0%88%E9%A1%BA%E5%BA%8F%E6%98%AF%E5%90%A6%E4%B8%80%E8%87%B4.html</url>
     <content type="text"><![CDATA[题目提供两个元素的集合，一个是元素入栈的顺序，另一个是元素出栈的顺序。设计一个函数，判断两个元素集合是否满足入栈出栈的规则。如：入栈顺序：“12345”，出栈顺序是：“54321”，这样就是符合要求的。如果出栈顺序是：“51234”，这样不符合要求。 思路根据题目的要求，就是判断两数组是否满足出栈入栈的顺序。可以这样做：1、先按照入栈顺序的集合进行入栈。2、在入栈的同时，跟出栈顺序的元素进行比较。如果相同就将入栈的元素pop出来。3、结束的时候，如果栈为空，说明两者的入栈顺序和出栈顺序可以匹配，那么就是符合要求的；如果栈不为空，那就是不符合要求。还有一点：如果两元素的个数不一样或者同时为空，直接判定不符合要求。 代码实现123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stack&gt;using namespace std;bool stack_io_right(char* src, char* dst)&#123; int src_len = sizeof(src); int dst_len = sizeof(dst); int i = 0; int j = 0; if(src_len == 0 || src_len != dst_len) return false; for(; i &lt; src_len; ++i)&#123; s.push(*(src+i)); while(s.size() &amp;&amp; s.top() == *(dst+j))&#123; ++j; s.pop(); &#125; &#125; if(s.empty()) return true; else return false;&#125;int main()&#123; system("clear"); char src[] = "12345"; char dst[] = "32145"; char dst1[] = "51243"; cout &lt;&lt; stack_io_right(src, dst) &lt;&lt; endl; cout &lt;&lt; stack_io_right(src, dst1) &lt;&lt; endl; return 0;&#125; 运行结果]]></content>
       <categories>

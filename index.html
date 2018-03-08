@@ -292,6 +292,222 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/查看Linux系统版本信息.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="timmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青匆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/查看Linux系统版本信息.html" itemprop="url">查看Linux系统版本信息</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T11:44:55+08:00">
+                2018-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/method/" itemprop="url" rel="index">
+                    <span itemprop="name">method</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  102
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="查看Linux版本信息几种办法"><a href="#查看Linux版本信息几种办法" class="headerlink" title="查看Linux版本信息几种办法"></a>查看Linux版本信息几种办法</h4><h5 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h5><blockquote>
+<p>cat /proc/version</p>
+</blockquote>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081150_955.png-960.jpg" alt="cat /proc/version"></p>
+<blockquote>
+<p>uname -a</p>
+</blockquote>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081151_552.png-960.jpg" alt="uname -a"></p>
+<h5 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h5><blockquote>
+<p>cat /etc/redhat-release</p>
+</blockquote>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081158_576.png-960.jpg" alt="查看版本"></p>
+<blockquote>
+<p>lsb_release -a</p>
+</blockquote>
+<p>这个命令需要安装，安装命令：</p>
+<blockquote>
+<p>yum install lsb -y</p>
+</blockquote>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081233_128.png-960.jpg" alt="lsb_release"></p>
+<blockquote>
+<p>cat /etc/issue</p>
+</blockquote>
+<p>都说可以，这个我的查出来很奇怪<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803081223_694.png-960.jpg" alt="有错误"></p>
+<blockquote>
+<p>rpm -q centos-release</p>
+</blockquote>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081235_126.png-960.jpg" alt="rpm"></p>
+<h5 id="查看cpu相关信息，包括型号、主频、内核等信息"><a href="#查看cpu相关信息，包括型号、主频、内核等信息" class="headerlink" title="查看cpu相关信息，包括型号、主频、内核等信息"></a>查看cpu相关信息，包括型号、主频、内核等信息</h5><blockquote>
+<p>cat /proc/cpuinfo</p>
+</blockquote>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201803081226_578.png-960.jpg" alt="cpuinfo"></p>
+<p><a href="https://www.linuxidc.com/Linux/2016-05/131749.htm" target="_blank" rel="noopener">参考地址1</a><br><a href="http://blog.csdn.net/Aoril/article/details/53518917" target="_blank" rel="noopener">参考地址2</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/判断元素的入栈和出栈顺序是否一致.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -311,7 +527,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/判断元素的入栈和出栈顺序是否一致.html" itemprop="url">判断元素的入栈和出栈顺序是否一致</a></h1>
+                <a class="post-title-link" href="/判断元素的入栈和出栈顺序是否一致.html" itemprop="url">判断元素的入栈和出栈顺序是否合法</a></h1>
         
 
         <div class="post-meta">
@@ -1578,186 +1794,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/浅读《STL源码剖析》笔记-1、2章.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="timmy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青匆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/浅读《STL源码剖析》笔记-1、2章.html" itemprop="url">浅读《STL源码剖析》笔记 1、2章</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-03T11:15:06+08:00">
-                2018-02-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/learning/" itemprop="url" rel="index">
-                    <span itemprop="name">learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3,917
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  17
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="1-STL概论与版本简介"><a href="#1-STL概论与版本简介" class="headerlink" title="1 STL概论与版本简介"></a>1 STL概论与版本简介</h2><h3 id="1-2-STL六大组件"><a href="#1-2-STL六大组件" class="headerlink" title="1.2 STL六大组件"></a>1.2 STL六大组件</h3><ol>
-<li>容器(containers):<code>vector,list,deque,set,map</code>,用来存放数据</li>
-<li>算法(algorithms):<code>sort,search,copy,erase</code></li>
-<li>迭代器(iterators):扮演容器与算法之间的胶合剂，所谓的“泛型指针”。从实现角度来看，
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/浅读《STL源码剖析》笔记-1、2章.html" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1814,7 +1850,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1825,7 +1861,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
