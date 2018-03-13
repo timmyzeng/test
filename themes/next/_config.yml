@@ -128,6 +128,8 @@ scheme: Muse
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
   GitHub: https://github.com/timmyzeng || github
+  Amon: https://amon1997.com || buysellads
+  CSDN: http://blog.csdn.net/Mac_timmy || home
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -141,6 +143,8 @@ social:
 social_icons:
   enable: true
   Github: github
+  Amon: buysellads
+  CSDN: home
   icons_only: false
   transition: false
 
@@ -150,7 +154,7 @@ links_title: Links
 links_layout: block
 #links_layout: inline
 #links:
-  #Title: http://example.com/
+  #Baidu: https://www.baidu.com/
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
@@ -357,7 +361,7 @@ han: false
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: 4983401dd5a781b3271945d193c69d56
 
 # Duoshuo ShortName
 #duoshuo_shortname:
