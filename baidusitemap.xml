@@ -3,6 +3,26 @@
 
 
     
+    
+  <url>
+    <loc>http://www.jingxxn.cn/%E6%B5%85%E8%AF%BB%E3%80%8AMore%20Effective%20C++%E3%80%8B%E7%AC%94%E8%AE%B0.html</loc>
+    <lastmod>2018-03-13T04:03:44.524Z</lastmod>
+    <data>
+        <display>
+        <title>浅读《More Effective C++》笔记</title>
+        <pubTime>2018-01-30T06:27:03.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="learning" url="http://www.jingxxn.cn/categories/learning/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
   <url>
     <loc>http://www.jingxxn.cn/Linux%E4%B8%AD%E6%97%B6%E9%97%B4%E7%9A%84%E8%AE%BE%E7%BD%AE.html</loc>
     <lastmod>2018-03-08T12:33:37.661Z</lastmod>
@@ -60,24 +80,6 @@
           
              
               <breadCrumb title="C/C++" url="http://www.jingxxn.cn/categories/practice/C-C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.jingxxn.cn/%E6%B5%85%E8%AF%BB%E3%80%8AMore%20Effective%20C++%E3%80%8B%E7%AC%94%E8%AE%B0.html</loc>
-    <lastmod>2018-03-06T13:52:36.574Z</lastmod>
-    <data>
-        <display>
-        <title>浅读《More Effective C++》笔记</title>
-        <pubTime>2018-01-30T06:27:03.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="learning" url="http://www.jingxxn.cn/categories/learning/"/>
           
         </display>
     </data>
@@ -266,24 +268,6 @@
 
     
   <url>
-    <loc>http://www.jingxxn.cn/Linux%E7%9B%B8%E5%85%B3%E7%BD%91%E7%AB%99.html</loc>
-    <lastmod>2018-02-09T02:33:52.783Z</lastmod>
-    <data>
-        <display>
-        <title>收集</title>
-        <pubTime>2018-01-25T10:18:01.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="网站收集" url="http://www.jingxxn.cn/categories/%E7%BD%91%E7%AB%99%E6%94%B6%E9%9B%86/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.jingxxn.cn/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0Add.html</loc>
     <lastmod>2018-02-08T06:20:27.616Z</lastmod>
     <data>
@@ -345,5 +329,4 @@
     </data>
     </url>
 
-    
 </urlset>
