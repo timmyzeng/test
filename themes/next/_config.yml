@@ -97,6 +97,7 @@ menu:
   #tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
+  link: /link || location-arrow
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -129,7 +130,6 @@ scheme: Muse
 social:
   GitHub: https://github.com/timmyzeng || github
   Amon: https://amon1997.com || buysellads
-  CSDN: http://blog.csdn.net/Mac_timmy || home
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -144,7 +144,6 @@ social_icons:
   enable: true
   Github: github
   Amon: buysellads
-  CSDN: home
   icons_only: false
   transition: false
 
@@ -237,8 +236,8 @@ post_meta:
 # Dependencies: https://github.com/willin/hexo-wordcount
 post_wordcount:
   item_text: true
-  wordcount: true
-  min2read: true
+  wordcount: false
+  min2read: false
   totalcount: false
   separated_meta: true
 
