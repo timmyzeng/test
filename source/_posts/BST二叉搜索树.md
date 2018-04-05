@@ -4,7 +4,7 @@ date: 2018-03-29 20:04:18
 tags:
 categories:
     - "knowledge"
-    - "C/C++"
+    - "数据结构"
 keywords:
     - "C++"
     - "Binary Search Tree"
