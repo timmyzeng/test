@@ -73,3 +73,4 @@ comments: false
 1. msdn：[https://msdn.itellyou.cn/](https://msdn.itellyou.cn/)
 2. NTFS和FAT32区别：[http://www.ntfsformac.cn/qita-nytqubie.html](http://www.ntfsformac.cn/qita-nytqubie.html)
 3. SQL源码剖析：[http://deepfuture.iteye.com/blog/718478](http://deepfuture.iteye.com/blog/718478)
+4. sublime快捷键上传图片到七牛云作为markdown图床：[https://www.zhihu.com/question/21065229](https://www.zhihu.com/question/21065229)
