@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[解决VMware 12安装VMware Tools后共享文件夹不出现的问题]]></title>
+    <url>%2F%E8%A7%A3%E5%86%B3VMware%2012%E5%AE%89%E8%A3%85VMware%20Tools%E5%90%8E%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98.html</url>
+    <content type="text"><![CDATA[VMware Workstation Pro 12.0中centos 7安装VMware Tools的时候，发现安装完成，在/mnt/hgfs/目录下，没有自己显示与windows共享的文件夹。可以通过以下步骤修复。 一：升级VMware为14版本，问题解决二：通过修改VMware Tools的文件解决问题。安装VMware-Workstation-Pro 12.0的VMwar Tools步骤，看官方文档。按照官方文档一直到进入 cd vmware-tools-distrib/ 在按照官方文档执行./vmware-install.pl之前，对安装文件进行以下修改。 cd lib/modules/source/ tar xvf vmhgfs.tar 得到vmhgfs-only目录 cd vmhgfs-only vim page.c 将1639行(3, 19, 0)修改为(3, 10, 0) #if LINUX_VERSION_CODE &gt;= KERNEL_VERSION(3, 19, 0) 改成下面的值 #if LINUX_VERSION_CODE &gt;= KERNEL_VERSION(3, 10, 0) 这个原因是因为centos 7的内核版本是 3.10.0。 修改完成之后，请用:wq!强制保存只读文件。 删除之前的包，将vmhgfs-only重新打包 cd .. rm vmhgfs.tar tar cvf vmhgfs.tar vmhgfs-only/ rm -rf vmhgfs-only/ 回到 vmware-tools-distrib目录，执行安装 cd ../../.. ./vmware-install.pl 一路默认，完成VMware Tools的安装。参考文档]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>method</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[[剑指offer]在旋转数组中找最小的值]]></title>
     <url>%2F%5B%E5%89%91%E6%8C%87offer%5D%E5%9C%A8%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%BE%E6%9C%80%E5%B0%8F%E7%9A%84%E5%80%BC.html</url>
     <content type="text"><![CDATA[题目描述把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个 非递减排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。 思路本题最简单的做法就是从头到尾的遍历。这样一定可以得到结果，只是这样操作的时间复杂度是O(n)。没有利用上旋转这个题目特性。正确的思路是，利用二分查找的思想。让一个begin下标表示数组的开始，一个end下标表示数组的结束，mid表示数组的中间值。通过三者值的比较得到范围。如果mid的值大于begin的值，说明最小值的范围在mid到end之间。反之在begin到mid之间。依次缩小范围，直到找到最小值。 注意1、存在一种情况，并没有旋转。也就是数组的第一个元素就是最小值。可以通过比较一开始begin和end的值判断，如果begin的值小于end的值，那么直接返回begin的值即可。2、判断停止的条件是当begin的下一个值就是end的时候，这个时候end一定是最小值。因为begin已经到达最大值，end自然是最小值了。3、判断的时候请注意重复值的情况。如果出现一种情况，begin、mid、end对应的值都一样。这个时候就需要用遍历的思路来执行查找。4、需要注意边界值的判断，如果边界值的判断出问题，可能会出现死循环。 代码123456789101112131415161718192021222324252627282930313233343536class Solution &#123;public: int minNumberInRotateArray(vector&lt;int&gt; rotateArray) &#123; if(rotateArray.size() == 0) return 0; int size = rotateArray.size(); int begin = 0; int end = size - 1; int mid = 0; while(rotateArray[begin] &gt;= rotateArray[end])&#123; if(begin+1 == end)&#123; mid = end; break; &#125; mid = begin + (end-begin)/2; if(rotateArray[mid] == rotateArray[begin] &amp;&amp; rotateArray[mid] == rotateArray[end]) return MinNumber(rotateArray, begin, end); else if(rotateArray[mid] &gt;= rotateArray[begin]) begin = mid; else if(rotateArray[mid] &lt;= rotateArray[end]) end = mid; &#125; return rotateArray[mid]; &#125; int MinNumber(const vector&lt;int&gt;&amp; arr, int begin, int end)&#123; int result = begin; for(int i = result+1; i &lt;= end; ++i)&#123; if(arr[i] &gt; arr[result]) break; result = i; &#125; return arr[result]; &#125;&#125;;]]></content>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jingxxn.cn/"/>
-  <updated>2018-04-19T01:30:45.863Z</updated>
+  <updated>2018-04-24T05:36:06.128Z</updated>
   <id>http://www.jingxxn.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决VMware 12安装VMware Tools后共享文件夹不出现的问题</title>
+    <link href="http://www.jingxxn.cn/%E8%A7%A3%E5%86%B3VMware%2012%E5%AE%89%E8%A3%85VMware%20Tools%E5%90%8E%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98.html"/>
+    <id>http://www.jingxxn.cn/解决VMware 12安装VMware Tools后共享文件夹不出现的问题.html</id>
+    <published>2018-04-24T05:32:28.000Z</published>
+    <updated>2018-04-24T05:36:06.128Z</updated>
+    
+    <content type="html"><![CDATA[<p>VMware Workstation Pro 12.0中centos 7安装VMware Tools的时候，发现安装完成，在/mnt/hgfs/目录下，没有自己显示与windows共享的文件夹。可以通过以下步骤修复。<br><a id="more"></a></p><h4 id="一：升级VMware为14版本，问题解决"><a href="#一：升级VMware为14版本，问题解决" class="headerlink" title="一：升级VMware为14版本，问题解决"></a>一：升级VMware为14版本，问题解决</h4><h4 id="二：通过修改VMware-Tools的文件解决问题。"><a href="#二：通过修改VMware-Tools的文件解决问题。" class="headerlink" title="二：通过修改VMware Tools的文件解决问题。"></a>二：通过修改VMware Tools的文件解决问题。</h4><p>安装VMware-Workstation-Pro 12.0的VMwar Tools步骤，看<a href="https://docs.vmware.com/cn/VMware-Workstation-Pro/12.0/com.vmware.ws.using.doc/GUID-08BB9465-D40A-4E16-9E15-8C016CC8166F.html" target="_blank" rel="noopener"><strong>官方文档</strong></a>。<br>按照官方文档一直到进入</p><ul><li><strong>cd vmware-tools-distrib/</strong></li></ul><p>在按照官方文档执行./vmware-install.pl之前，对安装文件进行以下修改。</p><ul><li><strong>cd lib/modules/source/</strong></li><li><strong>tar xvf vmhgfs.tar</strong></li></ul><p>得到vmhgfs-only目录</p><ul><li><strong>cd vmhgfs-only</strong></li><li><strong>vim page.c</strong></li></ul><p>将1639行(3, 19, 0)修改为(3, 10, 0)</p><ul><li>#if LINUX_VERSION_CODE &gt;= KERNEL_VERSION(3, 19, 0)  改成下面的值</li><li><strong>#if LINUX_VERSION_CODE &gt;= KERNEL_VERSION(3, 10, 0)</strong></li></ul><p>这个原因是因为centos 7的内核版本是 3.10.0。</p><p>修改完成之后，请用:wq!强制保存只读文件。</p><p>删除之前的包，将vmhgfs-only重新打包</p><ul><li><strong>cd ..</strong></li><li><strong>rm vmhgfs.tar</strong></li><li><strong>tar cvf vmhgfs.tar vmhgfs-only/</strong></li><li><strong>rm -rf vmhgfs-only/</strong></li></ul><p>回到 vmware-tools-distrib目录，执行安装</p><ul><li><strong>cd ../../..</strong></li><li><strong>./vmware-install.pl</strong></li></ul><p>一路默认，完成VMware Tools的安装。<br><a href="http://www.mamicode.com/info-detail-1655589.html" target="_blank" rel="noopener">参考文档</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;VMware Workstation Pro 12.0中centos 7安装VMware Tools的时候，发现安装完成，在/mnt/hgfs/目录下，没有自己显示与windows共享的文件夹。可以通过以下步骤修复。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.jingxxn.cn/categories/Linux/"/>
+    
+      <category term="method" scheme="http://www.jingxxn.cn/categories/Linux/method/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>[剑指offer]在旋转数组中找最小的值</title>
@@ -449,30 +471,6 @@
       <category term="knowledge" scheme="http://www.jingxxn.cn/categories/knowledge/"/>
     
       <category term="C/C++" scheme="http://www.jingxxn.cn/categories/knowledge/C-C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>创建一个不能被继承的类</title>
-    <link href="http://www.jingxxn.cn/%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%8D%E8%83%BD%E8%A2%AB%E7%BB%A7%E6%89%BF%E7%9A%84%E7%B1%BB.html"/>
-    <id>http://www.jingxxn.cn/创建一个不能被继承的类.html</id>
-    <published>2018-01-29T02:23:19.000Z</published>
-    <updated>2018-02-24T08:04:44.249Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h2><p><strong>题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。</strong></p><h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><ul><li>题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。<a id="more"></a>那么我们只要将构造函数或析构函数定义为私有成员函数就好了。</li><li>第二个要求，能够正常使用，这样显然之前的方式是行不通的。构造函数为私有了，就无法创建对象了。那我再给他加一个友元函数，这样对象也可以创建了。</li><li>可是题目的要求是正常使用这个类，显然通过一个友元函数是不符合我们正常使用类的方式。</li><li>这个时候，正真正确的思路就出来了。我们借用一个中间类。例如：我们不能被继承的类是man，我们创建一个 <strong>私有构造函数的父类person</strong>，同时将 <strong>man定义为person的友元类</strong>。这样man就可以正常访问person的私有构造函数了。接着我们让 <strong>man虚继承person</strong>，到这里我们就完成了这个题目。</li><li><strong>让man虚继承person是为了让继承man的类，都需要在man的父类，即person中调用构造函数，但只有man是person的友元类，其他的类都不能访问person的构造函数。因此man就成为了不能被继承的类，而man本身可以正常使用。</strong></li></ul><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//设计一个不能被继承的类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">man</span>;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="comment">//构造函数为private</span></span><br><span class="line">        person()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//man虚拟继承person</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">man</span>:</span><span class="keyword">virtual</span> <span class="keyword">public</span> person &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        man()&#123;</span><br><span class="line">            age = <span class="number">18</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; age &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// class son:public man&#123;</span></span><br><span class="line"><span class="comment">//  public:</span></span><br><span class="line"><span class="comment">//      son()&#123;&#125;</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    man bob;</span><br><span class="line">    system( <span class="string">"clear"</span> );</span><br><span class="line">    bob.show();</span><br><span class="line">    <span class="comment">//son tom;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>不定义man的继承类son，正常输出man的age = 18<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291732_992.png-960.jpg" alt=""></p><p>定义man的继承类son失败<br><img src="http://p3ax8ersb.bkt.clouddn.com/201801291733_414.png-&lt;960 class=&quot;jpg&quot;&gt;&lt;/960" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;题目很简单，就是创建一个不能够被继承的类，同时能够正常使用。&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&quot;思路：&quot;&gt;&lt;a href=&quot;#思路：&quot; class=&quot;headerlink&quot; title=&quot;思路：&quot;&gt;&lt;/a&gt;思路：&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;题目分为两部分组成，第一个是不能被继承的类。类如果要不能被继承，那么子类肯定不能够调用基类的构造函数或者析构函数。
-    
-    </summary>
-    
-      <category term="practice" scheme="http://www.jingxxn.cn/categories/practice/"/>
-    
-      <category term="C/C++" scheme="http://www.jingxxn.cn/categories/practice/C-C/"/>
     
     
   </entry>
