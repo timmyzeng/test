@@ -10,6 +10,15 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[网络 | UDP报头解析]]></title>
+    <url>%2F%5B%E7%BD%91%E7%BB%9C%5DUDP%E6%8A%A5%E5%A4%B4%E8%A7%A3%E6%9E%90.html</url>
+    <content type="text"><![CDATA[UDP概述及特点UDP称为用户数据包协议，是传输层的协议。他的功能其实就是在ip的数据报服务之上添加了复用、分用和差错检验。 特点： 无连接，即发送数据之前不需要建立连接。无连接的好处就是快，省内存空间。因为维护连接需要创建大量的数据结构，在这里都不需要。 UDP尽最大努力交付数据，即不保证可靠交付。没有TCP的确认机制、重传机制。如果因为网络原因没有传送到对端，UDP也不会给应用层返回错误信息。 面向数据报文。对于应用层交付下来的报文在添加了首部就直接交付于ip层，不会进行合并，也不会进行拆分。这就说明UDP一次交付一个完整的报文。正是因为这样，UDP显得不够灵活，不能控制读写数据的次数和数量。比如我们要发送100个字节的报文，我们调用一次sendto函数就会发送100字节，对端也需要用recvfrom函数一次性接收100字节，不能使用循环每次获取10个字节，获取十次这样的做法。 没有拥塞控制，所以当网络出现的拥塞不会导致主机发送数据的速率降低。这个在对实时应用来说很重要，比如：视频通话、直播等应用。 UDP支持一对一、一对多、多对一、多对多的交互通信。 UDP的首部只有8个字节，开销小。 UDP的缓冲区 UDP没有发送缓冲区，当我们使用sendto函数的时候，数据会直接交给内核，由内核将数据传送给网络层。 UDP有接收缓冲区，但是这个缓冲区只负责接收，并不会保证UDP报文的到达顺序是否和发送的顺序一致。因为网络传输的时候，由于网络拥塞的存在是很大的可能导致先发的报文比后发的报文晚到达对端的。同时如果缓冲区满了，后面到达的报文将直接被丢弃。这样很好的体现了UDP不可靠的特点。 UDP报头解析报头格式如下： UDP的报头一共8字节大小。使用的是固定字长的报头报文分割方法。 16位UDP长度指的是报头8字节和数据加起来的大小。计算得知16位是64K字节大小，其中报头占了8个字节。 如果UDP不需要给发送端回消息，可以将源端口号设为全0。 其实UDP的报头还有一个伪首部的概念，伪首部是用于校验和的，该首部既不会向上交付给应用层，也不会向下交付个ip层。 UDP的校验和跟IP报头的校验不一样，这里校验的是首部和数据全部。如果校验出错，UDP会将整个报文默默地丢弃不要，不会通知任何一方。 基于UDP的应用层协议 NFS：网络文件系统 TFTP：简单文件传输协议 DNS：域名解析协议 DHCP：动态主机配置协议 SNMP：简单网络管理协议]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>network</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[解决VMware 12安装VMware Tools后共享文件夹不出现的问题]]></title>
     <url>%2F%E8%A7%A3%E5%86%B3VMware%2012%E5%AE%89%E8%A3%85VMware%20Tools%E5%90%8E%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98.html</url>
     <content type="text"><![CDATA[VMware Workstation Pro 12.0中centos 7安装VMware Tools的时候，发现安装完成，在/mnt/hgfs/目录下，没有自己显示与windows共享的文件夹。可以通过以下步骤修复。 一：升级VMware为14版本，问题解决二：通过修改VMware Tools的文件解决问题。安装VMware-Workstation-Pro 12.0的VMwar Tools步骤，看官方文档。按照官方文档一直到进入 cd vmware-tools-distrib/ 在按照官方文档执行./vmware-install.pl之前，对安装文件进行以下修改。 cd lib/modules/source/ tar xvf vmhgfs.tar 得到vmhgfs-only目录 cd vmhgfs-only vim page.c 将1639行(3, 19, 0)修改为(3, 10, 0) #if LINUX_VERSION_CODE &gt;= KERNEL_VERSION(3, 19, 0) 改成下面的值 #if LINUX_VERSION_CODE &gt;= KERNEL_VERSION(3, 10, 0) 这个原因是因为centos 7的内核版本是 3.10.0。 修改完成之后，请用:wq!强制保存只读文件。 删除之前的包，将vmhgfs-only重新打包 cd .. rm vmhgfs.tar tar cvf vmhgfs.tar vmhgfs-only/ rm -rf vmhgfs-only/ 回到 vmware-tools-distrib目录，执行安装 cd ../../.. ./vmware-install.pl 一路默认，完成VMware Tools的安装。参考文档]]></content>
