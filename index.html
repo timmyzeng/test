@@ -483,7 +483,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/[网络]UDP报头解析.html">
+    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/[网络]TCP协议解析.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="timmy">
@@ -502,7 +502,172 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/[网络]UDP报头解析.html" itemprop="url">网络 | UDP报头解析</a></h1>
+                <a class="post-title-link" href="/[网络]TCP协议解析.html" itemprop="url">TCP协议详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-09T15:23:34+08:00">
+                2018-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/network/" itemprop="url" rel="index">
+                    <span itemprop="name">network</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="TCP概述及特点"><a href="#TCP概述及特点" class="headerlink" title="TCP概述及特点"></a>TCP概述及特点</h2><p>TCP称为传输控制协议，是一种面向字节流的可靠的传输协议，是传输层的协议。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>TCP是面向连接的传输层协议，所谓面向连接就是需要在使用TCP协议之前先建立连接、使用完TCP协议之后再断开连接。</strong>那么如何理解连接的建立和断开呢？</li>
+<li><strong>TCP是点对点的，不能一对多、多对一、多对多。</strong></li>
+<li><strong>TCP提供可靠交付的的服务。传输的数据保证无差错、不丢失、不重复、并且按需到达。</strong></li>
+<li><strong>TCP提供全双工通信。</strong>连接双方可以随时随地的相互发送数据，实现的基础是设置有接收缓冲区和发送缓冲区。</li>
+<li><strong>TCP面向字节流。所谓面向字节流指的是：虽然上层的应用层协议会发送一个一个的数据报，但是在TCP这里，他会转化为一连串没有结构的字节流。</strong>当TCP根据机制判断需要上交数据的时候，就会将当前缓冲区的数据上交，但是此时并不能保证应用层需要的数据报都在这些字节流中，所以需要使用TCP协议的应用层软件具有识别字节流的能力。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/[网络]TCP协议解析.html" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/[网络]UDP协议解析.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="timmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青匆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/[网络]UDP协议解析.html" itemprop="url">网络 | UDP报头解析</a></h1>
         
 
         <div class="post-meta">
@@ -597,7 +762,7 @@
 <li><strong>UDP的首部只有8个字节，开销小。</strong>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/[网络]UDP报头解析.html" rel="contents">
+            <a class="btn" href="/[网络]UDP协议解析.html" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1423,163 +1588,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/BST二叉搜索树.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="timmy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青匆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/BST二叉搜索树.html" itemprop="url">BST二叉搜索树</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T20:04:18+08:00">
-                2018-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/knowledge/" itemprop="url" rel="index">
-                    <span itemprop="name">knowledge</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/knowledge/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><p>二叉搜索树是一个优化的二叉树，也称作二叉排序树、二叉查找树、BST等。一般在每个节点定义一个关键值Key。插入的时候按照一定的规则使之有序插入，方便搜索。它可以是一颗空树，或者这棵树有着以下的性质：<br>1、如果左子树不为空，那么左子树上的所有节点的值都小于根节点的值<br>2、如果右子树不为空，那么右子树上的所有节点的值都大于根节点的值<br>3、同时，左右子树也是二叉搜索树<br>4、这棵二叉树没有相同关键值的节点，也就是每一个节点的值多不相同<br>如果插入序列是：6,3,8,7,1,2,4,0,5,9,4<br>图示如下：<br><img src="http://p3ax8ersb.bkt.clouddn.com/201803292024_340.png-960.jpg" alt="BSTree"><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/BST二叉搜索树.html" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1636,7 +1644,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

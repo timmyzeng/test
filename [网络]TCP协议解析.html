@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="true" />
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,TCP" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="青匆" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="TCP概述及特点TCP称为传输控制协议，是一种面向字节流的可靠的传输协议，是传输层的协议。 特点：  TCP是面向连接的传输层协议，所谓面向连接就是需要在使用TCP协议之前先建立连接、使用完TCP协议之后再断开连接。那么如何理解连接的建立和断开呢？ TCP是点对点的，不能一对多、多对一、多对多。 TCP提供可靠交付的的服务。传输的数据保证无差错、不丢失、不重复、并且按需到达。 TCP提供全双工通信">
+<meta name="keywords" content="Linux,TCP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP协议详解">
+<meta property="og:url" content="http://www.jingxxn.cn/[网络]TCP协议解析.html">
+<meta property="og:site_name" content="青匆">
+<meta property="og:description" content="TCP概述及特点TCP称为传输控制协议，是一种面向字节流的可靠的传输协议，是传输层的协议。 特点：  TCP是面向连接的传输层协议，所谓面向连接就是需要在使用TCP协议之前先建立连接、使用完TCP协议之后再断开连接。那么如何理解连接的建立和断开呢？ TCP是点对点的，不能一对多、多对一、多对多。 TCP提供可靠交付的的服务。传输的数据保证无差错、不丢失、不重复、并且按需到达。 TCP提供全双工通信">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807181734_86.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807192310_410.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807190846_791.png-480.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807191203_700.png-1920.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807191204_704.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807191506_768.png-480.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807201351_842.png-480.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807201358_344.png-480.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807201355_588.png-480.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807201408_318.png-1920.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807201618_28.png-480.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807212324_770.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807212325_289.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807212326_473.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807212327_749.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807212328_382.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807212331_296.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807212332_228.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807212332_636.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807212333_391.png-960.jpg">
+<meta property="og:updated_time" content="2018-07-21T15:46:00.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCP协议详解">
+<meta name="twitter:description" content="TCP概述及特点TCP称为传输控制协议，是一种面向字节流的可靠的传输协议，是传输层的协议。 特点：  TCP是面向连接的传输层协议，所谓面向连接就是需要在使用TCP协议之前先建立连接、使用完TCP协议之后再断开连接。那么如何理解连接的建立和断开呢？ TCP是点对点的，不能一对多、多对一、多对多。 TCP提供可靠交付的的服务。传输的数据保证无差错、不丢失、不重复、并且按需到达。 TCP提供全双工通信">
+<meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201807181734_86.png-960.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.jingxxn.cn/[网络]TCP协议解析.html"/>
+
+
+
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title>TCP协议详解 | 青匆</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4983401dd5a781b3271945d193c69d56";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">青匆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-link">
+          <a href="/link" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-location-arrow"></i> <br />
+            
+            链接
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/[网络]TCP协议解析.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="timmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青匆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCP协议详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-09T15:23:34+08:00">
+                2018-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/network/" itemprop="url" rel="index">
+                    <span itemprop="name">network</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="TCP概述及特点"><a href="#TCP概述及特点" class="headerlink" title="TCP概述及特点"></a>TCP概述及特点</h2><p>TCP称为传输控制协议，是一种面向字节流的可靠的传输协议，是传输层的协议。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>TCP是面向连接的传输层协议，所谓面向连接就是需要在使用TCP协议之前先建立连接、使用完TCP协议之后再断开连接。</strong>那么如何理解连接的建立和断开呢？</li>
+<li><strong>TCP是点对点的，不能一对多、多对一、多对多。</strong></li>
+<li><strong>TCP提供可靠交付的的服务。传输的数据保证无差错、不丢失、不重复、并且按需到达。</strong></li>
+<li><strong>TCP提供全双工通信。</strong>连接双方可以随时随地的相互发送数据，实现的基础是设置有接收缓冲区和发送缓冲区。</li>
+<li><strong>TCP面向字节流。所谓面向字节流指的是：虽然上层的应用层协议会发送一个一个的数据报，但是在TCP这里，他会转化为一连串没有结构的字节流。</strong>当TCP根据机制判断需要上交数据的时候，就会将当前缓冲区的数据上交，但是此时并不能保证应用层需要的数据报都在这些字节流中，所以需要使用TCP协议的应用层软件具有识别字节流的能力。</li>
+</ul>
+<a id="more"></a>
+<h2 id="TCP报头"><a href="#TCP报头" class="headerlink" title="TCP报头"></a>TCP报头</h2><p>因为TCP要保证可靠性，所以TCP的报头会比较复杂，实现的功能也比较多。</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807181734_86.png-960.jpg" alt="TCP报头"></p>
+<p>下面简单介绍一下报头各个字段的作用。</p>
+<ul>
+<li>源端口号和目的端口号指定了发送端的进程和接收端的进程</li>
+<li><strong>序号和确认序号，字节流中每一个字节都标上了序号，确认序号用来告诉对端在当前序号之前、包括当前序号的字节流我都接收了，接下来请从下一个序号开始给我发送</strong>。序号的范围是0~2^32-1，如果到头了从0开始循环，这里可以表示4G的数据，旧序号的数据早已经到达了对端了。<strong>其中序号不是固定从零开始的，是有一个随机初始值ISN，连接的时候，从ISN开始。当进行三次握手建立连接的时候，一个很重要的活动就是确定ISN。</strong>比如：发送端发送了一个报文，包含的数据是：”Linux”；如果第一个序号给的是100，那么’x’对应的序号是104，’\0’对应序号是105。当接收端接收到这些字符之后，给发送端回一个报文的时候，他的确认序号就是：106，接收端希望发送端发送序号为106及其后面的报文。这个是全双工和可靠性的基础。</li>
+<li>4位首部长度，首部长度指的是TCP报头的长度，他的单位是4字节。比如首部长度是：0101，那么指的是报头长度为20字节，这里代表了该TCP报头没有选项这个字段。所以通过计算得知，TCP报头最长是60个字节，出去选项字段之前的固定20字节，选项有40字节的扩展空间，但是一般选项默认没有。</li>
+<li>保留6位，没有使用</li>
+<li><strong>URG、ACK、PSH、RST、SYN、FIN六位标志位。</strong></li>
+<li><strong>URG标志位</strong>：URG=1表示将紧急指针有效，它告诉系统，这个报文里面有紧急数据，让这些数据优先到达，而不用按顺序。该标志位与16位紧急指针搭配使用。比如使用Ctrl+C中断程序的时候。</li>
+<li><strong>ACK标志位</strong>：ACK=1表示该报文是确认报文，用于对请求的确认。一般来说在建立之后的所以报文的ACK都为1，同时确认报文也会捎带数据用于交换。</li>
+<li><strong>PSH标志位</strong>：PSH=1表示提醒接收端，让它把接收缓冲区的数据快速取走，而不是等到缓冲区满的时候才读取。</li>
+<li><strong>RST标志位</strong>：RST=1表示复位报文。当发送端以为连接已经建立，而接收端认为连接未建立的时候。如果发送端给接收端发送数据，发送端会回一个RST=1的报文，这样发送端知道连接无效，于是断开重新请求连接。同时还可以用在拒绝打开一个链接的时候，接收端给发送端发送一个复位报文。</li>
+<li><strong>SYN标志位</strong>：SYN=1表示这是一个请求连接的报文，如果SYN=1，ACK=0，表示请求连接，而SYN=1，ACK=1，表示现在处于TCP建立连接的时候。</li>
+<li><strong>FIN标志位</strong>：FIN=1表示这是一个请求连接断开的报文，用在TCP断开连接的时候。</li>
+<li><strong>16位窗口大小，窗口指的是接收端接收缓冲区的剩余大小，TCP可以通过窗口大小来协调发送端的发送能力。</strong></li>
+<li>16位校验和，发送端填充，使用CRC校验，接收端校验失败，表示数据报有问题。这里校验包括了TCP报头和数据。</li>
+<li>16位紧急指针，当URG=1的时候有效，用于指向紧急数据的位置。就算接收端窗口为0，也可以接收紧急指针指向的数据。</li>
+<li>最大40位选项：一般不使用，其中比较常用的有：MSS（数据字段的最大长度)选项，MSS应该尽量大，只要在ip层没有进行分片就好，这样的开销是最小的，<strong>在以太网中MSS是1500字节-40字节=1460字节，该选项只有在创建连接的过程中有效</strong>； 窗口扩大选项，窗口最大是2^16-1，通过这个选项可以增大，<strong>该选项只有在创建连接的过程中有效</strong>；时间戳值选项，用两个功能。第一个：因为序号是循环使用的，如果当速率很大的时候，会出现序号重复使用的情况，我们就可以通过时间戳将新旧报文段分开；第二个功能：计算往返时间RRT，发送的时候将时间放入，返回的时候带回来，这样就可以计算出往返的时间了。</li>
+</ul>
+<h2 id="理解TCP的连接管理机制"><a href="#理解TCP的连接管理机制" class="headerlink" title="理解TCP的连接管理机制"></a>理解TCP的连接管理机制</h2><p>通常我们说三次握手、四次挥手，这里指的是TCP创建连接和断开连接的情况。</p>
+<h3 id="连接管理全图"><a href="#连接管理全图" class="headerlink" title="连接管理全图"></a>连接管理全图</h3><p><img src="http://p3ax8ersb.bkt.clouddn.com/201807192310_410.png-960.jpg" alt="全图"></p>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><h4 id="链接的工作"><a href="#链接的工作" class="headerlink" title="链接的工作"></a>链接的工作</h4><p>TCP连接的建立采用客户端服务器模式（C/S），其中主动发起请求连接的一端叫做客户端，被动等待连接的一端叫做服务端。连接的时候主要用于完成一下三件工作：</p>
+<ul>
+<li>保证双方都可以确认对方的存在。</li>
+<li>双方协商一些参数（<strong>MSS值、是否使用选项中的窗口扩大选项、时间戳选项等</strong>），其中MSS值以双方的较小值为准。见下图：</li>
+<li>给传输实体进行资源分配。因为维护链接需要使用到TCB传输控制模块，所以要进行资源分配，这里有时间和内存的消耗。</li>
+</ul>
+<p>双方协商MSS：</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807190846_791.png-480.jpg" alt="MSS"></p>
+<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><p>三次握手的具体情况如图：</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807191203_700.png-1920.jpg" alt="三次握手"><br>在进行三次握手之前有一个先决条件，就是服务端要处于等待链接的状态。服务器端首先创建传输控制模块TCB，阻塞式等待客户端的链接，此时服务器端处于LISTEN状态。(让服务器端进入LISTEN状态的是应用层的listen()监听函数的调用。)</p>
+<p>作为主动发起连接请求的客户端，首先也创建传输控制模块TCB，然后向服务器端发送连接请求报文。<strong>报文首部中SYN=1，表示这是一个请求连接报文；其中seq序号等于系统根据当前时间计算获得的随机值ISN；如（seq=x）</strong>然后客户端处于SYN_SENT表示同步已发送状态，等待服务器端的回应。<strong>其中SYN=1的报文不能携带数据，但是却要消耗一个序号。</strong>(当客户端应用层调用connect()请求链接函数的时候，客户端向连接另一端发送连接请求)</p>
+<p>服务器端收到连接请求报文之后，如果同意建立连接，就向客户端发送确认报文。<strong>在确认报文中SYN=1，ACK=1，表示这是一个连接建立确认报文；其中seq序号等于系统根据当前时间计算获得的随机值ISN，这个值是服务器端的起始序号，跟客户端的不一样，如（seq=y）；此时还有一个确认序号ack=x+1，这个是对客户端发送的请求报文的确认，表示x+1之前序号的字节流都已经正确获得。</strong>最后服务器端状态转为SYN_RCVD表示同步已接收。<strong>这里依然不能携带数据，但是要消耗一个序号。</strong></p>
+<p>客户端接收到请求确认报文，需要给服务器端发送该报文的确认报文。<strong>在这个确认报文中ACK=1，表示这是一个确认报文；其中seq=x+1，从第一个报文的下一个序号开始；ack=y+1，确认服务器端的y序号以前的字节流都已经准确接收。</strong>这个报文可以携带数据，在这之后状态改为ESTABLISHED，表示连接在客户端看来已经建立。如果服务器端接收到了这个确认报文，状态也会改变为ESTABLISHED，表示在服务器端看来这个连接也已经建立。(当connect返回合法的时候，客户端进入ESTABLISHED状态；当accept返回合法的时候，服务器端进入ESTABLISHED状态)</p>
+<p>到这里三次握手完成，双方都认为连接建立，此时可以进行数据传输。</p>
+<h4 id="三次握手出现报文丢失的情况分析："><a href="#三次握手出现报文丢失的情况分析：" class="headerlink" title="三次握手出现报文丢失的情况分析："></a>三次握手出现报文丢失的情况分析：</h4><p>在这里将客户端连接请求报文称为一号报文，服务器确认报文称为二号报文，客户端对确认报文的再次确认称为三号报文。</p>
+<ol>
+<li>如果客户端请求连接报文丢失，那么客户端根本不会收到。但是对于客户端来说，它一直在等待服务器的确认报文。超过一定时间之后，客户端会认为报文丢失，从而触发超时重传机制。</li>
+<li>如果服务器确认报文丢失，那么客户端会收不到确认报文，如果达到了超时的情况，依然会触发超时重传；同时，服务器也收不到对确认报文的再次确认，服务器会认为对方没有收到确认报文，超过时间也会触发超时重传。但是客户端已经计时很久了，触发超时重传的时间比服务器端要早得多。对于重复的报文，他们的序号是一样的，很容易做到去重的工作。</li>
+<li>如果是最后一个确认报文的再次确认报文丢失，那么对于客户端没有影响，因为他认为报文已经发出，单方面认为连接已经建立，但是对于服务端，他会认为二号的确认报文丢失，所以会给客户端再发送一个，这样客户端就知道服务器端没有接收到，就会重新发一个。</li>
+</ol>
+<h4 id="为什么不是二次握手，四次握手？"><a href="#为什么不是二次握手，四次握手？" class="headerlink" title="为什么不是二次握手，四次握手？"></a>为什么不是二次握手，四次握手？</h4><p>这个时候需要考虑最后一次报文的发送。如果是二次握手，只要客户端发送请求，然后服务器端发送确认报文这两步骤就实现了连接建立。问题就出在这里，如果服务器端的确认报文丢失，服务器端认为确认报文已经发出，所以连接应该被建立，为了维护这个连接，服务器端会创建TCB传送控制块；但是对于客户端来说没有收到确认报文，他会认为是请求建立报文丢失，连接建立失败，所以会重新发送请求报文给服务器端。如果有一个恶意的程序，他只进行建立连接，但是不接收确认报文就会导致服务器端创建了大量的无用的TCB，消耗了大量的内存和时间，造成内存泄漏。这是不友好的。对于四次握手等偶数次也是如此理解。</p>
+<p>那三次握手为什么就可以解决？依然看最后一次的三号报文，对请求确认的再次确认报文。如果丢失，最终只会导致客户端认为连接建立，TCB在客户端创建，对于客户端来说，这次失败了再申请就好了。影响不大。至于五次等为什么不考虑是因为三次已经够了。</p>
+<h3 id="断开"><a href="#断开" class="headerlink" title="断开"></a>断开</h3><p>一般认为客户端是主动断开连接的一端，但是也会出现服务器端主动断开连接的情况，通常是服务器端出现故障或者客户机在保活机制的时间都没有给服务器端给予回应。这里以客户端主动断开连接为叙述。断开的过程，很好的体现了TCP连接是全双工的性质。</p>
+<h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><p>四次挥手的具体情况如下：</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807191204_704.png-960.jpg" alt="四次挥手"></p>
+<p>客户端发送请求断开连接报文。<strong>在报文中FIN=1，表示这是一个请求断开连接报文；seq=u，序号是u，是上一个报文序号+1。然后客户端的状态进入FIN_WAIT_1，此时报文不携带数据，但是还是需要消耗一个序号。</strong>(客户端调用colse()函数，进行连接断开操作，同时停止数据传入)</p>
+<p>服务器端收到断开报文，进行确认。在<strong>报文中ACK=1，表示这是一个确认报文；seq=v，报文序号是v，是上一个报文序号+1；ack=u+1，对客户端报文序号进行确认。</strong>然后进入CLOSE_WAIT状态。如果客户端收到确认报文，进入FIN_WAIT_2状态，等待服务器端发送的连接释放报文。</p>
+<p>此时，TCP连接处于一个变化的过程。客户端与服务器端的连接已经断开，但是服务器端与客户端的连接还没有断开。因为TCP连接是全双工的，所以连接是双方独立的连接。<strong>处于这个状态的连接叫做半关闭状态。此时客户端以及没有数据给服务器端发送，但是如果服务器端还有剩下的数据需要发送，客户端依然能够接收到。</strong>这个状态会保持一阵子。</p>
+<p>如果服务器端没有需要给客户端发送的数据，那么服务器端的应用程序就会通知服务器端释放TCP连接。<strong>发送断开连接报文，FIN=1，ACK=1，代表这是一个请求连接断开报文；seq=w，之所以跟上面的seq=v不一样，是因为在半关闭状态，有可能发送了数据；ack=u+1，确认报文依然是u+1，因为客户端已经没有发送新的数据过来了。</strong>此时服务器端进入LAST_ACK状态。(应用层程序调用close函数)</p>
+<p>如果客户端接收到了报文，进入TIME_WAIT状态。<strong>发送一个确认报文，其中ACK=1，表示这个是一个确认报文；seq=u+1，没有数据传入，还是之前那个报文序号；ack=w+1，对服务器端的报文进行确认。</strong>如果服务器端接收到报文进入CLOSED状态。<strong>但是TIME_WAIT状态下的客户端需要等待2*MSL时间才进入CLOSED状态。</strong></p>
+<h4 id="TIME-WAIT状态"><a href="#TIME-WAIT状态" class="headerlink" title="TIME_WAIT状态"></a>TIME_WAIT状态</h4><p>主动发送断开连接的一端，如客户端，在最后一次发送了确认报文之后，进入TIME_WAIT状态。<strong>这个状态要维持2*MSL时间，</strong>才进入CLOSED状态，此时才可以进行重新连接。<strong>MSL指的是最长报文段寿命，也就是一个报文从发送之后到对端接收所需要的最长时间，在这个时间内一定会到达，如果没有到达，对端就当做该报文被丢弃，重新请求发送。</strong></p>
+<p>那为什么主动断开连接一端(以客户端为例)要等待2*MSL的时间呢？原因有两个：</p>
+<ul>
+<li>第一个，如果报文在MSL时间内，没有到达服务器端，服务器端没有收到确认报文，会进行超时重传，再次发送断开连接请求报文，这样客户端还可以再次发送确认报文。</li>
+<li>第二个，在2*MSL的时间内，本次连接的报文会全部在网络中失效，可以保证就算是在网络中迟到的报文，不会误入其他使用同一个端口的连接中。</li>
+</ul>
+<p><strong>解决服务器端处于TIME_WAIT状态的等待时间</strong>：</p>
+<p>如果服务器端主动断开连接，服务器端在2*MSL时间内是处于TIME_WAIT状态的，只要不是CLOSED状态，服务器端就没有办法进行bind绑定，之所以不能bind绑定的根本原因是端口号还被占用着。如果我们的业务连接时间很短，但是单位时间的处理数量很大，这样服务器端发现了大量的不活跃用户，在一定时间会主动断开连接，这样就导致很多的TIME_WAIT状态。有很大的可能会导致端口不够使用。</p>
+<p>我们通过setsockopt()函数进行设置，这个函数有一个选项SO_REUSEADDR，我们可以通过该选项使我们创建IP地址不同但是端口号相同的多个socket描述符。使用方法如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//socket();</span></span><br><span class="line"><span class="keyword">int</span> opt = <span class="number">1</span>;</span><br><span class="line">setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR, &amp;opt, <span class="keyword">sizeof</span>(opt));</span><br><span class="line"><span class="comment">//bind();</span></span><br></pre></td></tr></table></figure>
+<h4 id="半关闭"><a href="#半关闭" class="headerlink" title="半关闭"></a>半关闭</h4><p>其实很遗憾的是，根据上面的四次挥手，我们调用的是close()函数，这个函数并不会让我们进入这么一个半关闭的状态。close()函数的作用是直接让系统释放socket()函数返回的文件描述符被释放，两端的连接都会被断开。我们知道TCP连接时全双工的，对于一端关闭接可以分为以下三种情况：1、完全关闭；2、只关闭向外写；3、只关闭往里读。<strong>使用shutdown()函数就可以控制关闭的口。只用使用这个函数的断开连接，才能出现半关闭状态。</strong></p>
+<p><a href="http://lib.csdn.net/article/computernetworks/17264" target="_blank" rel="noopener"><strong>close函数和shutdown函数详细解析</strong></a></p>
+<h4 id="同时关闭"><a href="#同时关闭" class="headerlink" title="同时关闭"></a>同时关闭</h4><p>有一种特殊的情况，当TCP连接的两端同时请求连接断开的时候，就会出现。此时会出现CLOSING这种特殊的状态。</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807191506_768.png-480.jpg" alt="closing"></p>
+<h4 id="三次挥手"><a href="#三次挥手" class="headerlink" title="三次挥手"></a>三次挥手</h4><p>一般我们的断开连接使用四次挥手，但是也会出现三次挥手的情况。有两种情况会出现三次挥手：</p>
+<ul>
+<li>客户端的FIN报文跟随最后一个发送的数据发送到了服务器端。这样就少了一个报文</li>
+<li>如果将服务器端的确认报文和发送给客户端的FIN报文合并一起发送，这样也少了一个报文</li>
+</ul>
+<h4 id="为什么使用四次挥手"><a href="#为什么使用四次挥手" class="headerlink" title="为什么使用四次挥手"></a>为什么使用四次挥手</h4><p>这个是因为利用TCP全双工的性质，实现更加弹性的传输。其实我们可以通过三次挥手就完成这个任务。还记得有一个半关闭的状态么，就是客户端已经关闭了连接，但是服务器端没有关闭连接的状态。在这个状态下服务器端还可以将没有发送完的数据传输给客户端。如果是三次挥手就不能实现这个弹性变化了。</p>
+<h2 id="可靠传输"><a href="#可靠传输" class="headerlink" title="可靠传输"></a>可靠传输</h2><p>TCP的报文段是交付给IP层，但是IP层并不提供可靠传输，只是提供尽最大努力的传输。所以需要TCP提供可靠传输。怎么样的传输是可靠的，第一传输的过程中不错，第二接收端永远可以接收发送端的数据，不管发送端有多快。TCP要实现可靠传输，就需要实现类似于上述条件的过程。</p>
+<p><strong>TCP是全双工的，为了叙述简单，这里只讨论一个方向</strong></p>
+<h3 id="确认应答机制"><a href="#确认应答机制" class="headerlink" title="确认应答机制"></a>确认应答机制</h3><p>确认应答机制就是，发送端个接收端发送一个报文，必须等到接收端确认之后，发送端才会发送下一个报文。如果接收端没有返回确认报文，发送端会在设定的时间内一直等待。</p>
+<h4 id="无差错情况"><a href="#无差错情况" class="headerlink" title="无差错情况"></a>无差错情况</h4><p>主机A给主机B发送1~1000的数据，等到主机B确认应答下一个是1001的时候，主机A再发送数据101~2000。</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807201351_842.png-480.jpg" alt="ACK"></p>
+<h4 id="出现差错"><a href="#出现差错" class="headerlink" title="出现差错"></a>出现差错</h4><p>有两种情况：</p>
+<ol>
+<li>主机B通过检测，返现报文是错误的，将其丢弃。然后什么都不做</li>
+<li>主机A的报文在网络传输的时候就已经丢失了，主机B什么都不知道。</li>
+</ol>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807201358_344.png-480.jpg" alt="B丢弃错误报文"></p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807201355_588.png-480.jpg" alt="ACK出现差错"></p>
+<p><strong>此时主机A在规定的一段时间内没有收到确认报文，主机A就认为刚才发送的报文丢失了，因此就会重新将报文发送一次。这个就叫做超时重传。</strong>要实现超时重传，需要做到以下几点：</p>
+<ol>
+<li>主机A给每一个发送的报文都设定一个超时计时器</li>
+<li>在发送之前，保留一份副本，只有在收到报文确认的情况下才将报文副本清除</li>
+<li>对每一个报文都必须要有一个序号</li>
+<li>选择一个合适的超时计时器时间，这个时间一般比数据传输的平均往返时间要长一点，不太好确认。</li>
+</ol>
+<h4 id="确认丢失和确认迟到"><a href="#确认丢失和确认迟到" class="headerlink" title="确认丢失和确认迟到"></a>确认丢失和确认迟到</h4><p><img src="http://p3ax8ersb.bkt.clouddn.com/201807201408_318.png-1920.jpg" alt="确认丢失和确认迟到"></p>
+<ul>
+<li><strong>确认丢失：</strong>上图a，主机A给主机B发送成功，但是主机B的确认报文丢失了。主机A在规定时间内没有收到确认报文，触发超时重传。此时主机B又收到了同一个报文(通过序号可以确认是同一个报文)，于是将重复收到的这个报文丢弃，然后给主机A重新发送一个确认报文。</li>
+<li><strong>确认迟到：</strong>上图b，主机B对主机A的确认报文因为网络原因迟到了，此时主机A收到了这个报文，并将它丢弃，什么事情也不做。</li>
+</ul>
+<p>上面的确认应答和重传机制叫做自动重传请求ARQ，这里的重传是自动触发的，不需要接收方请求重传，是发送方超过了规定时间自动重传。</p>
+<h4 id="超时重传的时间确定"><a href="#超时重传的时间确定" class="headerlink" title="超时重传的时间确定"></a>超时重传的时间确定</h4><p>超时时间不能设定的太短，不然就会频繁的发送重复的报文，这是一种浪费。时间也不能设定的太长，这样会影响整体的重传效率。TCP考虑到网络传输的不确定性，所以会动态的计算这个超时时间。</p>
+<p>Linux中超时时间以500ms为一个单位控制，每次判断超市重发的时间都是500ms的整数倍。如果重发一次得不到应答，就会等待2*500ms之后进行重传。如果还是等不到应答就会等待4*500ms重传，以指数形式递增。累计到一定的重传次数，TCP认为网络或者主机出现故障，强制关闭连接。</p>
+<h3 id="连续ARQ协议"><a href="#连续ARQ协议" class="headerlink" title="连续ARQ协议"></a>连续ARQ协议</h3><p>自动重传请求ARQ特点是实现简单，但是他的缺点就是效率低。发送端需要等到当前报文被确认的时候才发送下一个，在接收到报文这段时间内，发送端没有任何操作。为了提高传输效率，我们可以一次性发送多条数据，这样就可以大大提高性能，也就是所谓的流水线传输。</p>
+<h4 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h4><p>这里需要介绍一个概念，叫做窗口。我们在讨论TCP报头的时候提到过一个字段叫做16位窗口大小，那个窗口就是该窗口，窗口的实际意义是对端的接收缓冲区还剩下多大的空间用于接收数据。如下图，窗口大小就是4000字节，指的就是主机B的接收缓冲区有4000字节的大小，然后主机B通过报头中的窗口大小告诉主机A，这样主机A就知道他可以不需要担心的发送4000字节对端也可以装的下。</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807201618_28.png-480.jpg" alt="窗口"></p>
+<p>有了窗口的概念，我们就可以实现一种机制，不再是发送一个报文就进行一次确认。在窗口范围内的数据，我们可以一次性的发送，而不需要等到对方的确认。这样就提高了效率。</p>
+<ul>
+<li>窗口大小指的是无需等待确认应答而可以继续发送数据的最大值，上图中的窗口大小就是4000字节（四个段）</li>
+<li>发送前四个段的时候，不需要等待任何ACK，直接发送。</li>
+<li>收到第一个ACK后，滑动窗口向后移动，继续发送第五个段的数据。</li>
+<li>操作系统内核为了维护这个滑动窗口，需要开辟发送缓冲区，记录当前还有哪些数据没有应答，只有确认应答过的数据，才会从缓冲区中删除。</li>
+<li>窗口越大，则网络的吞吐率就越大。</li>
+</ul>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807212324_770.png-960.jpg" alt="滑动窗口"></p>
+<p>在上图中，以第三个步骤来说，1~2000的数据是已经发送并且被确认的；2001~6000的数据是已经发送但是没有确认的；6001之后的数据是还没有发送的。</p>
+<h4 id="丢包问题的解决"><a href="#丢包问题的解决" class="headerlink" title="丢包问题的解决"></a>丢包问题的解决</h4><p><strong>情况一：报文丢失</strong></p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807212325_289.png-960.jpg" alt="报文丢失"></p>
+<ul>
+<li>图中1001~2000段报文丢失。</li>
+<li>主机A在发送往后的报文的时候，收到的报文确认是“下一个是1001”，而不是对当前的报文进行确认。</li>
+<li>如果主机A连续三次收到这个相同的确认，主机A会对1001~2000段报文进行重发。</li>
+<li>这个时候主机B接收到1001~2000段报文，接下来发送的确认报文不是“下一个是2001”，而是“下一个报文是7001”，因为这之前的报文都已经收到了，确认要从最新的开始。</li>
+</ul>
+<p>其实这种机制属于<strong>拥塞控制的快重传机制，因为他不需要等到超时时间到了才重传，而是连续三次收到确认报文就进行了重传，这样效率大大提升。</strong></p>
+<p><strong>情况二：确认应答报文丢失</strong></p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807212326_473.png-960.jpg" alt="确定应答报文丢失"></p>
+<p>这种情况不需要担心，因为我们可以通过后续的确认来保证前面的报文已经收到了。这一种<strong>机制叫做累计确认。这个机制只需要对按序到达的最后一个报文进行确认，这样有好处有坏处：好处就是不用对确认丢失的报文重新发送报文。坏处就是不能给发送端正确的反映出接收方已经正确接受了所以报文的信息。</strong></p>
+<p>比如：如果主机A发送了五个报文，其中第三个报文丢失了（注意不是确认报文丢失），这样主机B只能确认前两个报文是确认到达的。主机A没法知道第三个报文之后的报文主机B是否收到，所以只好将后面三个报文全部发送一遍。这样叫做回退。说明当网络质量不好的时候，累计确认会起到负作用。</p>
+<h2 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h2><h3 id="利用滑动窗口实现流量控制"><a href="#利用滑动窗口实现流量控制" class="headerlink" title="利用滑动窗口实现流量控制"></a>利用滑动窗口实现流量控制</h3><p>我们知道接收端的接受能力是有限的，因为数据存放在接受缓冲区中，以什么样一个速度读取数据是由上端的应用层程序决定。这样如果当发送端的发送数据很快，而接收端的数据读取很慢的时候，接收端无法接收后面的数据。这时继续发送数据的话，就会导致丢包的问题，所以流量控制是十分重要的。<strong>流量控制就是TCP根据接收端的处理能力来决定发送端的发送速度。</strong></p>
+<ul>
+<li>接收端将自己可以接受的缓冲区大小放入TCP首部的窗口大小字段，通过ACK通知发送端。</li>
+<li>窗口大小字段越大，说明网络的吞吐量越好。</li>
+<li>接收端一旦发现自己的缓冲区快满了，就会讲窗口大小设置成一个更小的值通知给发送端。</li>
+<li>发送端接收到这个窗口之后，就会减慢自己的发送速度。</li>
+<li>如果接收缓冲区满了，接收端就会将窗口置为0，这样发送端就会发送新的数据，但是需要定期的发送一个窗口探测数据段，让接收端把窗口大小告诉发送端。</li>
+</ul>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807212327_749.png-960.jpg" alt="窗口变化"></p>
+<p>考虑一种情况，如果主机B有了新的空间，他会给主机A发送一个窗口更新通知。但是很遗憾的是这个报文丢失了，主机A没有收到。这时会处于一个局面：主机A在等待主机B发送窗口更新报文，主机B在等待主机A发送新的报文。此时主机A的窗口探测报文就发挥了作用，它可以打破这个死锁局面。</p>
+<p>主机A里面设置了一个持续计时器，用于发送零窗口探测报文段的计时。</p>
+<p><strong>当接收端的窗口为0的时候， 有以下三个报文还是必须接收的：</strong></p>
+<ul>
+<li>零窗口探测报文段</li>
+<li>确认报文段</li>
+<li>携带紧急数据的报文段</li>
+</ul>
+<h3 id="考虑传输效率"><a href="#考虑传输效率" class="headerlink" title="考虑传输效率"></a>考虑传输效率</h3><p><strong>Nagle算法：</strong>指的是即使发送端还有需要发送的数据，但如果这部分的数据很大好的话，就进行延迟发送的一种处理机制。只有当以下两个条件满足一个的时候才能发送数据：</p>
+<ul>
+<li>已发送的数据都收到了确认应到</li>
+<li>可以发送最大段长度（MSS）的数据</li>
+</ul>
+<p>如果上面两个条件都不满足就等待一段时间之后再进行数据发送。这样可以提升网络利用率。但是这样会有一定的数据延迟，一般来说机械控制或者窗口系统会关闭该算法的使用。</p>
+<h4 id="延迟应答"><a href="#延迟应答" class="headerlink" title="延迟应答"></a>延迟应答</h4><p><img src="http://p3ax8ersb.bkt.clouddn.com/201807212328_382.png-960.jpg" alt="延迟应答"></p>
+<p>如果主机B在接收到数据之后立刻返回ACK应答，这样返回的窗口可能会比较小。例如：</p>
+<ul>
+<li>假设主机B的缓冲区为1M，一次收到了700K的数据，如果此时立刻应答返回的窗口是300K</li>
+<li>但是实际上处理的速度会很快，10ms之内就将700K的数据消费了</li>
+<li>此时主机B的处理能力还没有到达自己的极限，即使窗口返回大一点也可以处理得过来</li>
+<li>如果主机B稍等一会再应答，比如等20ms再应答，这样返回的窗口大小就是1M</li>
+</ul>
+<p>但是并不是所有的情况都会采用延迟应答的。</p>
+<ul>
+<li>数量限制：每隔N个包就必须应答一次</li>
+<li>时间限制：超过最大延迟应答时间就必须应答一次</li>
+</ul>
+<h4 id="捎带应答"><a href="#捎带应答" class="headerlink" title="捎带应答"></a>捎带应答</h4><p><img src="http://p3ax8ersb.bkt.clouddn.com/201807212331_296.png-960.jpg" alt="捎带应答"></p>
+<p>这个很好理解，当主机A给主机B发送了数据(“你好吗？”)之后，主机B需要给主机A发送确认报文，然后还要回数据(“挺好的，你呢？”)。此时就可以将数据和确认报文一起发送，这样就减少了一个报文的消耗。</p>
+<h2 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h2><p>TCP已经有了滑动窗口可以控制数据的发送速度，可以高效可靠的发送大量的数据。但是还有一个问题，如果在开始阶段就发送大量的数据，依然有可能引发问题。<strong>拥塞</strong>指的是：在某段时间之内，如果对网络中某一个资源的需求超过了该资源所能提供的可用部分，整个网络的性能就要变坏。如果此时依然发送大量的数据，就会让性能大大降低。所以我们需要拥塞控制。</p>
+<p>但是TCP是如何知道网络状况好还是不好呢？通常如果出现了大量丢包的情况就说明网络状况在这个时间段是不太好的，现在的网络传输质量很好，一般是不会出现丢包的。</p>
+<p>TCP常用的拥塞控制算法有四个：慢开始、拥塞避免、快重传、快恢复。</p>
+<h3 id="慢开始和拥塞避免"><a href="#慢开始和拥塞避免" class="headerlink" title="慢开始和拥塞避免"></a>慢开始和拥塞避免</h3><h4 id="慢开始"><a href="#慢开始" class="headerlink" title="慢开始"></a>慢开始</h4><p>发送方维护这一个叫做<strong>拥塞窗口的状态变量(cwnd)</strong>，拥塞窗口的大小取决于网络状态，同时动态的变化。cwnd的上限是2*MSS</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807212332_228.png-960.jpg" alt="慢开始"></p>
+<p>这个cwnd一开始的时候等于1，每次收到一个ACK的时候cwnd+1。这样我们的cwnd是指数级增长的，他增长的速度只是在一开始的时候慢，在后面的时候会很快。每次发送方在发送数据报文的时候，TCP会选取拥塞窗口和接收端的窗口之间较小的一个作为实际发送的窗口大小。</p>
+<p>这样增长的cwnd很快就会变得很大，这样发送的数据如果接受缓冲区无限大的话，TCP传输的数据也是很大的。依然有可能会发生网络拥塞。为了不让cwnd增长的太快，TCP设定了一个<strong>慢开始阈值ssthresh</strong>，当cwnd的值超过了ssthresh的值的时候，慢开始算法结束，进入拥塞避免算法。</p>
+<h4 id="拥塞避免"><a href="#拥塞避免" class="headerlink" title="拥塞避免"></a>拥塞避免</h4><p><img src="http://p3ax8ersb.bkt.clouddn.com/201807212332_636.png-960.jpg" alt="拥塞避免"></p>
+<p>一般来说ssthresh有一个初始值16，当cwnd超过了ssthresh的时候，TCP没法送cwnd个报文，cwnd只增加一，这就是拥塞避免的<strong>加法增大</strong>。</p>
+<p>无论是在慢开始阶段还是在拥塞避免阶段，如果TCP判断网络出现了拥塞，TCP会让ssthres = cwnd/2；cwnd = 1；这个就是拥塞避免的<strong>乘法减小</strong>。</p>
+<h3 id="快重传和快恢复"><a href="#快重传和快恢复" class="headerlink" title="快重传和快恢复"></a>快重传和快恢复</h3><h4 id="快重传"><a href="#快重传" class="headerlink" title="快重传"></a>快重传</h4><p>快重传在前面的可靠传输中的连续ARQ协议中已经讲过，就是在传送数据的时候，如果出现发送端丢包的情况，接收端会一直回丢包确认序号的确认报文。发送端连续三次收到这个确认报文之后就会立刻重发这个丢失报文，而不会等到超时重传。</p>
+<h4 id="快恢复"><a href="#快恢复" class="headerlink" title="快恢复"></a>快恢复</h4><p>快恢复是配合这快重传使用的。</p>
+<p>我们知道当TCP判断当前出现拥塞的时候，就会触发拥塞避免的乘法减小。但是当发送端连续收到三个重复的ACK的时候，说明了一件事，此时不是网络拥塞，只是出现了丢包的特殊情况。因为如果是网络拥塞的时候，接收端发送的三个确认报文发送端是没有办法收到的。所以此时不应该是将cwnd直接设置为1。如果是触发了超时重传，在开启了快恢复的TCP协议中，也不会将cwnd设置为1。</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201807212333_391.png-960.jpg" alt="快恢复"></p>
+<p>快恢复的做法是：ssthresh = cwnd / 2；cwnd = ssthresh；然后接着采用拥塞避免的加法增大。就是上图中的TCP Reno版本。之前的是TCP Tahoe版本。</p>
+<p>但是当前Linux已经不再使用前面两种算法了，使用的是TCP Cubic 版本</p>
+<p>归根结底，拥塞避免就是TCP协议在避免给网络造成太大压力的时候，尽可能快的给对方传输数据的一种方式。</p>
+<h2 id="异常终止"><a href="#异常终止" class="headerlink" title="异常终止"></a>异常终止</h2><ul>
+<li>进程终止：进程中值会释放文件描述符，任然可以发送FIN报文，这样跟正常关闭是一样的；</li>
+<li>机器重启：这样也会让进程终止，跟上面一样；</li>
+<li>机器掉电\网线断开：接收端认为连接还在，一旦接收端有写入操作，接收端发现连接已经不在了，就会重置。如果接收端没有写入操作，TCP也内置了一个保活定时器，会定期询问对方在不在，如果对方不在，也会将连接释放。</li>
+</ul>
+<h2 id="粘包问题"><a href="#粘包问题" class="headerlink" title="粘包问题"></a>粘包问题</h2><p>粘包问题指的是：报文与报文之间的连带。因为TCP是面向字节流的，获取之后提交给上层应用的时候，缓冲区里的数据有可能只有半个报文的大小，也有可能超过一个报文的大小。</p>
+<p>UDP报文是通过定长报文的形式进行报文与报文之间的分隔。报头里面指定了报文的长度。但是TCP里面只有TCP报头的长度，数据的长度并不知道。所以为了区分报文与报文之间的界线，只能通过上层程序自己区分。</p>
+<h2 id="基于TCP的应用协议"><a href="#基于TCP的应用协议" class="headerlink" title="基于TCP的应用协议"></a>基于TCP的应用协议</h2><ul>
+<li>HTTP</li>
+<li>HTTPS</li>
+<li>SSH</li>
+<li>Telent</li>
+<li>FTP</li>
+<li>SMTP</li>
+</ul>
+<h2 id="TCP几个定时器"><a href="#TCP几个定时器" class="headerlink" title="TCP几个定时器"></a>TCP几个定时器</h2><ul>
+<li>重传定时器：作用于发送报文的时候。发送端发送了报文之后，就会开始计时，如果超过了时间都没有收到确认报文，就会将报文重传，并重新计时。</li>
+<li>持续定时器：在流量控制的时候使用。如果发送端收到接收端的通知，说接收端的窗口大小是0，就会启动计时。到了时间接收端也没有对发送端发送窗口通知报文，发送端就会主动发送一个询问报文。</li>
+<li>保活计时器：如果连接建立了，但是双方没有发生数据传输，在保活计时器超时的时候，服务器端会发送一个探测报文，如果连续发送了10个，客户端也没有回应，服务器端就会主动将连接断开。以释放空间和端口。</li>
+<li>TIME_WAIT计时器：在主动断开连接的一方，在最后一个发送了确认报文之后会进入TIME_WAIT状态。这个状态会一直持续2*MSL时间之后才会转入CLOSED状态。</li>
+</ul>
+<h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><ul>
+<li>谢希仁老先生的计算机网络</li>
+<li>图解TCP/IP一书</li>
+<li><a href="https://blog.csdn.net/q1007729991/article/details/69091877" target="_blank" rel="noopener">网络编程学习笔记导航</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/[网络]UDP协议解析.html" rel="next" title="网络 | UDP报头解析">
+                <i class="fa fa-chevron-left"></i> 网络 | UDP报头解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/排序算法.html" rel="prev" title="排序算法">
+                排序算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzU3MS8xMDEyNg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="timmy" />
+            
+              <p class="site-author-name" itemprop="name">timmy</p>
+              <p class="site-description motion-element" itemprop="description">为即将来临的精彩。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/timmyzeng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://amon1997.com" target="_blank" title="Amon">
+                      
+                        <i class="fa fa-fw fa-buysellads"></i>Amon</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("01/25/2018 18:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP概述及特点"><span class="nav-text">TCP概述及特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP报头"><span class="nav-text">TCP报头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解TCP的连接管理机制"><span class="nav-text">理解TCP的连接管理机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接管理全图"><span class="nav-text">连接管理全图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接"><span class="nav-text">连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链接的工作"><span class="nav-text">链接的工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三次握手"><span class="nav-text">三次握手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三次握手出现报文丢失的情况分析："><span class="nav-text">三次握手出现报文丢失的情况分析：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么不是二次握手，四次握手？"><span class="nav-text">为什么不是二次握手，四次握手？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断开"><span class="nav-text">断开</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#四次挥手"><span class="nav-text">四次挥手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TIME-WAIT状态"><span class="nav-text">TIME_WAIT状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#半关闭"><span class="nav-text">半关闭</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同时关闭"><span class="nav-text">同时关闭</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三次挥手"><span class="nav-text">三次挥手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么使用四次挥手"><span class="nav-text">为什么使用四次挥手</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可靠传输"><span class="nav-text">可靠传输</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#确认应答机制"><span class="nav-text">确认应答机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#无差错情况"><span class="nav-text">无差错情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#出现差错"><span class="nav-text">出现差错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#确认丢失和确认迟到"><span class="nav-text">确认丢失和确认迟到</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超时重传的时间确定"><span class="nav-text">超时重传的时间确定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连续ARQ协议"><span class="nav-text">连续ARQ协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#窗口"><span class="nav-text">窗口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#丢包问题的解决"><span class="nav-text">丢包问题的解决</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流量控制"><span class="nav-text">流量控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用滑动窗口实现流量控制"><span class="nav-text">利用滑动窗口实现流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#考虑传输效率"><span class="nav-text">考虑传输效率</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#延迟应答"><span class="nav-text">延迟应答</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#捎带应答"><span class="nav-text">捎带应答</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拥塞控制"><span class="nav-text">拥塞控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#慢开始和拥塞避免"><span class="nav-text">慢开始和拥塞避免</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#慢开始"><span class="nav-text">慢开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拥塞避免"><span class="nav-text">拥塞避免</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快重传和快恢复"><span class="nav-text">快重传和快恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#快重传"><span class="nav-text">快重传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快恢复"><span class="nav-text">快恢复</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常终止"><span class="nav-text">异常终止</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粘包问题"><span class="nav-text">粘包问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TCP的应用协议"><span class="nav-text">基于TCP的应用协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP几个定时器"><span class="nav-text">TCP几个定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料："><span class="nav-text">参考资料：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  
+  <span itemprop="copyrightYear">
+    2018
+  </span>
+
+  <div class="powered-by">  
+  
+  <span class="post-meta-divider">|</span>
+  <span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+</div>
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" target="_blank" href="https://hexo.io" style="font-weight: bold">Hexo</a> 强力驱动
+  </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+    主题 
+    &mdash; 
+    <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+    </a>
+  </div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+</body>
+</html>
