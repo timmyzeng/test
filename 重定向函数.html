@@ -417,18 +417,18 @@
       
         <p>Linux 中进行文件描述符的重定向可以使用两个函数：dup函数和dup2函数，其中还有一个dup3函数，但是这个是Linux后面版本添加的，不是所有的Linux内核都支持，在这里不讨论。</p>
 <p>在Linux系统中约定文件描述符 0、1、2 对应标准输入、标准输出、标准错误，默认开启。</p>
-<h4 id="dup"><a href="#dup" class="headerlink" title="dup()"></a>dup()</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dup</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="dup"><a href="#dup" class="headerlink" title="dup()"></a>dup()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">int dup(int fd);</span><br></pre></td></tr></table></figure>
 <p>使用dup()函数的时候，参数是新的文件描述符期望指向的文件描述符。返回文件描述符表中最小的没有被使用的文件描述符。</p>
 <p>如果我们的fd除了默认打开的0、1、2之外，没有被使用的。我们调用dup(1)，那么最小的没有被使用的fd = 3 就会指向跟fd = 1的同一个文件表。</p>
 <p><img src="http://p3ax8ersb.bkt.clouddn.com/201807221531_754.png-960.jpg" alt="dup(1)"></p>
 <a id="more"></a>
 <p>他的做法就类似以下做法：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fcntl(<span class="number">1</span>, F_DUPFD, <span class="number">0</span>);   <span class="comment">//fcntl函数用来改变已经打开文件的属性。</span></span><br></pre></td></tr></table></figure>
-<h4 id="dup2"><a href="#dup2" class="headerlink" title="dup2()"></a>dup2()</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dup2</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> fd2)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fcntl(1, F_DUPFD, 0);   //fcntl函数用来改变已经打开文件的属性。</span><br></pre></td></tr></table></figure>
+<h4 id="dup2"><a href="#dup2" class="headerlink" title="dup2()"></a>dup2()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">int dup2(int fd, int fd2);</span><br></pre></td></tr></table></figure>
 <p>参数中fd指的是希望被改变的文件描述符，fd2是期望指向的旧的文件描述符。如果fd已经被使用，那么就关闭它。如果fd = fd2，返回fd2但是不关闭。<br>dup2()函数的做法跟dup一样，不同点是dup2()函数可以指定期望改变的fd，而不是去最小未被使用的fd。如果要我们的fd = 3也指向fd = 1的话。调用如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">dup2</span><span class="params">(<span class="number">3</span>, <span class="number">1</span>)</span></span>；</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dup2(3, 1)；</span><br></pre></td></tr></table></figure>
 <p>他的做法类似以下做法：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">close(<span class="number">3</span>);</span><br><span class="line">fcntl(<span class="number">3</span>, F_DUPFD, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">close(3);</span><br><span class="line">fcntl(3, F_DUPFD, 1);</span><br></pre></td></tr></table></figure>
 <p>但是跟上面两个函数调用有点不同的是，dup2()函数的操作是原子性的。分两个函数调用的中间可能会出现其他函数的调用。</p>
 
       
@@ -463,6 +463,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/[网络]网络编程基础-UDP为例.html" rel="prev" title="[网络]网络编程基础-UDP为例">
+                [网络]网络编程基础-UDP为例 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -550,7 +554,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

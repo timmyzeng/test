@@ -312,6 +312,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/[网络]网络编程基础-UDP为例.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="timmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青匆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/[网络]网络编程基础-UDP为例.html" itemprop="url">[网络]网络编程基础-UDP为例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-24T16:33:43+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/network/" itemprop="url" rel="index">
+                    <span itemprop="name">network</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文只是基于认识的讲述网络编程基础。</p>
+<h3 id="基础认识"><a href="#基础认识" class="headerlink" title="基础认识"></a>基础认识</h3><h4 id="认识IP"><a href="#认识IP" class="headerlink" title="认识IP"></a>认识IP</h4><ul>
+<li>IP地址是在IP协议中用来表示网络中不同的主机的地址</li>
+<li>IPv4是4个字节，32位；IPv6是16个字节，128位。目前通用的是IPv4。</li>
+<li>通常用点分十进制来的字符串来表示IP地址。例如常见的192.168.1.1，每一个点分隔一个字节，范围是0~255</li>
+</ul>
+<p><strong>理解源IP地址和目的IP地址：</strong>源IP地址是发送端的IP地址，目的IP地址是接收端的IP地址。这两个地址指明了数据的来源主机和目的主机。</p>
+<h4 id="认识端口号"><a href="#认识端口号" class="headerlink" title="认识端口号"></a>认识端口号</h4><p>端口号是传输层协议需要的数据。</p>
+<ul>
+<li>端口号是一个2字节的整数，16位。</li>
+<li><strong>端口号用来唯一标识一个网络进程，它可以告诉OS这些数据需要提交给哪一个进程来处理。</strong></li>
+<li>一个端口号只能被一个进程占用。</li>
+</ul>
+<p>我们的数据在网络中传输，通过IP地址，我们可以找到目的主机。但是很遗憾，在目的主机上处理数据的个体是进程。所以我们需要端口号来表示主机中的进程。这样我们的数据才可以准确的交付给网络中的唯一主机上的唯一进程。所以一个进程可以绑定多个端口号，但是一个端口号只能被一个一个进程绑定。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/[网络]网络编程基础-UDP为例.html" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/重定向函数.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -417,7 +587,7 @@
         
           <p>Linux 中进行文件描述符的重定向可以使用两个函数：dup函数和dup2函数，其中还有一个dup3函数，但是这个是Linux后面版本添加的，不是所有的Linux内核都支持，在这里不讨论。</p>
 <p>在Linux系统中约定文件描述符 0、1、2 对应标准输入、标准输出、标准错误，默认开启。</p>
-<h4 id="dup"><a href="#dup" class="headerlink" title="dup()"></a>dup()</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dup</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="dup"><a href="#dup" class="headerlink" title="dup()"></a>dup()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">int dup(int fd);</span><br></pre></td></tr></table></figure>
 <p>使用dup()函数的时候，参数是新的文件描述符期望指向的文件描述符。返回文件描述符表中最小的没有被使用的文件描述符。</p>
 <p>如果我们的fd除了默认打开的0、1、2之外，没有被使用的。我们调用dup(1)，那么最小的没有被使用的fd = 3 就会指向跟fd = 1的同一个文件表。</p>
 <p><img src="http://p3ax8ersb.bkt.clouddn.com/201807221531_754.png-960.jpg" alt="dup(1)"></p>
@@ -829,7 +999,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/[网络]UDP协议解析.html" itemprop="url">网络 | UDP报头解析</a></h1>
+                <a class="post-title-link" href="/[网络]UDP协议解析.html" itemprop="url">UDP协议解析</a></h1>
         
 
         <div class="post-meta">
@@ -1436,163 +1606,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/哈弗曼树及文件压缩.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="timmy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青匆">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/哈弗曼树及文件压缩.html" itemprop="url">哈弗曼树及文件压缩</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T20:58:15+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/knowledge/" itemprop="url" rel="index">
-                    <span itemprop="name">knowledge</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/knowledge/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="HuffmanTree"><a href="#HuffmanTree" class="headerlink" title="HuffmanTree"></a>HuffmanTree</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>哈弗曼树是一种优化的二叉树，称为最优二叉树，是加权路径长度最小的二叉树。所谓权值在这里指的是节点中的数据。本文的哈弗曼树用数组提供数据，例如：arr[]={1,2,3,4,5,6}创建的哈弗曼树见下图：<br><img src="http://p3ax8ersb.bkt.clouddn.com/201804031454_423.png-480.jpg" alt="hft"><br>图中蓝色的节点值是数组arr提供，红色节点值是两个孩子节点值相加得到。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/哈弗曼树及文件压缩.html" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1649,7 +1662,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
