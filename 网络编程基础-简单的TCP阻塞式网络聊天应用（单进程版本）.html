@@ -86,8 +86,8 @@
 <meta name="description" content="本程序使用的TCP协议，该协议是面向连接、通过字节流进行通信的。实现了客户端和服务器端的阻塞式通信。主要锻炼了对于socket API的使用。 程序使用的函数其中socket、bind、地址转换函数在网络基础编程-UDP为例已经分析过。这里介绍的函数适用于TCP这类面向连接的协议。 listen当我们的网络程序需要使用TCP面向连接一类的协议的时候，socket中选用了SOCK_STREAM选项。">
 <meta name="keywords" content="TCP,网络编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络编程基础-简单的TCP阻塞式网络聊天应用（单线程版本）">
-<meta property="og:url" content="http://www.jingxxn.cn/网络编程基础-简单的TCP阻塞式网络聊天应用（单线程版本）.html">
+<meta property="og:title" content="网络编程基础-简单的TCP阻塞式网络聊天应用（单进程版本）">
+<meta property="og:url" content="http://www.jingxxn.cn/网络编程基础-简单的TCP阻塞式网络聊天应用（单进程版本）.html">
 <meta property="og:site_name" content="青匆">
 <meta property="og:description" content="本程序使用的TCP协议，该协议是面向连接、通过字节流进行通信的。实现了客户端和服务器端的阻塞式通信。主要锻炼了对于socket API的使用。 程序使用的函数其中socket、bind、地址转换函数在网络基础编程-UDP为例已经分析过。这里介绍的函数适用于TCP这类面向连接的协议。 listen当我们的网络程序需要使用TCP面向连接一类的协议的时候，socket中选用了SOCK_STREAM选项。">
 <meta property="og:locale" content="zh-Hans">
@@ -96,9 +96,9 @@
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807301235_229.png-1920.jpg">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807301240_217.png-960.jpg">
 <meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201807301530_928.png-1920.jpg">
-<meta property="og:updated_time" content="2018-07-30T07:45:18.409Z">
+<meta property="og:updated_time" content="2018-07-30T07:52:40.131Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络编程基础-简单的TCP阻塞式网络聊天应用（单线程版本）">
+<meta name="twitter:title" content="网络编程基础-简单的TCP阻塞式网络聊天应用（单进程版本）">
 <meta name="twitter:description" content="本程序使用的TCP协议，该协议是面向连接、通过字节流进行通信的。实现了客户端和服务器端的阻塞式通信。主要锻炼了对于socket API的使用。 程序使用的函数其中socket、bind、地址转换函数在网络基础编程-UDP为例已经分析过。这里介绍的函数适用于TCP这类面向连接的协议。 listen当我们的网络程序需要使用TCP面向连接一类的协议的时候，socket中选用了SOCK_STREAM选项。">
 <meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201807261744_470.png-960.jpg">
 
@@ -130,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://www.jingxxn.cn/网络编程基础-简单的TCP阻塞式网络聊天应用（单线程版本）.html"/>
+  <link rel="canonical" href="http://www.jingxxn.cn/网络编程基础-简单的TCP阻塞式网络聊天应用（单进程版本）.html"/>
 
 
 
@@ -148,7 +148,7 @@
     })();
 </script>
 
-  <title>网络编程基础-简单的TCP阻塞式网络聊天应用（单线程版本） | 青匆</title>
+  <title>网络编程基础-简单的TCP阻塞式网络聊天应用（单进程版本） | 青匆</title>
   
 
 
@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/网络编程基础-简单的TCP阻塞式网络聊天应用（单线程版本）.html">
+    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/网络编程基础-简单的TCP阻塞式网络聊天应用（单进程版本）.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="timmy">
@@ -336,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">网络编程基础-简单的TCP阻塞式网络聊天应用（单线程版本）</h1>
+          <h1 class="post-title" itemprop="name headline">网络编程基础-简单的TCP阻塞式网络聊天应用（单进程版本）</h1>
         
 
         <div class="post-meta">
@@ -490,6 +490,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/网络编程基础-简单的TCP回显程序（多进程和多线程版本）.html" rel="prev" title="网络编程基础-简单的TCP回显程序（多进程和多线程版本）">
+                网络编程基础-简单的TCP回显程序（多进程和多线程版本） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -576,7 +580,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -703,6 +707,8 @@ show_date_time();
   
   <span class="post-meta-divider">|</span>
   <span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+  <span class="post-meta-divider">|</span>
+  <span><a href="http://www.miitbeian.gov.cn" style="font-weight: bold">陕ICP备18001886号</a></span>
 </div>
   
 </div>
