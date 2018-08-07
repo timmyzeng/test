@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="linux,博客,C++,算法" />
+  <meta name="keywords" content="网络层,数据链路层,MTU" />
 
 
 
@@ -83,16 +83,23 @@
 
 
 
-<meta name="description" content="为即将来临的精彩。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="青匆">
-<meta property="og:url" content="http://www.jingxxn.cn/archives/2018/page/2/index.html">
+<meta name="description" content="数据链路层在网络分层中处于倒数第二层，是在物理层上面的一层。他的作用主要是负责处于同一种数据链路节点中的两个设备之间进行传递数据。在数据链路层，将上层网络层下交的IP数据包封装成帧。本文就以太网、MAC、MTU三个重点进行解析。 以太网在众多的数据链路中，最为出名的就是以太网（Ethernet），他的规范简单，使用网卡及驱动程序实现。  以太网是一种标准，它包括了数据链路层的内容，也包含了物理层的">
+<meta name="keywords" content="网络层,数据链路层,MTU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据链路层中以太网、MAC、MTU的解析">
+<meta property="og:url" content="http://www.jingxxn.cn/数据链路层中以太网、MAC、MTU的解析.html">
 <meta property="og:site_name" content="青匆">
-<meta property="og:description" content="为即将来临的精彩。">
+<meta property="og:description" content="数据链路层在网络分层中处于倒数第二层，是在物理层上面的一层。他的作用主要是负责处于同一种数据链路节点中的两个设备之间进行传递数据。在数据链路层，将上层网络层下交的IP数据包封装成帧。本文就以太网、MAC、MTU三个重点进行解析。 以太网在众多的数据链路中，最为出名的就是以太网（Ethernet），他的规范简单，使用网卡及驱动程序实现。  以太网是一种标准，它包括了数据链路层的内容，也包含了物理层的">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201808070812_855.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201808070814_703.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201808070825_43.png-960.jpg">
+<meta property="og:image" content="http://p3ax8ersb.bkt.clouddn.com/201808070837_953.png-960.jpg">
+<meta property="og:updated_time" content="2018-08-07T01:19:42.446Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="青匆">
-<meta name="twitter:description" content="为即将来临的精彩。">
+<meta name="twitter:title" content="数据链路层中以太网、MAC、MTU的解析">
+<meta name="twitter:description" content="数据链路层在网络分层中处于倒数第二层，是在物理层上面的一层。他的作用主要是负责处于同一种数据链路节点中的两个设备之间进行传递数据。在数据链路层，将上层网络层下交的IP数据包封装成帧。本文就以太网、MAC、MTU三个重点进行解析。 以太网在众多的数据链路中，最为出名的就是以太网（Ethernet），他的规范简单，使用网卡及驱动程序实现。  以太网是一种标准，它包括了数据链路层的内容，也包含了物理层的">
+<meta name="twitter:image" content="http://p3ax8ersb.bkt.clouddn.com/201808070812_855.png-960.jpg">
 
 
 
@@ -122,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="http://www.jingxxn.cn/archives/2018/page/2/"/>
+  <link rel="canonical" href="http://www.jingxxn.cn/数据链路层中以太网、MAC、MTU的解析.html"/>
 
 
 
@@ -140,7 +147,7 @@
     })();
 </script>
 
-  <title>归档 | 青匆</title>
+  <title>数据链路层中以太网、MAC、MTU的解析 | 青匆</title>
   
 
 
@@ -169,7 +176,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -297,336 +304,213 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 33 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jingxxn.cn/数据链路层中以太网、MAC、MTU的解析.html">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="timmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青匆">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">数据链路层中以太网、MAC、MTU的解析</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T09:18:19+08:00">
+                2018-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/浅读《STL源码剖析》笔记-4章-vector和list.html" itemprop="url">
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">浅读《STL源码剖析》笔记 4章-vector和list</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-09T10:13:57+08:00"
-              content="2018-02-09" >
-          02-09
-        </time>
-      </div>
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/network/" itemprop="url" rel="index">
+                    <span itemprop="name">network</span>
+                  </a>
+                </span>
 
-    </header>
-  </article>
+                
+                
+              
+            </span>
+          
 
+          
+            
+          
 
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/浅读《STL源码剖析》笔记-3章.html" itemprop="url">
-              
-                <span itemprop="name">浅读《STL源码剖析》笔记 3章</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-08T17:07:30+08:00"
-              content="2018-02-08" >
-          02-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/浅读《STL源码剖析》笔记-1、2章.html" itemprop="url">
-              
-                <span itemprop="name">浅读《STL源码剖析》笔记 1、2章</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-03T11:15:06+08:00"
-              content="2018-02-03" >
-          02-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>数据链路层在网络分层中处于倒数第二层，是在物理层上面的一层。<strong>他的作用主要是负责处于同一种数据链路节点中的两个设备之间进行传递数据。在数据链路层，将上层网络层下交的IP数据包封装成帧。</strong>本文就以太网、MAC、MTU三个重点进行解析。</p>
+<h3 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h3><p>在众多的数据链路中，最为出名的就是以太网（Ethernet），他的规范简单，使用网卡及驱动程序实现。</p>
+<ul>
+<li>以太网是一种标准，它包括了数据链路层的内容，也包含了物理层的内容。</li>
+<li>以太网中必须使用双绞线，传输速度有10M、100M、1G、10G等</li>
+<li>跟以太网一起并列的有令牌环网、无线LAN等</li>
+</ul>
+<a id="more"></a>
+<h4 id="以太网帧格式"><a href="#以太网帧格式" class="headerlink" title="以太网帧格式"></a>以太网帧格式</h4><p>以太网帧的前端有一个叫做前导码的部分，由0、1交替组合而成，表示一个以太网帧的开始，网卡通过该字段来进行同步识别。前导码一共占用八个字节，最后两个比特位为11，将其称为SDF。在前导码之后就是以太网帧的首部。</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201808070812_855.png-960.jpg" alt="前导码"></p>
+<p><strong>以太网帧</strong></p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201808070814_703.png-960.jpg" alt="以太网帧"></p>
+<ul>
+<li>目标MAC地址和源MAC地址：在同一个数据链路上的两个MAC地址，表示着发送端的和目的端。MAC地址是6个字节的。</li>
+<li>类型：两字节的上层协议类型，用来拆包之后交付给的上层协议。常见的有：0800IPv4；0806ARP；0835RARP。</li>
+<li>数据：指的是IP层下交的IP数据包。数据包的大小是46~1500字节。</li>
+<li>帧尾：是一个校验字段，FCS占四个字节。使用的是CRC校验。</li>
+</ul>
+<h3 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h3><p><strong>MAC地址是在全世界范围内唯一的地址，它代表的是设备。用来识别数据链路中互联的节点。MAC地址的长度是6字节（48比特位）。</strong>一般常见的格式是用十六进制表示，每一个字节之间用：进行分隔。</p>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201808070825_43.png-960.jpg" alt="MAC"></p>
+<h3 id="MTU"><a href="#MTU" class="headerlink" title="MTU"></a>MTU</h3><p><strong>MTU指的是数据链路中的最大传输单元，不同的数据链路中具有不同的MTU。常用的以太网的MTU是1500字节；</strong>FDDI（令牌环网）是4352字节；在以太网中，如果数据包的大小小于46字节，会通过补充0的方式，让它满足46字节（RAP包）</p>
+<h4 id="MTU对IP协议的影响"><a href="#MTU对IP协议的影响" class="headerlink" title="MTU对IP协议的影响"></a>MTU对IP协议的影响</h4><p>IP层的数据包有可能会超过这个大小，此时就必须将IP数据包进行分片操作。</p>
+<ul>
+<li>超过1500字节的IP数据包在以太网内会被分成小包，每一个小包都会被打上标签，也就是IP首部中的3位标志位和13位偏移量来标识。</li>
+<li><strong>每一个小包都有自己的IP首部，使用同一个id字段。</strong></li>
+<li><strong>到达对端的时候，会进行按序重组，组装之后再上交给传输层。</strong></li>
+<li>一旦这些小包出现丢失，就会导致重组失败，IP协议会将该数据包丢弃，但是IP协议不会负责重传。数据的可靠性由传输层来保证。</li>
+</ul>
+<p><img src="http://p3ax8ersb.bkt.clouddn.com/201808070837_953.png-960.jpg" alt="MTU"></p>
+<h4 id="MTU对UDP协议的影响"><a href="#MTU对UDP协议的影响" class="headerlink" title="MTU对UDP协议的影响"></a>MTU对UDP协议的影响</h4><p>如果UDP数据报不想被分片操作，<strong>那么UDP的数据不能超过1472字节（1500字节-IP首部（20字节，没有变长选项）-UDP首部（8字节））。</strong>一旦超过了这个字节，在数据链路层进行传输的时候就会被分片。此时只要丢失了其中一个小包，IP层无法组装成一个完整的数据报。因为UDP是一个不保证可靠性的协议，就会导致IP协议和UDP协议不会要求重传，该报文就默默的丢失了。</p>
+<h4 id="MTU对TCP协议的影响"><a href="#MTU对TCP协议的影响" class="headerlink" title="MTU对TCP协议的影响"></a>MTU对TCP协议的影响</h4><p>在TCP协议报头中有一个16位总长度，这样表示着TCP报文可以传送大约6万个字节的数据。<strong>但是很不巧的是我们以太网的MTU上限是1500字节。所以TCP报文也不能设定得很大。</strong></p>
+<ul>
+<li>在TCP首部中有一个MSS（单个数据报的最大长度）字段，该字段在选项字段中。</li>
+<li>当我们进行三次握手建立连接的时候，客户端和服务器端会相互发送各自的MSS，最后会取小的MSS作为最大传输数据报长度。其中MSS不包括TCP报头，指的是TCP报中的数据部分。</li>
+<li>最理想的MSS就是TCP报文长度+IP包头长度等于1500字节，这样一次传输的数据最多，同时不会被分片。</li>
+<li>如果发送了分片，同时出现了丢包的情况，TCP获取到数据报的时候，可以通过确认机制请求重传，从而保证了可靠性。</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li>图解TCP/IP</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/复杂单链表的复制.html" itemprop="url">
-              
-                <span itemprop="name">复杂单链表的复制</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-31T14:54:57+08:00"
-              content="2018-01-31" >
-          01-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/static-const-integral-data-member在类中的初始化.html" itemprop="url">
-              
-                <span itemprop="name">static const integral data member在类中的初始化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-30T14:25:04+08:00"
-              content="2018-01-30" >
-          01-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/创建一个不能被继承的类.html" itemprop="url">
-              
-                <span itemprop="name">创建一个不能被继承的类</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-29T10:23:19+08:00"
-              content="2018-01-29" >
-          01-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/位运算实现Add.html" itemprop="url">
-              
-                <span itemprop="name">位运算实现Add</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-28T13:30:43+08:00"
-              content="2018-01-28" >
-          01-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/1-……-n的特殊求法.html" itemprop="url">
-              
-                <span itemprop="name">1+2+……+n的特殊求法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-27T00:44:40+08:00"
-              content="2018-01-27" >
-          01-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/网络层解析.html" rel="next" title="网络层解析">
+                <i class="fa fa-chevron-left"></i> 网络层解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2018/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -634,6 +518,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzU3MS8xMDEyNg=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -656,8 +549,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -761,6 +663,22 @@ show_date_time();
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#以太网"><span class="nav-text">以太网</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#以太网帧格式"><span class="nav-text">以太网帧格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC地址"><span class="nav-text">MAC地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MTU"><span class="nav-text">MTU</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MTU对IP协议的影响"><span class="nav-text">MTU对IP协议的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MTU对UDP协议的影响"><span class="nav-text">MTU对UDP协议的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MTU对TCP协议的影响"><span class="nav-text">MTU对TCP协议的影响</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -927,6 +845,10 @@ show_date_time();
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -955,6 +877,17 @@ show_date_time();
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

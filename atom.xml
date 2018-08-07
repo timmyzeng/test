@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jingxxn.cn/"/>
-  <updated>2018-08-06T01:58:26.624Z</updated>
+  <updated>2018-08-07T01:19:42.446Z</updated>
   <id>http://www.jingxxn.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据链路层中以太网、MAC、MTU的解析</title>
+    <link href="http://www.jingxxn.cn/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E4%B8%AD%E4%BB%A5%E5%A4%AA%E7%BD%91%E3%80%81MAC%E3%80%81MTU%E7%9A%84%E8%A7%A3%E6%9E%90.html"/>
+    <id>http://www.jingxxn.cn/数据链路层中以太网、MAC、MTU的解析.html</id>
+    <published>2018-08-07T01:18:19.000Z</published>
+    <updated>2018-08-07T01:19:42.446Z</updated>
+    
+    <content type="html"><![CDATA[<p>数据链路层在网络分层中处于倒数第二层，是在物理层上面的一层。<strong>他的作用主要是负责处于同一种数据链路节点中的两个设备之间进行传递数据。在数据链路层，将上层网络层下交的IP数据包封装成帧。</strong>本文就以太网、MAC、MTU三个重点进行解析。</p><h3 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h3><p>在众多的数据链路中，最为出名的就是以太网（Ethernet），他的规范简单，使用网卡及驱动程序实现。</p><ul><li>以太网是一种标准，它包括了数据链路层的内容，也包含了物理层的内容。</li><li>以太网中必须使用双绞线，传输速度有10M、100M、1G、10G等</li><li>跟以太网一起并列的有令牌环网、无线LAN等</li></ul><a id="more"></a><h4 id="以太网帧格式"><a href="#以太网帧格式" class="headerlink" title="以太网帧格式"></a>以太网帧格式</h4><p>以太网帧的前端有一个叫做前导码的部分，由0、1交替组合而成，表示一个以太网帧的开始，网卡通过该字段来进行同步识别。前导码一共占用八个字节，最后两个比特位为11，将其称为SDF。在前导码之后就是以太网帧的首部。</p><p><img src="http://p3ax8ersb.bkt.clouddn.com/201808070812_855.png-960.jpg" alt="前导码"></p><p><strong>以太网帧</strong></p><p><img src="http://p3ax8ersb.bkt.clouddn.com/201808070814_703.png-960.jpg" alt="以太网帧"></p><ul><li>目标MAC地址和源MAC地址：在同一个数据链路上的两个MAC地址，表示着发送端的和目的端。MAC地址是6个字节的。</li><li>类型：两字节的上层协议类型，用来拆包之后交付给的上层协议。常见的有：0800IPv4；0806ARP；0835RARP。</li><li>数据：指的是IP层下交的IP数据包。数据包的大小是46~1500字节。</li><li>帧尾：是一个校验字段，FCS占四个字节。使用的是CRC校验。</li></ul><h3 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h3><p><strong>MAC地址是在全世界范围内唯一的地址，它代表的是设备。用来识别数据链路中互联的节点。MAC地址的长度是6字节（48比特位）。</strong>一般常见的格式是用十六进制表示，每一个字节之间用：进行分隔。</p><p><img src="http://p3ax8ersb.bkt.clouddn.com/201808070825_43.png-960.jpg" alt="MAC"></p><h3 id="MTU"><a href="#MTU" class="headerlink" title="MTU"></a>MTU</h3><p><strong>MTU指的是数据链路中的最大传输单元，不同的数据链路中具有不同的MTU。常用的以太网的MTU是1500字节；</strong>FDDI（令牌环网）是4352字节；在以太网中，如果数据包的大小小于46字节，会通过补充0的方式，让它满足46字节（RAP包）</p><h4 id="MTU对IP协议的影响"><a href="#MTU对IP协议的影响" class="headerlink" title="MTU对IP协议的影响"></a>MTU对IP协议的影响</h4><p>IP层的数据包有可能会超过这个大小，此时就必须将IP数据包进行分片操作。</p><ul><li>超过1500字节的IP数据包在以太网内会被分成小包，每一个小包都会被打上标签，也就是IP首部中的3位标志位和13位偏移量来标识。</li><li><strong>每一个小包都有自己的IP首部，使用同一个id字段。</strong></li><li><strong>到达对端的时候，会进行按序重组，组装之后再上交给传输层。</strong></li><li>一旦这些小包出现丢失，就会导致重组失败，IP协议会将该数据包丢弃，但是IP协议不会负责重传。数据的可靠性由传输层来保证。</li></ul><p><img src="http://p3ax8ersb.bkt.clouddn.com/201808070837_953.png-960.jpg" alt="MTU"></p><h4 id="MTU对UDP协议的影响"><a href="#MTU对UDP协议的影响" class="headerlink" title="MTU对UDP协议的影响"></a>MTU对UDP协议的影响</h4><p>如果UDP数据报不想被分片操作，<strong>那么UDP的数据不能超过1472字节（1500字节-IP首部（20字节，没有变长选项）-UDP首部（8字节））。</strong>一旦超过了这个字节，在数据链路层进行传输的时候就会被分片。此时只要丢失了其中一个小包，IP层无法组装成一个完整的数据报。因为UDP是一个不保证可靠性的协议，就会导致IP协议和UDP协议不会要求重传，该报文就默默的丢失了。</p><h4 id="MTU对TCP协议的影响"><a href="#MTU对TCP协议的影响" class="headerlink" title="MTU对TCP协议的影响"></a>MTU对TCP协议的影响</h4><p>在TCP协议报头中有一个16位总长度，这样表示着TCP报文可以传送大约6万个字节的数据。<strong>但是很不巧的是我们以太网的MTU上限是1500字节。所以TCP报文也不能设定得很大。</strong></p><ul><li>在TCP首部中有一个MSS（单个数据报的最大长度）字段，该字段在选项字段中。</li><li>当我们进行三次握手建立连接的时候，客户端和服务器端会相互发送各自的MSS，最后会取小的MSS作为最大传输数据报长度。其中MSS不包括TCP报头，指的是TCP报中的数据部分。</li><li>最理想的MSS就是TCP报文长度+IP包头长度等于1500字节，这样一次传输的数据最多，同时不会被分片。</li><li>如果发送了分片，同时出现了丢包的情况，TCP获取到数据报的时候，可以通过确认机制请求重传，从而保证了可靠性。</li></ul><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul><li>图解TCP/IP</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数据链路层在网络分层中处于倒数第二层，是在物理层上面的一层。&lt;strong&gt;他的作用主要是负责处于同一种数据链路节点中的两个设备之间进行传递数据。在数据链路层，将上层网络层下交的IP数据包封装成帧。&lt;/strong&gt;本文就以太网、MAC、MTU三个重点进行解析。&lt;/p&gt;
+&lt;h3 id=&quot;以太网&quot;&gt;&lt;a href=&quot;#以太网&quot; class=&quot;headerlink&quot; title=&quot;以太网&quot;&gt;&lt;/a&gt;以太网&lt;/h3&gt;&lt;p&gt;在众多的数据链路中，最为出名的就是以太网（Ethernet），他的规范简单，使用网卡及驱动程序实现。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;以太网是一种标准，它包括了数据链路层的内容，也包含了物理层的内容。&lt;/li&gt;
+&lt;li&gt;以太网中必须使用双绞线，传输速度有10M、100M、1G、10G等&lt;/li&gt;
+&lt;li&gt;跟以太网一起并列的有令牌环网、无线LAN等&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.jingxxn.cn/categories/Linux/"/>
+    
+      <category term="network" scheme="http://www.jingxxn.cn/categories/Linux/network/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>网络层解析</title>
@@ -508,28 +536,6 @@
       <category term="Linux" scheme="http://www.jingxxn.cn/categories/Linux/"/>
     
       <category term="method" scheme="http://www.jingxxn.cn/categories/Linux/method/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>判断元素的入栈和出栈顺序是否合法</title>
-    <link href="http://www.jingxxn.cn/%E5%88%A4%E6%96%AD%E5%85%83%E7%B4%A0%E7%9A%84%E5%85%A5%E6%A0%88%E5%92%8C%E5%87%BA%E6%A0%88%E9%A1%BA%E5%BA%8F%E6%98%AF%E5%90%A6%E4%B8%80%E8%87%B4.html"/>
-    <id>http://www.jingxxn.cn/判断元素的入栈和出栈顺序是否一致.html</id>
-    <published>2018-03-07T06:46:00.000Z</published>
-    <updated>2018-03-07T07:48:17.619Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>提供两个元素的集合，一个是元素入栈的顺序，另一个是元素出栈的顺序。设计一个函数，判断两个元素集合是否满足入栈出栈的规则。如：入栈顺序：“12345”，出栈顺序是：“54321”，这样就是符合要求的。如果出栈顺序是：“51234”，这样不符合要求。<br><a id="more"></a></p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>根据题目的要求，就是判断两数组是否满足出栈入栈的顺序。可以这样做：<strong>1、先按照入栈顺序的集合进行入栈。2、在入栈的同时，跟出栈顺序的元素进行比较。如果相同就将入栈的元素pop出来。3、结束的时候，如果栈为空，说明两者的入栈顺序和出栈顺序可以匹配，那么就是符合要求的；如果栈不为空，那就是不符合要求。</strong><br>还有一点：<strong>如果两元素的个数不一样或者同时为空，直接判定不符合要求。</strong></p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">stack_io_right</span><span class="params">(<span class="keyword">char</span>* src, <span class="keyword">char</span>* dst)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> src_len = <span class="keyword">sizeof</span>(src);</span><br><span class="line">    <span class="keyword">int</span> dst_len = <span class="keyword">sizeof</span>(dst);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(src_len == <span class="number">0</span> || src_len != dst_len)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(; i &lt; src_len; ++i)&#123;</span><br><span class="line">        s.push(*(src+i));</span><br><span class="line">        <span class="keyword">while</span>(s.size() &amp;&amp; s.top() == *(dst+j))&#123;</span><br><span class="line">            ++j;</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(s.empty())</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    system(<span class="string">"clear"</span>);</span><br><span class="line">    <span class="keyword">char</span> src[] = <span class="string">"12345"</span>;</span><br><span class="line">    <span class="keyword">char</span> dst[] = <span class="string">"32145"</span>;</span><br><span class="line">    <span class="keyword">char</span> dst1[] = <span class="string">"51243"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; stack_io_right(src, dst) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; stack_io_right(src, dst1) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="http://p3ax8ersb.bkt.clouddn.com/201803071537_435.png-480.jpg" alt="运行结果"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h3&gt;&lt;p&gt;提供两个元素的集合，一个是元素入栈的顺序，另一个是元素出栈的顺序。设计一个函数，判断两个元素集合是否满足入栈出栈的规则。如：入栈顺序：“12345”，出栈顺序是：“54321”，这样就是符合要求的。如果出栈顺序是：“51234”，这样不符合要求。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="practice" scheme="http://www.jingxxn.cn/categories/practice/"/>
-    
-      <category term="C/C++" scheme="http://www.jingxxn.cn/categories/practice/C-C/"/>
     
     
   </entry>
